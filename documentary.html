@@ -47,7 +47,7 @@
   .card:last-child { border-right:none; }
   .card:hover { background:rgba(126,200,164,.04); }
   .card-index { font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; }
-  .card-frame { width:100%; position:relative; background:var(--cream-faint); overflow:hidden; border:1px solid var(--mint-rule); cursor:pointer; transition:border-color .25s ease, box-shadow .25s ease; }
+  .card-frame { width:100%; max-height:70vh; position:relative; background:var(--cream-faint); overflow:hidden; border:1px solid var(--mint-rule); cursor:pointer; transition:border-color .25s ease, box-shadow .25s ease; }
   .card:hover .card-frame, .card-frame:hover { border-color:var(--mint); box-shadow:0 0 0 1px var(--mint-dim), inset 0 0 40px rgba(126,200,164,.05); }
   .card-frame::after { content:'▶'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:var(--mint); opacity:0; transition:opacity .25s ease; pointer-events:none; }
   .card-frame:hover::after { opacity:1; }
@@ -173,7 +173,7 @@
 <div class="paper">
 <div class="paper-row row-main-trailer">
 <div class="card hero-card"><span class="card-index">01 — YouTube / 5:4</span><div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/f6rgLM28SgQ" title="Noorin Gulam"></iframe></div><div class="card-meta"><h2 class="card-title">Noorin Gulam</h2><div class="card-rule"></div><p class="card-desc">A lead documentary feature for the page, giving the project the largest opening position.</p><span class="card-tag">Noorin Gulam · YouTube / 5:4</span></div></div>
-<div class="card"><span class="card-index">02 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls="" loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/NOORIN%20GULAM/54---noorin-gulam-weightlifter-3.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Noorin Gulam — Trailer</h2><div class="card-rule"></div><p class="card-desc">Vertical trailer cut accompanying the main Noorin Gulam feature.</p><span class="card-tag">Noorin Gulam · Trailer / 4:3</span></div></div>
+<div class="card"><span class="card-index">02 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls="" loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/Zahmena/13---zahman-malik-pakistan-footballer-2.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Zahmena</h2><div class="card-rule"></div><p class="card-desc">Vertical documentary piece from the Zahmena series.</p><span class="card-tag">Zahmena · Vertical / 4:3</span></div></div>
 </div>
 <div class="paper-row row-main-trailer">
 <div class="card full-card"><span class="card-index">03 — YouTube / 5:4</span><div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/E8swK-8hksw" title="Obsolescence"></iframe></div><div class="card-meta"><h2 class="card-title">Obsolescence</h2><div class="card-rule"></div><p class="card-desc">A larger standalone documentary row to create a cinematic pause in the middle of the page.</p><span class="card-tag">Obsolescence · YouTube / 5:4</span></div></div>
@@ -186,9 +186,6 @@
 <div class="paper-row row-main-trailer">
 <div class="card"><span class="card-index">07 — YouTube / 5:4</span><div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/iRc2n23f-ho" title="Ranj Singh"></iframe></div><div class="card-meta"><h2 class="card-title">Ranj Singh</h2><div class="card-rule"></div><p class="card-desc">Wolverhampton Wrestling Club — portrait-led documentary story paired with its trailer.</p><span class="card-tag">Ranj Singh · YouTube / 5:4</span></div></div>
 <div class="card"><span class="card-index">08 — Trailer / 5:4</span><div class="card-frame ratio-54"><video controls="" loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/53---ranj-wrestling-autism-doc-3.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Ranj Singh — Trailer</h2><div class="card-rule"></div><p class="card-desc">Smaller trailer square accompanying the main Ranj Singh feature.</p><span class="card-tag">Ranj Singh · Trailer / 5:4</span></div></div>
-</div>
-<div class="paper-row row-full">
-<div class="card full-card"><span class="card-index">09 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls="" loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/Zahmena/13---zahman-malik-pakistan-footballer-2.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Zahmena</h2><div class="card-rule"></div><p class="card-desc">Vertical documentary piece from the Zahmena series.</p><span class="card-tag">Zahmena · Vertical / 4:3</span></div></div>
 </div>
 
 </div>
