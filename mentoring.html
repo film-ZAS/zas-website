@@ -72,7 +72,7 @@
   .video-frame{position:relative;overflow:hidden;background:var(--cream-faint);border:1px solid var(--mint-rule)}
   .video-frame video,.video-frame img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9)}
   .video-frame::after{content:'▶';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--mint);font-size:1.5rem;opacity:.92;text-shadow:0 1px 12px rgba(0,0,0,.65);pointer-events:none}
-  .ratio-54{aspect-ratio:5/4}.ratio-916{aspect-ratio:9/16}.ratio-43v{aspect-ratio:3/4}
+  .ratio-54{aspect-ratio:5/4}.ratio-916{aspect-ratio:9/16}.ratio-43v{aspect-ratio:3/4}.ratio-sfx{aspect-ratio:1444/1280}
   .video-card.big{grid-row:span 2}
   .video-card.big .video-frame{aspect-ratio:5/4}
   .video-card .num{font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;color:var(--mint);display:block;margin-bottom:.75rem}
@@ -222,36 +222,55 @@
 <section class="video-section">
 <div class="section-title fade">
 <h2>See the process in action.</h2>
-<p>A tighter video layout: one larger 5:4 feature, two 9:16 verticals on the right, then two 4:3 vertical examples underneath.</p>
+<p>A tighter video layout: one larger 5:4 feature, two 9:16 verticals on the right, then two 9:16 BTS clips, one 4:3 vertical example, and a sound design reel underneath.</p>
 </div>
 <div class="video-grid">
 <article class="video-card big fade">
 <span class="num">01 / 5:4</span>
-<div class="video-frame ratio-54"><video autoplay="" loop="" muted="" playsinline="" poster="Mentoring/hf_20260701_112717_d9abc266-3de1-488c-a45a-af4af0838c6b.webp" preload="metadata"><source src="Mentoring/compressed/zeeshan-colour.mp4" type="video/mp4"/></video></div>
+<div class="video-frame ratio-54"><video autoplay="" loop="" muted="" playsinline="" poster="https://media.zainaussaleem.com/Mentoring/hf_20260701_112717_d9abc266-3de1-488c-a45a-af4af0838c6b.webp" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/zeeshan-colour.mp4" type="video/mp4"/></video></div>
 <h3>Colour Grading Workflow</h3>
 <p>Step by step grading, matching and finishing.</p>
 </article>
 <article class="video-card fade">
 <span class="num">02 / 9:16</span>
-<div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="Mentoring/compressed/osmo.mp4" type="video/mp4"/></video></div>
+<div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/osmo.mp4" type="video/mp4"/></video></div>
 <h3>Osmo Workflow</h3>
 <p>Shooting, settings and best practice.</p>
 </article>
 <article class="video-card fade">
 <span class="num">03 / 9:16</span>
-<div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="Mentoring/compressed/colour-grade-room.mp4" type="video/mp4"/></video></div>
+<div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/colour-grade-room.mp4" type="video/mp4"/></video></div>
 <h3>Colour Room BTS</h3>
 <p>Real project workflow and decision-making.</p>
 </article>
 <div class="bottom-videos">
 <article class="video-card fade">
 <span class="num">04 / 4:3 Vertical</span>
-<div class="video-frame ratio-43v"><video autoplay="" loop="" muted="" playsinline="" poster="Mentoring/hf_20260701_112307_eaa911f5-95f7-4d5e-a376-a1462210a64b.webp" preload="metadata"><source src="Mentoring/compressed/stills.mp4" type="video/mp4"/></video></div>
+<div class="video-frame ratio-43v"><video autoplay="" loop="" muted="" playsinline="" poster="https://media.zainaussaleem.com/Mentoring/hf_20260701_112307_eaa911f5-95f7-4d5e-a376-a1462210a64b.webp" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/stills.mp4" type="video/mp4"/></video></div>
 <h3>Resolve Tips</h3>
 <p>Small tricks that improve speed and quality.</p>
 </article>
-
+<article class="video-card fade">
+<span class="num">05 / 9:16</span>
+<div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/28---saracen-steampunk-biker-launch-3.mp4" type="video/mp4"/></video></div>
+<h3>Directing BTS</h3>
+<p>Behind the scenes of the directing process on set.</p>
+</article>
 </div>
+</div>
+<div class="video-grid" style="margin-top:1rem;grid-template-columns:1fr 1fr;">
+<article class="video-card fade">
+<span class="num">06 / 9:16</span>
+<div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/mooodboard-final--copy.mp4" type="video/mp4"/></video></div>
+<h3>Pre-Production BTS</h3>
+<p>Moodboarding and pre-production process through to the final result.</p>
+</article>
+<article class="video-card fade">
+<span class="num">07 / SFX</span>
+<div class="video-frame ratio-sfx"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/sound-design.mp4" type="video/mp4"/></video></div>
+<h3>Sound Design &amp; SFX</h3>
+<p>Sound design and SFX workflow for cinematic edits.</p>
+</article>
 </div>
 </section>
 <section class="topics">
