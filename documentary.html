@@ -49,7 +49,7 @@
   .card-index { font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; }
   .card-frame { width:100%; position:relative; background:var(--cream-faint); overflow:hidden; border:1px solid var(--mint-rule); cursor:pointer; transition:border-color .25s ease, box-shadow .25s ease; }
   .card:hover .card-frame, .card-frame:hover { border-color:var(--mint); box-shadow:0 0 0 1px var(--mint-dim), inset 0 0 40px rgba(126,200,164,.05); }
-  .card-frame::after { content:'▶'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:var(--mint); opacity:0; transition:opacity .25s ease; }
+  .card-frame::after { content:'▶'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:var(--mint); opacity:0; transition:opacity .25s ease; pointer-events:none; }
   .card-frame:hover::after { opacity:1; }
   .coming .card-frame::after { content:''; }
   .ratio-54 { padding-bottom:80%; }
