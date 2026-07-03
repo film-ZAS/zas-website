@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Mentoring — Zain Saleem</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#1A0F0A;--bg-mid:#1F130D;--bg-card:#211208;
+    --cream:#E8DDD0;--cream-dim:rgba(232,221,208,.55);--cream-faint:rgba(232,221,208,.11);
+    --mint:#7EC8A4;--mint-rule:rgba(126,200,164,.25);--mint-dim:rgba(126,200,164,.15);
+    --mono:'Space Mono',monospace;--sans:'Inter',sans-serif;
+  }
+  html{background:var(--bg);color:var(--cream);font-family:var(--sans);font-weight:300;scroll-behavior:smooth}
+  body{min-height:100vh;overflow-x:hidden}
+  a{color:inherit}
+
+  nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.35rem 3rem;border-bottom:1px solid var(--mint-rule);background:var(--bg)}
+  .nav-left,.nav-right{display:flex;gap:2rem;align-items:center}
+  .nav-right{justify-content:flex-end}
+  nav a{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--cream-dim);transition:color .2s}
+  nav a:hover,nav a.active{color:var(--mint)}
+  .nav-logo{display:flex;align-items:center;justify-content:center;width:42px;height:42px}
+  .nav-logo img{width:42px;height:42px;display:block;object-fit:contain}
+
+  .masthead{padding:3rem 3rem 2rem;border-bottom:1px solid var(--mint-rule)}
+  .eyebrow{font-family:var(--mono);font-size:.64rem;letter-spacing:.25em;text-transform:uppercase;color:var(--mint);display:flex;align-items:center;gap:1rem;margin-bottom:.8rem}
+  .eyebrow::after{content:'';height:1px;background:var(--mint-rule);flex:1}
+  h1{font-weight:300;font-size:clamp(4rem,11vw,10rem);line-height:.9;letter-spacing:-.045em;color:var(--cream);margin-bottom:1.3rem}
+  .masthead-meta{display:grid;grid-template-columns:1.2fr .8fr;gap:4rem;border-top:1px solid var(--mint-rule);padding-top:1rem}
+  .masthead-copy{font-size:.9rem;line-height:1.8;color:var(--cream-dim);max-width:62rem}
+  .quick-meta{display:flex;justify-content:flex-end;align-items:flex-start;gap:1.6rem;flex-wrap:wrap;font-family:var(--mono);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim)}
+  .quick-meta strong{color:var(--mint);font-weight:400}
+
+  .offer{display:grid;grid-template-columns:1.05fr .95fr;border-bottom:1px solid var(--mint-rule);padding:0 3rem}
+  .offer-left{padding:4rem 4rem 4rem 0;border-right:1px solid var(--mint-rule)}
+  .offer-left h2{font-size:clamp(2.8rem,5.8vw,6.3rem);font-weight:300;line-height:.96;letter-spacing:-.04em;max-width:12ch;margin-bottom:2rem}
+  .label{font-family:var(--mono);font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--mint);display:block;margin-bottom:1.4rem}
+  .offer-left p{font-size:1rem;line-height:1.9;color:var(--cream-dim);max-width:56rem}
+  .booking-wrap{padding:4rem 0 4rem 4rem}
+  .booking{height:100%;border:1px solid var(--mint-rule);background:rgba(232,221,208,.035);padding:2rem;display:flex;flex-direction:column;justify-content:space-between;min-height:420px}
+  .booking h3{font-family:var(--mono);font-size:1.15rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.4rem}
+  .booking-row{display:flex;justify-content:space-between;gap:2rem;padding:1rem 0;border-top:1px solid var(--mint-rule)}
+  .booking-row span:first-child{font-family:var(--mono);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim)}
+  .booking-row span:last-child{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mint);text-align:right}
+  .book-btn{display:flex;align-items:center;justify-content:center;background:var(--mint);color:var(--bg);padding:1.15rem 1.5rem;text-decoration:none;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;margin-top:2rem}
+  .note{font-family:var(--mono);font-size:.52rem;line-height:1.7;letter-spacing:.13em;text-transform:uppercase;color:var(--cream-dim);margin-top:1rem}
+
+  .split-feature{padding:4rem 3rem;border-bottom:1px solid var(--mint-rule)}
+  .split-row{display:grid;grid-template-columns:1.35fr .65fr;gap:3.5rem;align-items:center;padding:2rem 0;border-bottom:1px solid var(--mint-rule)}
+  .split-row:last-child{border-bottom:none;padding-bottom:0}
+  .split-row.reverse{grid-template-columns:.65fr 1.35fr}
+  .split-row.reverse .feature-media{order:2}
+  .feature-media{border:1px solid var(--mint-rule);background:var(--cream-faint);overflow:hidden;aspect-ratio:16/9}
+  .feature-media img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.86) saturate(.95)}
+  .feature-text h2{font-size:clamp(2.1rem,4.1vw,4.5rem);font-weight:300;line-height:.98;letter-spacing:-.04em;margin-bottom:1.2rem}
+  .feature-text p{font-size:.9rem;line-height:1.85;color:var(--cream-dim);max-width:42rem}
+  .mini-list{margin-top:1.4rem;display:grid;gap:.7rem}
+  .mini-list span{font-family:var(--mono);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mint)}
+
+  .video-section{padding:4rem 3rem;border-bottom:1px solid var(--mint-rule);background:var(--bg-mid)}
+  .section-title{display:grid;grid-template-columns:.7fr 1.3fr;gap:3rem;align-items:end;border-bottom:1px solid var(--mint-rule);padding-bottom:1.6rem;margin-bottom:1.6rem}
+  .section-title h2{font-size:clamp(2.4rem,5vw,5rem);font-weight:300;line-height:.95;letter-spacing:-.04em}
+  .section-title p{font-size:.88rem;line-height:1.8;color:var(--cream-dim);max-width:58rem}
+  .video-grid{display:grid;grid-template-columns:1.35fr .68fr .68fr;gap:1rem;align-items:start}
+  .video-card{border:1px solid var(--mint-rule);background:rgba(232,221,208,.025);padding:1rem;min-width:0;transition:background .25s,border-color .25s}
+  .video-card:hover{background:rgba(126,200,164,.045);border-color:var(--mint)}
+  .video-frame{position:relative;overflow:hidden;background:var(--cream-faint);border:1px solid var(--mint-rule)}
+  .video-frame video,.video-frame img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.9)}
+  .video-frame::after{content:'▶';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--mint);font-size:1.5rem;opacity:.92;text-shadow:0 1px 12px rgba(0,0,0,.65);pointer-events:none}
+  .ratio-54{aspect-ratio:5/4}.ratio-916{aspect-ratio:9/16}.ratio-43v{aspect-ratio:3/4}
+  .video-card.big{grid-row:span 2}
+  .video-card.big .video-frame{aspect-ratio:5/4}
+  .video-card .num{font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;color:var(--mint);display:block;margin-bottom:.75rem}
+  .video-card h3{font-family:var(--mono);font-size:.78rem;line-height:1.24;text-transform:uppercase;letter-spacing:.04em;margin-top:.9rem}
+  .video-card p{font-size:.7rem;line-height:1.65;color:var(--cream-dim);margin-top:.4rem}
+  .bottom-videos{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem;grid-column:2/4}
+
+  .topics{padding:4rem 3rem;border-bottom:1px solid var(--mint-rule)}
+  .topic-grid{display:grid;grid-template-columns:repeat(4,1fr);border-left:1px solid var(--mint-rule);border-top:1px solid var(--mint-rule)}
+  .topic{min-height:230px;padding:1.4rem;border-right:1px solid var(--mint-rule);border-bottom:1px solid var(--mint-rule);display:flex;flex-direction:column;justify-content:space-between;transition:background .25s}
+  .topic:hover{background:rgba(126,200,164,.045)}
+  .topic .num{font-family:var(--mono);font-size:.56rem;letter-spacing:.2em;color:var(--mint)}
+  .topic h3{font-family:var(--mono);font-size:.85rem;line-height:1.25;text-transform:uppercase;letter-spacing:.04em}
+  .topic p{font-size:.72rem;line-height:1.7;color:var(--cream-dim);margin-top:.8rem}
+  .rule-line{width:2rem;height:1px;background:var(--mint);margin:1rem 0;transition:width .35s}.topic:hover .rule-line{width:100%}
+
+  .process{padding:4rem 3rem;border-bottom:1px solid var(--mint-rule);display:grid;grid-template-columns:.8fr 1.2fr;gap:3rem}
+  .process-intro{font-size:clamp(1.4rem,3vw,2.6rem);line-height:1.2;letter-spacing:-.03em}
+  .steps{border-top:1px solid var(--mint-rule)}
+  .step{display:grid;grid-template-columns:8rem 1fr;gap:2rem;padding:1.35rem 0;border-bottom:1px solid var(--mint-rule)}
+  .step-num{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mint)}
+  .step h3{font-family:var(--mono);font-size:.86rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:.5rem}
+  .step p{font-size:.76rem;line-height:1.75;color:var(--cream-dim)}
+
+  .cta{padding:5rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
+  .cta h2{font-weight:300;font-size:clamp(3rem,7vw,6.8rem);line-height:.94;letter-spacing:-.045em}
+  .cta p{font-size:.92rem;line-height:1.8;color:var(--cream-dim);margin-bottom:2rem}
+  .secondary{display:inline-flex;align-items:center;justify-content:center;padding:1rem 1.4rem;border:1px solid var(--mint-rule);color:var(--mint);text-decoration:none;font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+  footer{border-top:1px solid var(--mint-rule);padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
+  footer span,footer a{font-family:var(--mono);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none}
+  footer a{color:var(--mint)}
+  .fade{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.fade.visible{opacity:1;transform:translateY(0)}
+
+  @media(max-width:980px){
+    nav,.masthead,.offer,.split-feature,.video-section,.topics,.process,.cta,footer{padding-left:1.4rem;padding-right:1.4rem}
+    .offer,.masthead-meta,.section-title,.process,.cta{grid-template-columns:1fr}
+    .offer-left{border-right:none;border-bottom:1px solid var(--mint-rule);padding-right:0}.booking-wrap{padding-left:0}
+    .split-row,.split-row.reverse{grid-template-columns:1fr;gap:1.5rem}.split-row.reverse .feature-media{order:0}
+    .video-grid{grid-template-columns:1fr 1fr}.video-card.big{grid-row:auto;grid-column:1/3}.bottom-videos{grid-column:1/3}
+    .topic-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:620px){
+    nav{grid-template-columns:1fr auto;gap:1rem}.nav-logo{display:none}.nav-left,.nav-right{gap:1rem}.nav-right{justify-content:flex-start;grid-column:1/3;flex-wrap:wrap}
+    .video-grid,.bottom-videos,.topic-grid{grid-template-columns:1fr}.video-card.big,.bottom-videos{grid-column:auto}.step{grid-template-columns:1fr;gap:.5rem}
+    h1{font-size:clamp(3.4rem,18vw,6rem)}
+  }
+
+
+  /* Unified site navigation */
+  .site-nav{
+    display:grid !important;
+    grid-template-columns:1fr auto 1fr !important;
+    align-items:center !important;
+    gap:1.5rem !important;
+    padding:1.35rem 3rem !important;
+    border-bottom:1px solid var(--mint-rule, rgba(126,200,164,.25)) !important;
+    background:var(--bg, #1A0F0A) !important;
+    position:relative;
+    z-index:200;
+  }
+  .site-nav-left,.site-nav-right{display:flex;align-items:center;gap:2rem;min-width:0;}
+  .site-nav-right{justify-content:flex-end;}
+  .site-nav a{font-family:var(--mono, "Space Mono", monospace) !important;font-size:.68rem !important;letter-spacing:.16em !important;text-transform:uppercase !important;text-decoration:none !important;color:var(--cream-dim, rgba(232,221,208,.55)) !important;transition:color .2s ease, opacity .2s ease;}
+  .site-nav a:hover,.site-nav a.active{color:var(--mint, #7EC8A4) !important;opacity:1;}
+  .site-nav-logo{display:flex !important;align-items:center !important;justify-content:center !important;width:42px !important;height:42px !important;justify-self:center !important;}
+  .site-nav-logo img{width:42px !important;height:42px !important;display:block !important;object-fit:contain !important;}
+
+  .work-nav-item{position:relative;display:flex;align-items:center;}
+  .work-nav-dropdown{
+    position:absolute;left:50%;top:calc(100% + .55rem);transform:translate(-50%,-6px);display:flex;flex-direction:column;gap:.45rem;min-width:150px;padding:.15rem 0;opacity:0;pointer-events:none;transition:opacity .24s ease,transform .24s ease;z-index:300;
+  }
+  .work-nav-item:hover .work-nav-dropdown,.work-nav-item:focus-within .work-nav-dropdown{opacity:1;pointer-events:auto;transform:translate(-50%,0);}
+  .site-nav .work-nav-dropdown a{display:block;padding:.68rem .95rem;background:rgba(31,19,13,.86);border:1px solid rgba(126,200,164,.16);font-size:.62rem !important;letter-spacing:.14em !important;color:var(--cream-dim, rgba(232,221,208,.55)) !important;white-space:nowrap;transition:color .2s ease,border-color .2s ease,background .2s ease,transform .2s ease;}
+  .site-nav .work-nav-dropdown a:hover,.site-nav .work-nav-dropdown a.active{color:var(--mint, #7EC8A4) !important;border-color:rgba(126,200,164,.42);background:rgba(37,24,17,.92);transform:translateX(3px);}
+  @media(max-width:720px){.work-nav-dropdown{position:static;transform:none;opacity:1;pointer-events:auto;display:none;margin-top:.6rem}.work-nav-item:hover .work-nav-dropdown,.work-nav-item:focus-within .work-nav-dropdown{display:flex;transform:none}}
+
+  @media(max-width:720px){
+    .site-nav{grid-template-columns:1fr auto !important;padding:1.1rem 1.2rem !important;gap:1rem !important;}
+    .site-nav-logo{grid-column:2;grid-row:1;}
+    .site-nav-right{grid-column:1/3;grid-row:2;justify-content:flex-start;flex-wrap:wrap;gap:1rem 1.4rem;}
+    .site-nav-left{grid-column:1;grid-row:1;}
+  }
+
+
+  .footer-social{display:flex;align-items:center;justify-content:flex-end;gap:1.15rem;}
+  .footer-social a{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;color:var(--mint,#7EC8A4);opacity:.72;text-decoration:none;transition:opacity .25s ease,transform .25s ease,filter .25s ease;}
+  .footer-social a:hover{opacity:1;transform:translateY(-2px);filter:drop-shadow(0 0 10px rgba(126,200,164,.28));}
+  .footer-social svg{width:22px;height:22px;display:block;fill:currentColor;}
+</style>
+<meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/></head>
+<body>
+<nav class="site-nav">
+<div class="site-nav-left"><a href="index.html">Home</a></div>
+<a aria-label="Zain Saleem home" class="site-nav-logo" href="index.html" title="Zain Saleem"><img alt="Zain Saleem logo" decoding="async" loading="lazy" src="assets/images/f623402d7b66.png"/></a>
+<div class="site-nav-right"><div class="work-nav-item"><a href="index.html#work">Work</a><div class="work-nav-dropdown"><a href="documentary.html">Documentary</a><a href="culture.html">Culture</a><a href="sport.html">Sport</a></div></div><a href="index.html#about">About</a><a class="active" href="mentoring.html">Mentoring</a><a href="index.html#contact">Contact</a></div>
+</nav>
+<header class="masthead">
+<div class="eyebrow fade">1:1 Creative Mentoring</div>
+<h1 class="fade">Mentoring</h1>
+<div class="masthead-meta fade">
+<p class="masthead-copy">A focused one-to-one session for filmmakers, editors and creators who want practical help with colour grading, DaVinci Resolve, Fusion, sound design, AI integration, creative direction and building stronger films from difficult footage.</p>
+<div class="quick-meta"><span><strong>90</strong> Minutes</span><span><strong>Google</strong> Meet</span><span><strong>£150</strong></span></div>
+</div>
+</header>
+<section class="offer">
+<div class="offer-left fade">
+<span class="label">Personalised session</span>
+<h2>Fix the footage. Shape the film.</h2>
+<p>This is a practical mentoring call built around what you are currently making. We can look at your footage, timeline, colour grade, sound design, AI workflow, creative process or portfolio and work through the exact areas you want to improve.</p>
+</div>
+<div class="booking-wrap fade">
+<div class="booking">
+<div>
+<h3>Book a 1:1 Call</h3>
+<div class="booking-row"><span>Duration</span><span>90 Minutes</span></div>
+<div class="booking-row"><span>Format</span><span>Google Meet</span></div>
+<div class="booking-row"><span>Price</span><span>£150</span></div>
+<div class="booking-row"><span>Best For</span><span>Creators / Editors / Filmmakers</span></div>
+</div>
+<div>
+<a class="book-btn" href="https://calendar.app.google/ZSKW9txWhiyM8vBAA" rel="noopener" target="_blank">Book A Call</a>
+<p class="note">Choose a time that suits you and the call will be held on Google Meet.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="split-feature">
+<div class="split-row fade">
+<div class="feature-media"><img alt="DaVinci Resolve colour grading node workflow" decoding="async" loading="lazy" src="Mentoring/hf_20260701_112717_d9abc266-3de1-488c-a45a-af4af0838c6b.webp"/></div>
+<div class="feature-text">
+<span class="label">Colour Grading</span>
+<h2>Build cinematic colour with confidence.</h2>
+<p>We can work through node structure, shot matching, contrast, saturation and how to create a consistent cinematic look across difficult footage.</p>
+<div class="mini-list"><span>Node based workflow</span><span>Shot matching and balancing</span><span>Rescuing difficult footage</span></div>
+</div>
+</div>
+<div class="split-row reverse fade">
+<div class="feature-media"><img alt="Fusion camera tracking and VFX workflow" decoding="async" loading="lazy" src="Mentoring/hf_20260701_112307_eaa911f5-95f7-4d5e-a376-a1462210a64b.webp"/></div>
+<div class="feature-text">
+<span class="label">Fusion &amp; VFX</span>
+<h2>Track, clean up and create with Fusion.</h2>
+<p>From camera tracking and clean-ups to motion graphics and practical VFX, we can break down real techniques you can use straight away.</p>
+<div class="mini-list"><span>Camera tracking</span><span>Rotoscoping and clean-up</span><span>Practical VFX workflows</span></div>
+</div>
+</div>
+</section>
+<section class="video-section">
+<div class="section-title fade">
+<h2>See the process in action.</h2>
+<p>A tighter video layout: one larger 5:4 feature, two 9:16 verticals on the right, then two 4:3 vertical examples underneath.</p>
+</div>
+<div class="video-grid">
+<article class="video-card big fade">
+<span class="num">01 / 5:4</span>
+<div class="video-frame ratio-54"><video autoplay="" loop="" muted="" playsinline="" poster="Mentoring/hf_20260701_112717_d9abc266-3de1-488c-a45a-af4af0838c6b.webp" preload="metadata"><source src="Mentoring/compressed/zeeshan-colour.mp4" type="video/mp4"/></video></div>
+<h3>Colour Grading Workflow</h3>
+<p>Step by step grading, matching and finishing.</p>
+</article>
+<article class="video-card fade">
+<span class="num">02 / 9:16</span>
+<div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="Mentoring/compressed/osmo.mp4" type="video/mp4"/></video></div>
+<h3>Osmo Workflow</h3>
+<p>Shooting, settings and best practice.</p>
+</article>
+<article class="video-card fade">
+<span class="num">03 / 9:16</span>
+<div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="Mentoring/compressed/colour-grade-room.mp4" type="video/mp4"/></video></div>
+<h3>Colour Room BTS</h3>
+<p>Real project workflow and decision-making.</p>
+</article>
+<div class="bottom-videos">
+<article class="video-card fade">
+<span class="num">04 / 4:3 Vertical</span>
+<div class="video-frame ratio-43v"><video autoplay="" loop="" muted="" playsinline="" poster="Mentoring/hf_20260701_112307_eaa911f5-95f7-4d5e-a376-a1462210a64b.webp" preload="metadata"><source src="Mentoring/compressed/stills.mp4" type="video/mp4"/></video></div>
+<h3>Resolve Tips</h3>
+<p>Small tricks that improve speed and quality.</p>
+</article>
+
+</div>
+</div>
+</section>
+<section class="topics">
+<span class="label">What We Can Cover</span>
+<div class="topic-grid">
+<div class="topic fade"><span class="num">01</span><div><h3>Colour Grading</h3><div class="rule-line"></div><p>Node structure, matching shots, cinematic looks and consistent finishing.</p></div></div>
+<div class="topic fade"><span class="num">02</span><div><h3>Saving Bad Footage</h3><div class="rule-line"></div><p>Underexposed, mixed-light, noisy or damaged footage and what can be rescued.</p></div></div>
+<div class="topic fade"><span class="num">03</span><div><h3>DaVinci Resolve Setup</h3><div class="rule-line"></div><p>Project settings, colour management, timelines, proxies, exports and delivery.</p></div></div>
+<div class="topic fade"><span class="num">04</span><div><h3>Fusion &amp; Tricks</h3><div class="rule-line"></div><p>Tracking, masks, clean-up, screen replacements and practical VFX.</p></div></div>
+<div class="topic fade"><span class="num">05</span><div><h3>Sound Design &amp; SFX</h3><div class="rule-line"></div><p>Ambience, impacts, transitions, risers and subtle effects for more cinematic edits.</p></div></div>
+<div class="topic fade"><span class="num">06</span><div><h3>AI Integration</h3><div class="rule-line"></div><p>Use AI for references, treatments, subtitles, clean-up and workflow speed.</p></div></div>
+<div class="topic fade"><span class="num">07</span><div><h3>Pre-Production</h3><div class="rule-line"></div><p>References, moodboards, shot lists, story structure and visual approach.</p></div></div>
+<div class="topic fade"><span class="num">08</span><div><h3>Creative Process</h3><div class="rule-line"></div><p>Develop taste, build clearer treatments and shape loose ideas into strong films.</p></div></div>
+</div>
+</section>
+<section class="process">
+<p class="process-intro fade">A 90-minute working session shaped around your footage, your questions and where you want your work to go next.</p>
+<div class="steps fade">
+<div class="step"><span class="step-num">Step 01</span><div><h3>Send your focus</h3><p>Send the area you want help with: a grade, a timeline, a project idea, your portfolio or a technical issue.</p></div></div>
+<div class="step"><span class="step-num">Step 02</span><div><h3>Work through it live</h3><p>We screen-share, review the material together and make decisions step by step so you understand the why behind the process.</p></div></div>
+<div class="step"><span class="step-num">Step 03</span><div><h3>Leave with next steps</h3><p>You finish with clear actions, practical fixes and a better framework for your next edit, shoot, grade or client project.</p></div></div>
+</div>
+</section>
+<section class="cta">
+<h2 class="fade">Bring your footage. Leave with direction.</h2>
+<div class="fade"><p>Book a focused 1:1 mentoring call and we will work through the exact part of your filmmaking process that needs clarity.</p><a class="secondary" href="https://calendar.app.google/ZSKW9txWhiyM8vBAA" rel="noopener" target="_blank">Book A Call</a></div>
+</section>
+<footer><span>Glasgow, UK · Available internationally</span><div class="footer-social" aria-label="Social links">
+<a aria-label="YouTube" href="https://www.youtube.com/@Zainaussaleem" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"></path></svg></a>
+<a aria-label="Instagram" href="https://www.instagram.com/zainaussaleem/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm4.8 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Zm5.05-2.35a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"></path></svg></a>
+
+<a aria-label="LinkedIn" href="https://uk.linkedin.com/in/zain-saleem-13a9b6329" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.38 4.27 5.47v6.27ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.53V9H7.1v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"></path></svg></a>
+</div></footer>
+<script>
+  const els=document.querySelectorAll('.fade');
+  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');io.unobserve(e.target)}})},{threshold:.12});
+  els.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

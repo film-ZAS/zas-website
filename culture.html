@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="same-origin" name="view-transition"/>
+<title>Culture — Zain Saleem</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg:#1A0F0A; --bg-card:#211208; --mint:#7EC8A4;
+    --mint-dim:rgba(126,200,164,0.15); --mint-rule:rgba(126,200,164,0.25);
+    --cream:#E8DDD0; --cream-dim:rgba(232,221,208,0.45); --cream-faint:rgba(232,221,208,0.12);
+    --mono:'Space Mono', monospace; --sans:'Inter', sans-serif;
+  }
+  html { background:var(--bg); color:var(--cream); font-family:var(--sans); font-weight:300; scroll-behavior:smooth; }
+  body { min-height:100vh; }
+
+  nav { display:flex; align-items:center; justify-content:space-between; padding:1.4rem 3rem; border-bottom:1px solid var(--mint-rule); }
+  .nav-back { font-family:var(--mono); font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--cream-dim); text-decoration:none; transition:color .2s; }
+  .nav-back:hover { color:var(--mint); }
+  .nav-back::before { content:'← '; }
+  .nav-logo { display:flex; align-items:center; }
+  .nav-logo img { width:32px; height:32px; display:block; object-fit:contain; }
+  .nav-label { font-family:var(--mono); font-size:.7rem; letter-spacing:.15em; text-transform:uppercase; color:var(--mint); }
+
+  .masthead { padding:2.5rem 3rem 0; border-bottom:1px solid var(--mint-rule); view-transition-name:culture-expand; }
+  .masthead-eyebrow { font-family:var(--mono); font-size:.65rem; letter-spacing:.25em; text-transform:uppercase; color:var(--mint); margin-bottom:.6rem; display:flex; align-items:center; gap:1rem; }
+  .masthead-eyebrow::after { content:''; flex:1; height:1px; background:var(--mint-rule); }
+  .masthead-title { font-family:var(--sans); font-size:clamp(4rem,11vw,10rem); font-weight:300; line-height:.9; letter-spacing:-.04em; color:var(--cream); text-transform:none; padding-bottom:1.5rem; }
+  .masthead-title span { color:var(--cream); }
+  .masthead-meta { display:flex; align-items:flex-end; justify-content:space-between; padding:.8rem 0 1rem; border-top:1px solid var(--mint-rule); gap:2rem; }
+  .masthead-desc { font-size:.8rem; color:var(--cream-dim); line-height:1.7; max-width:38rem; }
+  .masthead-count { font-family:var(--mono); font-size:.65rem; letter-spacing:.2em; color:var(--cream-dim); text-transform:uppercase; white-space:nowrap; }
+
+  .paper { padding:0 3rem 4rem; }
+  .paper-row { display:grid; gap:0; border-bottom:1px solid var(--mint-rule); }
+  .row-1 { grid-template-columns:1.2fr 1fr 1fr; align-items:stretch; }
+  .row-2 { grid-template-columns:1fr; }
+  .row-3 { grid-template-columns:1fr 1fr; }
+  .row-4 { grid-template-columns:repeat(4, 1fr); }
+  .stacked-pair { display:grid; grid-template-rows:1fr 1fr; border-right:1px solid var(--mint-rule); }
+  .stacked-pair .card { border-right:none; }
+  .stacked-pair .card:first-child { border-bottom:1px solid var(--mint-rule); }
+
+  .card { border-right:1px solid var(--mint-rule); padding:1.5rem; display:flex; flex-direction:column; gap:1rem; transition:background .25s ease; }
+  .card:last-child { border-right:none; }
+  .card:hover { background:rgba(126,200,164,.04); }
+  .card-index { font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; }
+  .card-frame { width:100%; position:relative; background:var(--cream-faint); overflow:hidden; border:1px solid var(--mint-rule); cursor:pointer; transition:border-color .25s ease, box-shadow .25s ease; }
+  .card:hover .card-frame, .card-frame:hover { border-color:var(--mint); box-shadow:0 0 0 1px var(--mint-dim), inset 0 0 40px rgba(126,200,164,.05); }
+  .card-frame::after { content:'▶'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:var(--mint); opacity:0; transition:opacity .25s ease; }
+  .card-frame:hover::after { opacity:1; }
+  .ratio-916 { padding-bottom:177.78%; }
+  .ratio-54 { padding-bottom:80%; }
+  .ratio-43v { padding-bottom:133.33%; }
+  .card-frame video, .card-frame iframe, .feature-film .card-frame video { position:absolute; inset:0; width:100%; height:100%; border:0; object-fit:cover; background:#000; }
+  .card-frame:has(video)::after, .card-frame:has(iframe)::after { content:''; }
+  .frame-inner { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.5rem; }
+  .frame-ratio { font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; color:var(--mint); opacity:.55; text-transform:uppercase; }
+  .frame-label { font-family:var(--mono); font-size:.55rem; color:var(--cream-dim); opacity:.45; letter-spacing:.15em; text-transform:uppercase; }
+  .card-meta { display:flex; flex-direction:column; gap:.5rem; }
+  .card-title { font-family:var(--mono); font-size:clamp(.85rem,1.3vw,1.15rem); font-weight:700; color:var(--cream); line-height:1.2; text-transform:uppercase; letter-spacing:.02em; transition:color .2s ease; }
+  .card:hover .card-title { color:var(--mint); }
+  .card-rule { width:2rem; height:1px; background:var(--mint); transition:width .35s ease; }
+  .card:hover .card-rule { width:100%; }
+  .card-desc { font-size:.72rem; line-height:1.75; color:var(--cream-dim); }
+  .card-tag { font-family:var(--mono); font-size:.55rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; opacity:.7; margin-top:.3rem; }
+
+  .feature-section { border-bottom:1px solid var(--mint-rule); padding:2rem 1.5rem 2.4rem; }
+  .feature-head { display:grid; grid-template-columns:9rem 1fr; gap:2rem; align-items:start; padding-bottom:1.5rem; border-bottom:1px solid var(--mint-rule); margin-bottom:1.5rem; }
+  .feature-index { font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; }
+  .feature-title { font-family:var(--mono); font-size:clamp(1.4rem,3vw,2.6rem); font-weight:700; color:var(--cream); line-height:1; text-transform:uppercase; letter-spacing:.02em; margin-bottom:.8rem; }
+  .feature-desc { font-size:.78rem; line-height:1.75; color:var(--cream-dim); max-width:42rem; }
+  .feature-stack { display:grid; grid-template-columns:repeat(3, 1fr); gap:0; border-top:1px solid var(--mint-rule); border-left:1px solid var(--mint-rule); }
+  .feature-film { display:flex; flex-direction:column; gap:1rem; padding:1.5rem; border-right:1px solid var(--mint-rule); }
+  .feature-film:last-child { border-right:none; }
+  .feature-meta { display:flex; flex-direction:column; gap:.55rem; padding-top:.2rem; }
+  .feature-film-title { font-family:var(--mono); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--cream); }
+  .feature-tag { font-family:var(--mono); font-size:.55rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; opacity:.7; }
+  .feature-note { font-size:.7rem; line-height:1.65; color:var(--cream-dim); }
+
+  footer { border-top:1px solid var(--mint-rule); padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
+  footer span, footer a { font-family:var(--mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; }
+  footer span { color:var(--cream-dim); }
+  footer a { color:var(--mint); text-decoration:none; }
+  footer a:hover { text-decoration:underline; }
+
+  .fade-in { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
+  .masthead-eyebrow, .masthead-title, .masthead-meta { opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .masthead-title { transition-delay:.1s; }
+  .masthead-meta { transition-delay:.22s; }
+  .masthead-eyebrow.visible, .masthead-title.visible, .masthead-meta.visible { opacity:1; transform:translateY(0); }
+  .masthead-title .char { display:inline-block; transition:color .15s ease, transform .15s ease; }
+  .masthead-title .char:hover { color:var(--mint); transform:translateY(-4px); }
+
+  @media (max-width:900px) {
+    nav, .masthead, .paper, footer { padding-left:1.2rem; padding-right:1.2rem; }
+    .row-1, .row-2, .row-3, .row-4 { grid-template-columns:1fr 1fr; }
+    .stacked-pair { grid-column:1 / -1; border-right:none; border-bottom:1px solid var(--mint-rule); }
+    .feature-head { grid-template-columns:1fr; gap:.7rem; }
+    .feature-stack { grid-template-columns:1fr; border-left:none; }
+    .feature-film { border-right:none; border-bottom:1px solid var(--mint-rule); }
+    .feature-film:last-child { border-bottom:none; }
+  }
+  @media (max-width:560px) {
+    .row-1, .row-2, .row-3, .row-4 { grid-template-columns:1fr; }
+    .stacked-pair { grid-column:auto; }
+    .card { border-right:none; border-bottom:1px solid var(--mint-rule); }
+    .masthead-title { font-size:clamp(3rem,16vw,6rem); }
+    .masthead-meta { flex-direction:column; align-items:flex-start; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    .fade-in, .masthead-eyebrow, .masthead-title, .masthead-meta { transition:none; opacity:1; transform:none; }
+  }
+
+
+  /* Unified site navigation */
+  .site-nav{
+    display:grid !important;
+    grid-template-columns:1fr auto 1fr !important;
+    align-items:center !important;
+    gap:1.5rem !important;
+    padding:1.35rem 3rem !important;
+    border-bottom:1px solid var(--mint-rule, rgba(126,200,164,.25)) !important;
+    background:var(--bg, #1A0F0A) !important;
+    position:relative;
+    z-index:200;
+  }
+  .site-nav-left,.site-nav-right{display:flex;align-items:center;gap:2rem;min-width:0;}
+  .site-nav-right{justify-content:flex-end;}
+  .site-nav a{font-family:var(--mono, "Space Mono", monospace) !important;font-size:.68rem !important;letter-spacing:.16em !important;text-transform:uppercase !important;text-decoration:none !important;color:var(--cream-dim, rgba(232,221,208,.55)) !important;transition:color .2s ease, opacity .2s ease;}
+  .site-nav a:hover,.site-nav a.active{color:var(--mint, #7EC8A4) !important;opacity:1;}
+  .site-nav-logo{display:flex !important;align-items:center !important;justify-content:center !important;width:42px !important;height:42px !important;justify-self:center !important;}
+  .site-nav-logo img{width:42px !important;height:42px !important;display:block !important;object-fit:contain !important;}
+
+  .work-nav-item{position:relative;display:flex;align-items:center;justify-content:center;}
+  .work-nav-dropdown{
+    position:absolute;
+    left:50%;
+    top:100%;
+    transform:translate(-50%,-8px);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.45rem;
+    width:170px;
+    padding-top:.85rem;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .24s ease,transform .24s ease;
+    z-index:300;
+  }
+  .work-nav-item:hover .work-nav-dropdown,.work-nav-item:focus-within .work-nav-dropdown{opacity:1;pointer-events:auto;transform:translate(-50%,0);}
+  .site-nav .work-nav-dropdown a{display:flex;align-items:center;justify-content:center;width:100%;min-height:2.55rem;padding:.55rem .9rem;background:rgba(31,19,13,.86);border:1px solid rgba(126,200,164,.18);font-size:.62rem !important;letter-spacing:.14em !important;color:var(--cream-dim, rgba(232,221,208,.55)) !important;white-space:nowrap;text-align:center;transition:color .2s ease,border-color .2s ease,background .2s ease,transform .2s ease;}
+  .site-nav .work-nav-dropdown a:hover,.site-nav .work-nav-dropdown a.active{color:var(--mint, #7EC8A4) !important;border-color:rgba(126,200,164,.46);background:rgba(37,24,17,.92);transform:translateY(-1px);}
+  @media(max-width:720px){.work-nav-dropdown{position:static;transform:none;opacity:1;pointer-events:auto;display:none;margin-top:.6rem;padding-top:0}.work-nav-item:hover .work-nav-dropdown,.work-nav-item:focus-within .work-nav-dropdown{display:flex;transform:none}}
+
+  @media(max-width:720px){
+    .site-nav{grid-template-columns:1fr auto !important;padding:1.1rem 1.2rem !important;gap:1rem !important;}
+    .site-nav-logo{grid-column:2;grid-row:1;}
+    .site-nav-right{grid-column:1/3;grid-row:2;justify-content:flex-start;flex-wrap:wrap;gap:1rem 1.4rem;}
+    .site-nav-left{grid-column:1;grid-row:1;}
+  }
+
+
+  .footer-social{display:flex;align-items:center;justify-content:flex-end;gap:1.15rem;}
+  .footer-social a{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;color:var(--mint,#7EC8A4);opacity:.72;text-decoration:none;transition:opacity .25s ease,transform .25s ease,filter .25s ease;}
+  .footer-social a:hover{opacity:1;transform:translateY(-2px);filter:drop-shadow(0 0 10px rgba(126,200,164,.28));}
+  .footer-social svg{width:22px;height:22px;display:block;fill:currentColor;}
+</style>
+<meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/></head>
+<body>
+<nav class="site-nav">
+<div class="site-nav-left"><a href="index.html">Home</a></div>
+<a aria-label="Zain Saleem home" class="site-nav-logo" href="index.html" title="Zain Saleem"><img alt="Zain Saleem logo" decoding="async" loading="lazy" src="assets/images/f623402d7b66.png"/></a>
+<div class="site-nav-right"><div class="work-nav-item"><a class="active" href="index.html#work">Work</a><div class="work-nav-dropdown"><a href="documentary.html">Documentary</a><a class="active" href="culture.html">Culture</a><a href="sport.html">Sport</a></div></div><a href="index.html#about">About</a><a href="mentoring.html">Mentoring</a><a href="index.html#contact">Contact</a></div>
+</nav>
+<div class="masthead">
+<div class="masthead-eyebrow">Portfolio — Culture</div>
+<h1 class="masthead-title">Culture</h1>
+<div class="masthead-meta">
+<p class="masthead-desc">Culture-led filmmaking across artists, galleries, design, fashion, objects, and place. Editorial frames, intimate details, and films shaped around atmosphere, identity, and story.</p>
+<span class="masthead-count">06 Projects / 13 Films</span>
+</div>
+</div>
+<div class="paper">
+<div class="paper-row row-2">
+<div class="card"><span class="card-index">01 — YouTube / 5:4</span><div class="card-frame ratio-54"><!-- TODO: replace with <iframe src="https://www.youtube.com/embed/VIDEO_ID"> once the Wade House YouTube link is ready --><div class="frame-inner"><span class="frame-ratio">5 : 4</span><span class="frame-label">YouTube · Link Pending</span></div></div><div class="card-meta"><h2 class="card-title">Wade House — Studio Wadhal</h2><div class="card-rule"></div><p class="card-desc">Architectural documentary film for Wadhal's Wade House project. YouTube link pending — held back until the client posts.</p><span class="card-tag">Wade House · Studio Wadhal · YouTube / 5:4</span></div></div>
+</div>
+<div class="paper-row row-4">
+<div class="card"><span class="card-index">02 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="none"><source src="assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-4.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Vertical reel from the Wade House project.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
+<div class="card"><span class="card-index">03 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="none"><source src="assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-7.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Vertical reel from the Wade House project.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
+<div class="card"><span class="card-index">04 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="none"><source src="assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-9.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Vertical reel from the Wade House project.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
+<div class="card"><span class="card-index">05 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="none"><source src="assets/Culture/Pavilion%20Pavilion/30---wadhal-pavilion-glass-maker.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title" style="color:var(--mint); font-style:italic; letter-spacing:.1em;">Pavilion Pavilion</h2><div class="card-rule"></div><p class="card-desc">Artisan glass maker.</p><span class="card-tag">Pavilion Pavilion · 4:3 Vertical</span></div></div>
+</div>
+<section class="feature-section fade-in">
+<div class="feature-head"><span class="feature-index">06 — Three 5:4 Films</span><div><h2 class="feature-title">Aadeil Abed</h2><p class="feature-desc">Three-film artist portrait series, presented horizontally as one complete body of work.</p></div></div>
+<div class="feature-stack">
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="none"><source src="assets/Culture/AADIL%20ABEDI/17---aadil-abedi.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 01</span><span class="feature-tag">Aadeil Abed · 5:4</span><p class="feature-note">First chapter in the portrait series.</p></div></div>
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="none"><source src="assets/Culture/AADIL%20ABEDI/17---aadil-abedi-2.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 02</span><span class="feature-tag">Aadeil Abed · 5:4</span><p class="feature-note">Second chapter in the portrait series.</p></div></div>
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="none"><source src="assets/Culture/AADIL%20ABEDI/17---aadil-abedi-4.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 03</span><span class="feature-tag">Aadeil Abed · 5:4</span><p class="feature-note">Third chapter in the portrait series.</p></div></div>
+</div>
+</section>
+<div class="paper-row row-4">
+<div class="card"><span class="card-index">07 — 5:4</span><div class="card-frame ratio-54"><video controls loading="lazy" preload="none"><source src="assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Lahos</h2><div class="card-rule"></div><p class="card-desc">British Punjabi fashion brand — editing and colour grading.</p><span class="card-tag">Lahos · 5:4</span></div></div>
+<div class="card"><span class="card-index">08 — 5:4</span><div class="card-frame ratio-54"><video controls loading="lazy" preload="none"><source src="assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-3.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Lahos</h2><div class="card-rule"></div><p class="card-desc">British Punjabi fashion brand — editing and colour grading.</p><span class="card-tag">Lahos · 5:4</span></div></div>
+<div class="card"><span class="card-index">09 — 5:4</span><div class="card-frame ratio-54"><video controls loading="lazy" preload="none"><source src="assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-4.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Lahos</h2><div class="card-rule"></div><p class="card-desc">British Punjabi fashion brand — editing and colour grading.</p><span class="card-tag">Lahos · 5:4</span></div></div>
+<div class="card"><span class="card-index">10 — 5:4</span><div class="card-frame ratio-54"><video controls loading="lazy" preload="none"><source src="assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-6.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Lahos</h2><div class="card-rule"></div><p class="card-desc">British Punjabi fashion brand — editing and colour grading.</p><span class="card-tag">Lahos · 5:4</span></div></div>
+</div>
+<div class="paper-row row-3">
+<div class="card"><span class="card-index">11 — Vertical 9:16</span><div class="card-frame ratio-916"><video controls loading="lazy" preload="none"><source src="assets/Culture/Ucon/11---ucon-bag-collab-barbican.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Ucon</h2><div class="card-rule"></div><p class="card-desc">Fast-turnaround fashion shoot around the Barbican, London — shot and edited within a single hour.</p><span class="card-tag">Ucon · Vertical</span></div></div>
+<div class="card"><span class="card-index">12 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="none"><source src="assets/Culture/INCADOR/21---incador-jewellery-2.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Incador Jewellery</h2><div class="card-rule"></div><p class="card-desc">London-based jewellery company — editing and colour grading.</p><span class="card-tag">Incador Jewellery · 4:3 Vertical</span></div></div>
+</div>
+</div>
+</div>
+<footer><span>Glasgow, UK · Available internationally</span><div class="footer-social" aria-label="Social links">
+<a aria-label="YouTube" href="https://www.youtube.com/@Zainaussaleem" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"></path></svg></a>
+<a aria-label="Instagram" href="https://www.instagram.com/zainaussaleem/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm4.8 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Zm5.05-2.35a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"></path></svg></a>
+
+<a aria-label="LinkedIn" href="https://uk.linkedin.com/in/zain-saleem-13a9b6329" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.38 4.27 5.47v6.27ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.53V9H7.1v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"></path></svg></a>
+</div></footer>
+<script>
+  const title = document.querySelector('.masthead-title');
+  if (title) title.innerHTML = title.textContent.replace(/([A-Za-z])/g, '<span class="char">$1</span>');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
+  document.querySelectorAll('.masthead-eyebrow, .masthead-title, .masthead-meta, .card, .feature-section').forEach(el => {
+    if (el.classList.contains('card')) el.classList.add('fade-in');
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="same-origin" name="view-transition"/>
+<title>Zain Saleem — Filmmaker &amp; Director</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #1A0F0A; --bg-mid: #1F130D;
+    --cream: rgba(232,220,205,0.92); --cream-dim: rgba(232,220,205,0.5); --cream-dimmer: rgba(232,220,205,0.2);
+    --mint: #7EC8A4; --mint-dim: rgba(126,200,164,0.5); --mint-dimmer: rgba(126,200,164,0.18);
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--cream); font-family: "Inter", sans-serif; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; justify-content: space-between; align-items: flex-start; padding: 1.6rem 2rem; pointer-events: none; }
+  nav * { pointer-events: all; }
+  .nav-logo { display: block; width: 72px; height: 72px; transition: opacity 0.2s; }
+  .nav-logo:hover { opacity: 0.7; }
+  .nav-tr { text-align: right; }
+  .nav-tr a { display: block; font-family: "Space Mono", monospace; font-size: 0.85rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mint); text-decoration: none; transition: opacity 0.2s; line-height: 2.2; }
+  .nav-tr a:hover { opacity: 0.6; }
+
+  .hero { position: relative; width: 100%; height: 100vh; overflow: hidden; background: #0d0907; }
+  .hero-fallback { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; }
+  .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 1; }
+  .hero-fade { position: absolute; inset: 0; z-index: 2; background: linear-gradient(to bottom, rgba(13,9,7,0.1) 0%, rgba(13,9,7,0.35) 55%, rgba(13,9,7,0.82) 100%); }
+  .hero-bl { position: absolute; bottom: 2.5rem; left: 2rem; z-index: 3; font-family: "Space Mono", monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(232,220,205,0.95); line-height: 2; text-shadow: 0 1px 12px rgba(0,0,0,1); }
+  .hero-br { position: absolute; bottom: 2.5rem; right: 2rem; z-index: 3; font-family: "Space Mono", monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(232,220,205,0.95); text-align: right; line-height: 2; text-shadow: 0 1px 12px rgba(0,0,0,1); }
+  .hero-bc { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 3; font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.22em; color: rgba(232,220,205,0.6); text-shadow: 0 1px 8px rgba(0,0,0,1); }
+  .hero-mint-line { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--mint-dim); z-index: 3; }
+
+  /* TRIPTYCH */
+  #work { height: 100vh; display: flex; flex-direction: column; position: relative; }
+  .work-section-label { position: absolute; top: 2rem; left: 3rem; z-index: 10; margin: 0; }
+  .panel { position: relative; flex: 1; overflow: hidden; display: block; text-decoration: none; }
+  .panel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 7s cubic-bezier(0.25,0.46,0.45,0.94); filter: brightness(0.5); }
+  .panel:hover .panel-img { transform: scale(1.04); filter: brightness(0.68); }
+  .panel-fade { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, rgba(26,15,10,0.5) 50%, rgba(26,15,10,0.95) 100%); }
+  .panel-sep { height: 1px; background: var(--mint-dimmer); flex-shrink: 0; }
+  .panel-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 0 2.5rem 1.2rem; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; }
+  .panel-num { font-family: "Space Mono", monospace; font-size: 0.72rem; letter-spacing: 0.22em; color: var(--mint); display: block; margin-bottom: 0.2rem; }
+  .panel-title { font-family: "Inter", sans-serif; font-weight: 300; font-size: clamp(3rem, 9vw, 8.5rem); color: var(--cream); line-height: 0.9; letter-spacing: -0.03em; transition: color 0.3s; white-space: nowrap; }
+  .panel:hover .panel-title { color: white; }
+  .panel-meta { text-align: right; padding-bottom: 0.5rem; padding-left: 2rem; }
+  .panel-sub { font-family: "Space Mono", monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream-dim); display: block; margin-bottom: 0.6rem; }
+  .panel-arrow { font-family: "Space Mono", monospace; font-size: 0.6rem; color: var(--mint); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0; transform: translateX(6px); transition: opacity 0.3s, transform 0.3s; display: block; white-space: nowrap; }
+  .panel:hover .panel-arrow { opacity: 1; transform: translateX(0); }
+  .panel-doc .panel-img { object-position: center 35%; }
+  .panel-sport .panel-img { object-position: center 30%; }
+  .panel-culture .panel-img { object-position: center 40%; }
+  .panel-sport { view-transition-name: sport-expand; }
+  @media (prefers-reduced-motion: reduce) { .panel-sport { view-transition-name: none; } }
+
+  /* APPROACH — two col with Ranj right */
+  .statement { padding: 9rem 0 9rem 3rem; border-top: 1px solid var(--mint-dimmer); background: var(--bg); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: stretch; overflow: hidden; }
+  .section-label { font-family: "Space Mono", monospace; font-size: clamp(1.05rem, 1.15vw, 1.18rem); letter-spacing: 0.22em; text-transform: uppercase; color: var(--mint); margin-bottom: 2.8rem; display: block; line-height: 1.2; }
+  .statement-text { font-family: "Inter", sans-serif; font-weight: 300; font-size: clamp(1rem, 1.8vw, 1.35rem); line-height: 1.9; color: var(--cream); opacity: 0.85; letter-spacing: -0.01em; }
+  .statement-text p + p { margin-top: 1.5rem; }
+  .statement-right { position: relative; height: 100%; overflow: hidden; align-self: stretch; min-height: 500px; }
+  .statement-right img { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(0.7); }
+  .statement-right-video { width: 100%; height: 100%; object-fit: cover; object-position: center top; filter: brightness(0.7); display: block; }
+  .statement-right-note { position: absolute; bottom: 1rem; right: 1rem; font-family: "Space Mono", monospace; font-size: 0.5rem; letter-spacing: 0.12em; color: var(--mint-dim); text-transform: uppercase; }
+
+  /* SERVICES */
+  .services { padding: 8rem 3rem; border-top: 1px solid var(--mint-dimmer); background: var(--bg-mid); }
+  .services-grid2 { display: grid; grid-template-columns: 1fr 1fr; margin-top: 4rem; }
+  .service-cell {
+    padding: 5rem 4rem;
+    border-top: 1px solid var(--mint-dimmer);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .service-cell:nth-child(odd) { border-right: 1px solid var(--mint-dimmer); }
+  .service-cell:nth-child(3), .service-cell:nth-child(4) { border-bottom: 1px solid var(--mint-dimmer); }
+  .service-cell:hover { background: rgba(232,220,205,0.02); }
+  .service-num { font-family: "Space Mono", monospace; font-size: 0.72rem; letter-spacing: 0.22em; color: var(--mint); display: block; margin-bottom: 1.2rem; }
+  .service-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+  .service-name { font-family: "Inter", sans-serif; font-weight: 300; font-size: clamp(3rem, 5vw, 5.5rem); color: var(--cream); letter-spacing: -0.03em; line-height: 0.95; }
+  .service-toggle { font-family: "Space Mono", monospace; font-size: 1.6rem; line-height: 1; color: var(--mint); opacity: 0.4; transition: transform 0.35s ease, opacity 0.2s; flex-shrink: 0; margin-top: 0.4rem; }
+  .service-cell.open .service-toggle { transform: rotate(45deg); opacity: 1; }
+  .service-body { max-height: 0; overflow: hidden; transition: max-height 0.45s ease, opacity 0.4s ease; opacity: 0; }
+  .service-cell.open .service-body { max-height: 400px; opacity: 1; }
+  .service-body-inner { padding-top: 2.5rem; }
+  .service-desc { font-family: "Inter", sans-serif; font-weight: 300; font-size: 0.9rem; line-height: 1.9; color: var(--cream); opacity: 0.52; margin-bottom: 1.5rem; max-width: 46ch; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 1.4rem; }
+  .service-tag { font-family: "Space Mono", monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mint); opacity: 0.55; }
+
+  /* CLIENTS — logo strip only */
+  .clients-section { padding: 3.5rem 0; border-top: 1px solid var(--mint-dimmer); border-bottom: 1px solid var(--mint-dimmer); background: var(--bg); overflow: hidden; }
+  @keyframes logo-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .logo-track { display: flex; align-items: center; gap: 5rem; animation: logo-scroll 38s linear infinite; width: max-content; }
+  .clients-section:hover .logo-track { animation-play-state: paused; }
+  .logo-item { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .logo-item img { height: 44px; width: auto; display: block; opacity: 0.75; transition: opacity 0.3s; }
+  .logo-item:hover img { opacity: 1; }
+
+  /* ABOUT */
+  #about { padding: 0 0 7rem; border-top: 1px solid var(--mint-dimmer); background: var(--bg-mid); overflow: hidden; }
+  .about-top { position: relative; overflow: hidden; height: 92vh; min-height: 640px; margin-bottom: 0; display: flex; align-items: flex-start; }
+  .about-top-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 78% 35%; filter: brightness(0.55); }
+  .about-top-fade { position: absolute; inset: 0; background: linear-gradient(100deg, rgba(13,9,7,0.92) 0%, rgba(13,9,7,0.65) 38%, rgba(13,9,7,0.15) 65%, rgba(13,9,7,0) 85%); }
+  .about-left { position: relative; z-index: 2; padding: 4.5rem 3rem 4rem 3rem; max-width: 610px; }
+  .about-body { font-family: "Inter", sans-serif; font-weight: 300; font-size: clamp(1rem, 1.55vw, 1.24rem); line-height: 1.9; color: var(--cream); opacity: 0.9; letter-spacing: -0.01em; max-width: 34ch; margin-top: .6rem; }
+  .about-body p + p { margin-top: 1.85rem; }
+
+  /* BTS FILMSTRIP */
+  .bts-strip-wrap { border-top: none; padding-top: 0; padding-left: 0; padding-right: 0; }
+  .bts-strip { overflow: hidden; width: 100%; }
+  .bts-track { display: flex; align-items: stretch; gap: 0; width: max-content; animation: bts-scroll 40s linear infinite; }
+  .bts-strip:hover .bts-track { animation-play-state: paused; }
+  @keyframes bts-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .bts-item { flex-shrink: 0; display: flex; flex-direction: column; gap: 0; position: relative; }
+  .bts-item img { display: block; height: 280px; width: auto; object-fit: cover; filter: brightness(0.82) saturate(0.95); transition: filter 0.3s; }
+  .bts-item:hover img { filter: brightness(1); }
+  .bts-num { position: absolute; bottom: 0.6rem; left: 0.6rem; font-family: "Space Mono", monospace; font-size: 0.62rem; letter-spacing: 0.18em; color: var(--mint); text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+  .bts-track .bts-item:nth-child(1) img, .bts-track .bts-item:nth-child(9) img { width: 230px; }
+  .bts-track .bts-item:nth-child(2) img, .bts-track .bts-item:nth-child(10) img { width: 215px; }
+  .bts-track .bts-item:nth-child(3) img, .bts-track .bts-item:nth-child(11) img { width: 330px; }
+  .bts-track .bts-item:nth-child(4) img, .bts-track .bts-item:nth-child(12) img { width: 380px; }
+  .bts-track .bts-item:nth-child(5) img, .bts-track .bts-item:nth-child(13) img { width: 330px; }
+  .bts-track .bts-item:nth-child(6) img, .bts-track .bts-item:nth-child(14) img { width: 280px; }
+  .bts-track .bts-item:nth-child(7) img, .bts-track .bts-item:nth-child(15) img { width: 280px; }
+  .bts-track .bts-item:nth-child(8) img, .bts-track .bts-item:nth-child(16) img { width: 200px; }
+  .bts-tagline { font-family: "Inter", sans-serif; font-weight: 300; font-size: clamp(2.8rem, 7vw, 5.5rem); line-height: 1; letter-spacing: -0.03em; color: var(--cream); margin-top: 3rem; opacity: 0.92; }
+  .bts-tagline span { color: var(--mint); }
+  @media (max-width: 700px) { .bts-item img { height: 150px; } }
+
+  /* CONTACT */
+  #contact { position: relative; overflow: hidden; border-top: 1px solid var(--mint-dimmer); }
+  .contact-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; }
+  .contact-overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(to bottom, rgba(26,15,10,0.65) 0%, rgba(26,15,10,0.85) 100%); }
+  .contact-inner { position: relative; z-index: 2; padding: 7rem 3rem 5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .contact-heading { font-family: "Inter", sans-serif; font-weight: 300; font-size: clamp(3.5rem, 9vw, 8rem); line-height: 0.95; color: var(--cream); opacity: 0.9; margin-bottom: 2.5rem; letter-spacing: -0.02em; text-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+  .contact-heading .mint { color: var(--mint); opacity: 1; }
+  .contact-email { font-family: "Space Mono", monospace; font-size: 0.85rem; color: var(--mint); text-decoration: none; letter-spacing: 0.05em; border-bottom: 1px solid var(--mint-dim); padding-bottom: 3px; transition: opacity 0.2s; display: inline-block; }
+  .contact-email:hover { opacity: 0.6; }
+  .calendar-label { font-family: "Space Mono", monospace; font-size: clamp(1.05rem, 1.25vw, 1.2rem); letter-spacing: 0.22em; text-transform: uppercase; color: var(--mint); margin-bottom: 1.7rem; display: block; line-height: 1.25; }
+  .calendar-desc { font-family: "Inter", sans-serif; font-weight: 300; font-size: clamp(1.12rem, 1.35vw, 1.28rem); line-height: 1.8; color: var(--cream); opacity: 0.68; margin-bottom: 3.2rem; max-width: 40ch; }
+  .book-btn { display: inline-flex; align-items: center; justify-content: center; min-width: min(380px, 100%); min-height: 88px; font-family: "Space Mono", monospace; font-size: clamp(0.86rem, 1vw, 0.98rem); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bg); background: var(--mint); text-decoration: none; padding: 1.4rem 3.2rem; border-radius: 3px; transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s; }
+  .book-btn:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 0 32px rgba(126,200,164,0.18); }
+  .contact-bottom { position: relative; z-index: 2; display: flex; justify-content: space-between; align-items: center; padding: 2rem 3rem; border-top: 1px solid var(--mint-dimmer); background: rgba(26,15,10,0.5); }
+  .contact-sub { font-family: "Space Mono", monospace; font-size: 0.58rem; color: var(--cream-dimmer); line-height: 2; letter-spacing: 0.1em; text-transform: uppercase; }
+
+  footer { position: relative; z-index: 2; padding: 2rem 3rem; border-top: 1px solid var(--mint-dimmer); background: var(--bg); display: flex; justify-content: space-between; align-items: center; }
+  footer span { font-family: "Space Mono", monospace; font-size: 0.52rem; color: var(--cream-dimmer); letter-spacing: 0.1em; }
+  footer .foot-links { display: flex; gap: 2rem; }
+  footer .foot-links a { font-family: "Space Mono", monospace; font-size: 0.52rem; color: var(--cream-dimmer); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+  footer .foot-links a:hover { color: var(--mint); }
+
+  .fade-in { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.hidden { opacity: 0; transform: translateY(28px); }
+
+  @media (max-width: 900px) {
+    #work { height: auto; }
+    .work-section-label { position: relative; top: auto; left: auto; padding: 2rem 1.5rem 1rem; background: var(--bg); }
+    .book-btn { min-height: 76px; min-width: min(340px, 100%); }
+    .panel { height: 40vw; min-height: 180px; }
+    .panel-title { font-size: clamp(2rem, 8vw, 3.5rem); }
+    .statement { grid-template-columns: 1fr; padding: 0; gap: 3rem; }
+    #about { padding: 6rem 1.5rem; }
+    .statement-right { min-height: 55vw; }
+    .about-top { min-height: 70vw; }
+    .about-left { padding: 3rem 1.5rem; max-width: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .panel-img, .bts-track, .logo-track, .fade-in { transition: none !important; animation: none !important; }
+  }
+  ::view-transition-group(sport-expand) {
+    animation-duration: 0.55s;
+    animation-timing-function: cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  ::view-transition-old(sport-expand),
+  ::view-transition-new(sport-expand) {
+    animation-duration: 0.55s;
+  }
+
+
+  /* Unified site navigation */
+  .site-nav{
+    display:grid !important;
+    grid-template-columns:1fr auto 1fr !important;
+    align-items:center !important;
+    gap:1.5rem !important;
+    padding:1.35rem 3rem !important;
+    border-bottom:1px solid var(--mint-rule, rgba(126,200,164,.25)) !important;
+    background:var(--bg, #1A0F0A) !important;
+    position:relative;
+    z-index:200;
+  }
+  .site-nav-left,.site-nav-right{display:flex;align-items:center;gap:2rem;min-width:0;}
+  .site-nav-right{justify-content:flex-end;}
+  .site-nav a{font-family:var(--mono, "Space Mono", monospace) !important;font-size:.68rem !important;letter-spacing:.16em !important;text-transform:uppercase !important;text-decoration:none !important;color:var(--cream-dim, rgba(232,221,208,.55)) !important;transition:color .2s ease, opacity .2s ease;}
+  .site-nav a:hover,.site-nav a.active{color:var(--mint, #7EC8A4) !important;opacity:1;}
+  .site-nav-logo{display:flex !important;align-items:center !important;justify-content:center !important;width:42px !important;height:42px !important;justify-self:center !important;}
+  .site-nav-logo img{width:42px !important;height:42px !important;display:block !important;object-fit:contain !important;}
+  @media(max-width:720px){
+    .site-nav{grid-template-columns:1fr auto !important;padding:1.1rem 1.2rem !important;gap:1rem !important;}
+    .site-nav-logo{grid-column:2;grid-row:1;}
+    .site-nav-right{grid-column:1/3;grid-row:2;justify-content:flex-start;flex-wrap:wrap;gap:1rem 1.4rem;}
+    .site-nav-left{grid-column:1;grid-row:1;}
+  }
+
+
+
+  /* Homepage right-side reveal navigation */
+  .home-nav{
+    position:fixed; top:0; right:0; left:auto; z-index:300;
+    padding:1.35rem 1.7rem; pointer-events:none;
+    display:block; width:auto; background:transparent; border:0;
+  }
+  .home-nav *{pointer-events:auto;}
+  .home-nav-panel{
+    display:flex; flex-direction:column; align-items:center; gap:.95rem;
+    min-width:142px; text-align:center;
+  }
+  .home-nav-logo{display:flex; align-items:center; justify-content:center; width:64px; height:64px; transition:opacity .25s ease, transform .25s ease;}
+  .home-nav-logo img{width:64px; height:64px; display:block; object-fit:contain;}
+  .home-nav-menu{display:flex; flex-direction:column; align-items:center; gap:.72rem; transition:opacity .45s ease, transform .45s ease, max-height .45s ease; max-height:220px; overflow:hidden;}
+  .home-nav-menu a{
+    font-family:"Space Mono", monospace; font-size:.82rem; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--mint); text-decoration:none; line-height:1.35; transition:opacity .2s ease, color .2s ease;
+  }
+  .home-nav-menu a:hover{opacity:.62;}
+  .home-nav-social{display:flex; align-items:center; justify-content:center; gap:1rem; transition:opacity .45s ease, transform .45s ease, max-height .45s ease; max-height:60px; overflow:hidden;}
+  .home-nav-social a{display:flex; width:18px; height:18px; align-items:center; justify-content:center; opacity:.82; transition:opacity .2s ease, transform .2s ease;}
+  .home-nav-social a:hover{opacity:1; transform:translateY(-2px);}
+  .home-nav-social svg{width:18px; height:18px; fill:var(--mint); display:block;}
+  .home-nav.nav-compact .home-nav-menu,
+  .home-nav.nav-compact .home-nav-social{
+    opacity:0; transform:translateY(-8px); max-height:0; pointer-events:none;
+  }
+  .home-nav.nav-compact:hover .home-nav-menu,
+  .home-nav.nav-compact:focus-within .home-nav-menu,
+  .home-nav.nav-compact:hover .home-nav-social,
+  .home-nav.nav-compact:focus-within .home-nav-social{
+    opacity:1; transform:translateY(0); max-height:220px; pointer-events:auto;
+  }
+  .home-nav.nav-compact:hover .home-nav-social,
+  .home-nav.nav-compact:focus-within .home-nav-social{max-height:60px;}
+  .home-nav.nav-compact .home-nav-logo{transform:scale(.86);}
+
+  @media (max-width:700px){
+    .home-nav{padding:1rem 1rem;}
+    .home-nav-panel{min-width:112px; gap:.7rem;}
+    .home-nav-logo,.home-nav-logo img{width:48px; height:48px;}
+    .home-nav-menu a{font-size:.68rem; letter-spacing:.2em;}
+  }
+
+
+  .footer-social{display:flex;align-items:center;justify-content:flex-end;gap:1.15rem;}
+  .footer-social a{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;color:var(--mint,#7EC8A4);opacity:.72;text-decoration:none;transition:opacity .25s ease,transform .25s ease,filter .25s ease;}
+  .footer-social a:hover{opacity:1;transform:translateY(-2px);filter:drop-shadow(0 0 10px rgba(126,200,164,.28));}
+  .footer-social svg{width:22px;height:22px;display:block;fill:currentColor;}
+</style>
+<meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/></head>
+<body>
+<nav aria-label="Main navigation" class="home-nav" id="homeNav">
+<div class="home-nav-panel">
+<a aria-label="Zain Saleem home" class="home-nav-logo" href="index.html" title="Zain Saleem"><img alt="Zain Saleem logo" decoding="async" loading="lazy" src="assets/images/f623402d7b66.png"/></a>
+<div aria-label="Primary links" class="home-nav-menu">
+<a href="#work">Work</a>
+<a href="#about">About</a>
+<a href="mentoring.html">Mentoring</a>
+<a href="#contact">Contact</a>
+</div>
+<div aria-label="Social links" class="home-nav-social">
+<a aria-label="YouTube" href="https://www.youtube.com/@Zainaussaleem" rel="noopener" target="_blank">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"></path></svg>
+</a>
+<a aria-label="Instagram" href="https://www.instagram.com/zainaussaleem/" rel="noopener" target="_blank">
+<svg aria-hidden="true" viewbox="0 0 24 24"><path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm4.8 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Zm5.05-2.35a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"></path></svg>
+</a>
+</div>
+</div>
+</nav>
+<div class="hero">
+
+<video autoplay="" class="hero-video" loop="" muted="" playsinline="" preload="metadata">
+<source src="hero.mov" type="video/quicktime"/>
+
+</video>
+<div class="hero-fade"></div>
+<div class="hero-bl">Glasgow, UK<br/>ZAS Media Ltd</div>
+<div class="hero-bc">© 2026</div>
+<div class="hero-br">Filmmaker &amp; Director<br/>Documentary · Sport · Culture</div>
+<div class="hero-mint-line"></div>
+</div>
+<div id="work">
+<span class="section-label work-section-label">Featured work</span>
+<a class="panel panel-doc" href="documentary.html">
+<img alt="Documentary" class="panel-img" decoding="async" loading="lazy" src="assets/images/d5f335586ae8.jpg"/>
+<div class="panel-fade"></div>
+<div class="panel-text">
+<div>
+<span class="panel-num">01</span>
+<h2 class="panel-title">Documentary</h2>
+</div>
+<div class="panel-meta">
+<span class="panel-sub">People · Identity · Storytelling</span>
+<span class="panel-arrow">View work →</span>
+</div>
+</div>
+</a>
+<div class="panel-sep"></div>
+<a class="panel panel-sport" href="sport.html">
+<img alt="Sport" class="panel-img" decoding="async" loading="lazy" src="assets/images/4a39d085b6f6.jpg"/>
+<div class="panel-fade"></div>
+<div class="panel-text">
+<div>
+<span class="panel-num">02</span>
+<h2 class="panel-title">Sport</h2>
+</div>
+<div class="panel-meta">
+<span class="panel-sub">Athletes · Action · Endurance</span>
+<span class="panel-arrow">View work →</span>
+</div>
+</div>
+</a>
+<div class="panel-sep"></div>
+<a class="panel panel-culture" href="culture.html">
+<img alt="Culture" class="panel-img" decoding="async" loading="lazy" src="assets/images/7baccede3e0d.jpg"/>
+<div class="panel-fade"></div>
+<div class="panel-text">
+<div>
+<span class="panel-num">03</span>
+<h2 class="panel-title">Culture</h2>
+</div>
+<div class="panel-meta">
+<span class="panel-sub">Arts · Fashion · Architecture · Brands</span>
+<span class="panel-arrow">View work →</span>
+</div>
+</div>
+</a>
+</div>
+<!-- APPROACH -->
+<div class="statement fade-in">
+<div>
+<span class="section-label">The approach</span>
+<div class="statement-text">
+<p>My content has a different goal than most.</p>
+<p>I do not want someone to finish watching one of my films and scroll straight to the next thing. I want something to have shifted. Even slightly. A bit more understanding of the world. A bit more understanding of themselves.</p>
+<p>The part of this work I care most about is making people feel genuinely at ease. My goal on any shoot is for the person in front of the camera to forget it is there. To feel like they are just having a conversation with someone they already know. That quality of presence cannot be faked and it is what separates footage that feels alive from footage that feels performed.</p>
+<p>I am not interested in the dopamine hook formula. I want to make work that promotes real human excellence. Emotionally, creatively, spiritually. Work that helps people grow rather than keeps them stuck in a scroll.</p>
+<p>Not performance. Not manipulation. Just truth, told with care.</p>
+</div>
+</div>
+<div class="statement-right">
+<video autoplay="" class="statement-right-video" loop="" muted="" playsinline="" preload="metadata">
+<source src="approach_reel.mp4" type="video/mp4"/>
+</video>
+</div>
+</div>
+<!-- SERVICES -->
+<div class="services fade-in">
+<span class="section-label">What I offer</span>
+<div class="services-grid2">
+<div class="service-cell" onclick="this.classList.toggle('open')">
+<span class="service-num">01</span>
+<div class="service-header">
+<h3 class="service-name">Story-led<br/>Brand Film</h3>
+<span class="service-toggle">+</span>
+</div>
+<div class="service-body"><div class="service-body-inner">
+<p class="service-desc">You have a story worth telling. Whether it is a founder, a product, a place or a moment, I build a film around the human truth at the centre of it. Interview, cinematic b-roll, final film and social cutdowns.</p>
+<div class="service-tags">
+<span class="service-tag">Brands</span>
+<span class="service-tag">Athletes</span>
+<span class="service-tag">Architects</span>
+<span class="service-tag">Galleries</span>
+</div>
+</div></div>
+</div>
+<div class="service-cell" onclick="this.classList.toggle('open')">
+<span class="service-num">02</span>
+<div class="service-header">
+<h3 class="service-name">Documentary<br/>Storytelling</h3>
+<span class="service-toggle">+</span>
+</div>
+<div class="service-body"><div class="service-body-inner">
+<p class="service-desc">Long form work driven by the story itself rather than a brief. I find the subject, earn their trust, and build something that lasts. Work that shifts perception and shows people as they actually are.</p>
+<div class="service-tags">
+<span class="service-tag">Identity</span>
+<span class="service-tag">Culture</span>
+<span class="service-tag">Sport</span>
+<span class="service-tag">Community</span>
+</div>
+</div></div>
+</div>
+<div class="service-cell" onclick="this.classList.toggle('open')">
+<span class="service-num">03</span>
+<div class="service-header">
+<h3 class="service-name">Monthly Content<br/>Package</h3>
+<span class="service-toggle">+</span>
+</div>
+<div class="service-body"><div class="service-body-inner">
+<p class="service-desc">One shoot day per month, eight to twelve pieces of content, and a strategy built around your audience. Consistent, cinematic and delivered on time.</p>
+<div class="service-tags">
+<span class="service-tag">Design</span>
+<span class="service-tag">Corporate</span>
+<span class="service-tag">Hospitality</span>
+</div>
+</div></div>
+</div>
+<div class="service-cell" onclick="this.classList.toggle('open')">
+<span class="service-num">04</span>
+<div class="service-header">
+<h3 class="service-name">Editing and<br/>Post Production</h3>
+<span class="service-toggle">+</span>
+</div>
+<div class="service-body"><div class="service-body-inner">
+<p class="service-desc">Footage already shot but needs shaping? I edit, colour grade and deliver. Project based or day rate. Fast turnaround without cutting corners.</p>
+<div class="service-tags">
+<span class="service-tag">Agencies</span>
+<span class="service-tag">Productions</span>
+<span class="service-tag">Independent Creators</span>
+</div>
+</div></div>
+</div>
+</div>
+</div>
+<!-- CLIENTS -->
+<div class="clients-section fade-in">
+<span class="section-label" style="padding: 0 3rem; display: block; margin-bottom: 2rem;">Clients &amp; Collaborators</span>
+<div class="logo-track">
+<div class="logo-item"><img alt="Pakistan Super Fight Series" decoding="async" loading="lazy" src="assets/images/3368ce5db2ca.png" style="height:70px;opacity:0.75;"/></div>
+<div class="logo-item"><img alt="Scottish Downhill Association" decoding="async" loading="lazy" src="assets/images/b5ca6aa520d2.png"/></div>
+<div class="logo-item"><img alt="Saracen" decoding="async" loading="lazy" src="assets/images/84bc1791a446.png"/></div>
+<div class="logo-item"><img alt="Commonwealth Games" decoding="async" loading="lazy" src="assets/images/1149fe5ac189.png"/></div>
+<div class="logo-item"><img alt="Mundial" decoding="async" loading="lazy" src="assets/images/c0d21cdf454a.png" style="height:64px;"/></div>
+<div class="logo-item"><img alt="Atlas Collectif" decoding="async" loading="lazy" src="assets/images/31de10a3ad4f.png" style="height:64px;"/></div>
+<div class="logo-item"><img alt="Orzel" decoding="async" loading="lazy" src="assets/images/orzel_logo.png" style="height:64px;"/></div>
+<div class="logo-item"><img alt="Client logo" decoding="async" loading="lazy" src="assets/images/white_text_logo.png"/></div>
+<div class="logo-item"><img alt="Wadhal" decoding="async" loading="lazy" src="assets/images/4df9070fd7d0.png"/></div>
+<div class="logo-item"><img alt="Aadil Abedi" decoding="async" loading="lazy" src="assets/images/b192af836a8f.png"/></div>
+<div class="logo-item"><img alt="Runjeet Singh Gallery" decoding="async" loading="lazy" src="assets/images/e049087d6be3.png"/></div>
+<div class="logo-item"><img alt="Pakistan Super Fight Series" decoding="async" loading="lazy" src="assets/images/3368ce5db2ca.png" style="height:70px;opacity:0.75;"/></div>
+<div class="logo-item"><img alt="Scottish Downhill Association" decoding="async" loading="lazy" src="assets/images/b5ca6aa520d2.png"/></div>
+<div class="logo-item"><img alt="Saracen" decoding="async" loading="lazy" src="assets/images/84bc1791a446.png"/></div>
+<div class="logo-item"><img alt="Commonwealth Games" decoding="async" loading="lazy" src="assets/images/1149fe5ac189.png"/></div>
+<div class="logo-item"><img alt="Mundial" decoding="async" loading="lazy" src="assets/images/c0d21cdf454a.png" style="height:64px;"/></div>
+<div class="logo-item"><img alt="Atlas Collectif" decoding="async" loading="lazy" src="assets/images/31de10a3ad4f.png" style="height:64px;"/></div>
+<div class="logo-item"><img alt="Orzel" decoding="async" loading="lazy" src="assets/images/orzel_logo.png" style="height:64px;"/></div>
+<div class="logo-item"><img alt="Client logo" decoding="async" loading="lazy" src="assets/images/white_text_logo.png"/></div>
+<div class="logo-item"><img alt="Wadhal" decoding="async" loading="lazy" src="assets/images/4df9070fd7d0.png"/></div>
+<div class="logo-item"><img alt="Aadil Abedi" decoding="async" loading="lazy" src="assets/images/b192af836a8f.png"/></div>
+<div class="logo-item"><img alt="Runjeet Singh Gallery" decoding="async" loading="lazy" src="assets/images/e049087d6be3.png"/></div>
+</div>
+</div>
+<!-- ABOUT -->
+<section id="about">
+<div class="about-top">
+<img alt="Tripod and chair in a sunlit room" class="about-top-bg" decoding="async" loading="lazy" src="assets/images/84dfd4063e48.jpg"/>
+<div class="about-top-fade"></div>
+<div class="about-left fade-in">
+<span class="section-label">About</span>
+<div class="about-body">
+<p>It started with a simple belief: there were people whose stories deserved to be told properly, and no one had sat with them long enough to find out what those stories were.</p>
+<p>That belief became a career. I'm now a full time filmmaker and director based in Glasgow, working across the UK, Dubai and Pakistan on documentary, sport and cultural work.</p>
+<p>I shoot, direct and edit everything myself on a Sony A7IV. I work fast, I work lean, and I get inside the room in a way that is hard to manufacture from the outside.</p>
+</div>
+</div>
+</div>
+<div class="bts-strip-wrap fade-in">
+<div class="bts-strip">
+<div class="bts-track">
+<div class="bts-item">
+<img alt="Behind the scenes photographer reviewing shot in studio" decoding="async" loading="lazy" src="assets/images/077debc29d73.jpg"/>
+<span class="bts-num">01</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes filming in woodland with gimbal" decoding="async" loading="lazy" src="assets/images/19d2299bf1d9.jpg"/>
+<span class="bts-num">02</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes 2" decoding="async" loading="lazy" src="assets/images/cf6eb2a7c643.jpg"/>
+<span class="bts-num">03</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes 4" decoding="async" loading="lazy" src="assets/images/ce66e7fbe323.jpg"/>
+<span class="bts-num">04</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes filming with gimbal" decoding="async" loading="lazy" src="assets/images/49102cca3e7a.jpg"/>
+<span class="bts-num">05</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes two runners on hillside" decoding="async" loading="lazy" src="assets/images/989729ab5aa4.jpg"/>
+<span class="bts-num">06</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes adjusting studio lighting" decoding="async" loading="lazy" src="assets/images/21a42a9dc5f4.jpg"/>
+<span class="bts-num">07</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes filming an interview" decoding="async" loading="lazy" src="assets/images/520e64712daf.jpg"/>
+<span class="bts-num">08</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes photographer reviewing shot in studio" decoding="async" loading="lazy" src="assets/images/077debc29d73.jpg"/>
+<span class="bts-num">01</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes filming in woodland with gimbal" decoding="async" loading="lazy" src="assets/images/19d2299bf1d9.jpg"/>
+<span class="bts-num">02</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes 2" decoding="async" loading="lazy" src="assets/images/cf6eb2a7c643.jpg"/>
+<span class="bts-num">03</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes 4" decoding="async" loading="lazy" src="assets/images/ce66e7fbe323.jpg"/>
+<span class="bts-num">04</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes filming with gimbal" decoding="async" loading="lazy" src="assets/images/49102cca3e7a.jpg"/>
+<span class="bts-num">05</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes two runners on hillside" decoding="async" loading="lazy" src="assets/images/989729ab5aa4.jpg"/>
+<span class="bts-num">06</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes adjusting studio lighting" decoding="async" loading="lazy" src="assets/images/21a42a9dc5f4.jpg"/>
+<span class="bts-num">07</span>
+</div>
+<div class="bts-item">
+<img alt="Behind the scenes filming an interview" decoding="async" loading="lazy" src="assets/images/520e64712daf.jpg"/>
+<span class="bts-num">08</span>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+<!-- CONTACT -->
+<section id="contact">
+<img alt="" class="contact-bg" decoding="async" loading="lazy" src="assets/images/0e114591b9a0.jpg"/>
+<div class="contact-overlay"></div>
+<div class="contact-inner">
+<div class="contact-left fade-in">
+<span class="section-label">Get in touch</span>
+<h2 class="contact-heading">Have a story<br/><span class="mint">worth telling?</span></h2>
+<a class="contact-email" href="mailto:film@zainaussaleem.com">film@zainaussaleem.com</a>
+</div>
+<div class="contact-right fade-in">
+<span class="calendar-label">Book a discovery call</span>
+<p class="calendar-desc">30 minutes. No pressure. Tell me about your project and lets see if we are a good fit. Slots sync with my live schedule.</p>
+<a class="book-btn" href="https://calendar.app.google/ZSKW9txWhiyM8vBAA" rel="noopener" target="_blank">Book a call →</a>
+</div>
+</div>
+<div class="contact-bottom">
+<div class="contact-sub">Glasgow, UK · Available internationally</div>
+<div class="footer-social" aria-label="Social links">
+<a aria-label="YouTube" href="https://www.youtube.com/@Zainaussaleem" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"></path></svg></a>
+<a aria-label="Instagram" href="https://www.instagram.com/zainaussaleem/" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2Zm4.8 3.2A4.8 4.8 0 1 1 7.2 12 4.8 4.8 0 0 1 12 7.2Zm0 2A2.8 2.8 0 1 0 14.8 12 2.8 2.8 0 0 0 12 9.2Zm5.05-2.35a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"></path></svg></a>
+
+<a aria-label="LinkedIn" href="https://uk.linkedin.com/in/zain-saleem-13a9b6329" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.61 0 4.27 2.38 4.27 5.47v6.27ZM5.32 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12ZM7.1 20.45H3.53V9H7.1v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"></path></svg></a>
+</div>
+</div>
+</section>
+<footer>
+<span>© 2026 ZAS Media Ltd · SC844446</span>
+</footer>
+<script>
+  const faders = document.querySelectorAll('.fade-in');
+  faders.forEach(el => el.classList.add('hidden'));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.remove('hidden');
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  faders.forEach(el => observer.observe(el));
+</script>
+<script>
+  (function(){
+    const nav = document.getElementById('homeNav');
+    if(!nav) return;
+    const updateNav = () => {
+      if(window.scrollY > 90) nav.classList.add('nav-compact');
+      else nav.classList.remove('nav-compact');
+    };
+    updateNav();
+    window.addEventListener('scroll', updateNav, { passive:true });
+  })();
+</script>
+</body>
+</html>
