@@ -103,10 +103,14 @@
   .faq-item h3{font-family:var(--mono);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--cream);margin-bottom:.6rem}
   .faq-item p{font-size:.8rem;line-height:1.75;color:var(--cream-dim);max-width:48rem}
 
-  .cta{padding:5rem 3rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:end}
-  .cta h2{font-weight:300;font-size:clamp(3rem,7vw,6.8rem);line-height:.94;letter-spacing:-.045em}
-  .cta p{font-size:.92rem;line-height:1.8;color:var(--cream-dim);margin-bottom:2rem}
-  .secondary{display:inline-flex;align-items:center;justify-content:center;padding:1rem 1.4rem;border:1px solid var(--mint-rule);color:var(--mint);text-decoration:none;font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+  .cta{padding:5rem 3rem}
+  .cta-box{border:1px solid var(--mint-rule);background:rgba(126,200,164,.05);padding:3.5rem;display:grid;grid-template-columns:1.3fr .7fr;gap:3rem;align-items:center}
+  .cta h2{font-weight:300;font-size:clamp(2.6rem,5.5vw,5.2rem);line-height:.96;letter-spacing:-.045em}
+  .cta p{font-size:.92rem;line-height:1.8;color:var(--cream-dim);margin-bottom:0}
+  .cta-side{text-align:right}
+  .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;background:var(--mint);color:var(--bg);padding:1.3rem 2.2rem;text-decoration:none;font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;transition:transform .25s ease,box-shadow .25s ease}
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(126,200,164,.32)}
+  .cta-side .note{margin-top:1rem;text-align:right}
   footer{border-top:1px solid var(--mint-rule);padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
   footer span,footer a{font-family:var(--mono);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none}
   footer a{color:var(--mint)}
@@ -114,7 +118,9 @@
 
   @media(max-width:980px){
     nav,.masthead,.offer,.split-feature,.video-section,.topics,.process,.cta,footer{padding-left:1.4rem;padding-right:1.4rem}
-    .offer,.masthead-meta,.section-title,.process,.cta{grid-template-columns:1fr}
+    .offer,.masthead-meta,.section-title,.process{grid-template-columns:1fr}
+    .cta-box{grid-template-columns:1fr;padding:2.2rem;gap:1.8rem;text-align:left}
+    .cta-side,.cta-side .note{text-align:left}
     .offer-left{border-right:none;border-bottom:1px solid var(--mint-rule);padding-right:0}.booking-wrap{padding-left:0}
     .split-row,.split-row.reverse{grid-template-columns:1fr;gap:1.5rem}.split-row.reverse .feature-media{order:0}
     .video-grid{grid-template-columns:1fr 1fr}.video-card.big{grid-row:auto;grid-column:1/3}.bottom-videos{grid-column:1/3}
@@ -230,36 +236,36 @@
 <section class="video-section">
 <div class="section-title fade">
 <h2>See the process in action.</h2>
-<p>A tighter video layout: one larger 5:4 feature, all four 9:16 verticals grouped together on the right, then the 5:4 stills example and a sound design reel underneath.</p>
+<p>A behind-the-scenes look at real projects — grading sessions, on-set direction, pre-production and sound design — so you know exactly what a session with me looks like before you book.</p>
 </div>
 <div class="video-grid">
 <article class="video-card big fade">
-<span class="num">01 / 5:4</span>
+<span class="num">01</span>
 <div class="video-frame ratio-54"><video autoplay="" loop="" muted="" playsinline="" poster="https://media.zainaussaleem.com/Mentoring/hf_20260701_112717_d9abc266-3de1-488c-a45a-af4af0838c6b.webp" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/zeeshan-colour.mp4" type="video/mp4"/></video></div>
 <h3>Colour Grading Workflow</h3>
 <p>Step by step grading, matching and finishing.</p>
 </article>
 <article class="video-card fade">
-<span class="num">02 / 9:16</span>
+<span class="num">02</span>
 <div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/colour-grade-room.mp4" type="video/mp4"/></video></div>
 <h3>Colour Room BTS</h3>
 <p>Real project workflow and decision-making.</p>
 </article>
 <article class="video-card fade">
-<span class="num">03 / 9:16</span>
+<span class="num">03</span>
 <div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/osmo.mp4" type="video/mp4"/></video></div>
 <h3>Osmo Workflow</h3>
 <p>Shooting, settings and best practice.</p>
 </article>
 <div class="bottom-videos">
 <article class="video-card fade">
-<span class="num">04 / 9:16</span>
+<span class="num">04</span>
 <div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/28---saracen-steampunk-biker-launch-3.mp4" type="video/mp4"/></video></div>
 <h3>Directing BTS</h3>
 <p>Behind the scenes of the directing process on set.</p>
 </article>
 <article class="video-card fade">
-<span class="num">05 / 9:16</span>
+<span class="num">05</span>
 <div class="video-frame ratio-916"><video autoplay="" loop="" muted="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/mooodboard-final--copy.mp4" type="video/mp4"/></video></div>
 <h3>Pre-Production BTS</h3>
 <p>Moodboarding and pre-production process through to the final result.</p>
@@ -268,13 +274,13 @@
 </div>
 <div class="video-grid" style="margin-top:1rem;grid-template-columns:25fr 16fr;">
 <article class="video-card fade">
-<span class="num">06 / 5:4</span>
+<span class="num">06</span>
 <div class="video-frame ratio-54"><video autoplay="" loop="" muted="" playsinline="" poster="https://media.zainaussaleem.com/Mentoring/hf_20260701_112307_eaa911f5-95f7-4d5e-a376-a1462210a64b.webp" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/stills.mp4" type="video/mp4"/></video></div>
 <h3>Resolve Tips</h3>
 <p>Small tricks that improve speed and quality.</p>
 </article>
 <article class="video-card fade">
-<span class="num">07 / SFX</span>
+<span class="num">07</span>
 <div class="video-frame ratio-sfx"><video controls="" loop="" playsinline="" preload="metadata"><source src="https://media.zainaussaleem.com/Mentoring/compressed/sfx-ever3.mp4" type="video/mp4"/></video></div>
 <h3>Sound Design &amp; SFX</h3>
 <p>Sound design and SFX workflow for cinematic edits.</p>
@@ -314,8 +320,16 @@
 </div>
 </section>
 <section class="cta">
-<h2 class="fade">Bring your footage. Leave with direction.</h2>
-<div class="fade"><p>Book a focused 1:1 mentoring call and we will work through the exact part of your filmmaking process that needs clarity.</p><a class="secondary" href="https://calendar.app.google/ZSKW9txWhiyM8vBAA" rel="noopener" target="_blank">Book A Call</a></div>
+<div class="cta-box">
+<div class="fade">
+<h2>Bring your footage. Leave with direction.</h2>
+<p>Book a focused 1:1 mentoring call and we will work through the exact part of your filmmaking process that needs clarity.</p>
+</div>
+<div class="cta-side fade">
+<a class="cta-btn" href="https://calendar.app.google/ZSKW9txWhiyM8vBAA" rel="noopener" target="_blank">Book A Call →</a>
+<p class="note">90 Minutes · Google Meet · £150</p>
+</div>
+</div>
 </section>
 <footer><span>Glasgow, UK · Available internationally</span><div class="footer-social" aria-label="Social links">
 <a aria-label="YouTube" href="https://www.youtube.com/@Zainaussaleem" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"></path></svg></a>
