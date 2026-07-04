@@ -93,9 +93,9 @@
 
   /* CLIENTS — static logo grid */
   .clients-section { padding: 3.5rem 3rem; border-top: 1px solid var(--mint-dimmer); border-bottom: 1px solid var(--mint-dimmer); background: var(--bg); overflow: hidden; }
-  .clients-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2.4rem 3.4rem; }
-  .logo-item { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-  .logo-item img { max-height: 44px; max-width: 200px; width: auto; height: auto; display: block; opacity: 0.75; transition: opacity 0.3s; }
+  .clients-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.8rem 2.4rem; }
+  .logo-item { flex-shrink: 0; width: 128px; height: 46px; display: flex; align-items: center; justify-content: center; }
+  .logo-item img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; opacity: 0.75; transition: opacity 0.3s; }
   .logo-item:hover img { opacity: 1; }
 
   /* ABOUT */
@@ -175,7 +175,8 @@
     .service-cell:nth-child(3), .service-cell:nth-child(4) { border-bottom: none; }
     .service-cell:not(:last-child) { border-bottom: 1px solid var(--mint-dimmer); }
     .clients-section { padding: 3rem 1.5rem; }
-    .clients-grid { justify-content: flex-start; gap: 1.8rem 2rem; }
+    .clients-grid { justify-content: center; gap: 1.4rem 1.6rem; }
+    .logo-item { width: 108px; height: 40px; }
     .contact-inner { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem 3rem; }
     footer { flex-direction: column; gap: 1rem; }
   }
@@ -444,14 +445,14 @@
 <div class="clients-section fade-in">
 <span class="section-label" style="display: block; margin-bottom: 2rem;">Clients &amp; Collaborators</span>
 <div class="clients-grid">
-<div class="logo-item"><img alt="Pakistan Super Fight Series" decoding="async" loading="lazy" src="assets/images/3368ce5db2ca.png" style="max-height:70px;opacity:0.75;"/></div>
+<div class="logo-item"><img alt="Pakistan Super Fight Series" decoding="async" loading="lazy" src="assets/images/3368ce5db2ca.png"/></div>
 <div class="logo-item"><img alt="Scottish Downhill Association" decoding="async" loading="lazy" src="assets/images/b5ca6aa520d2.png"/></div>
 <div class="logo-item"><img alt="Saracen" decoding="async" loading="lazy" src="assets/images/84bc1791a446.png"/></div>
 <div class="logo-item"><img alt="Commonwealth Games" decoding="async" loading="lazy" src="assets/images/1149fe5ac189.png"/></div>
-<div class="logo-item"><img alt="Mundial" decoding="async" loading="lazy" src="assets/images/c0d21cdf454a.png" style="max-height:64px;"/></div>
-<div class="logo-item"><img alt="Atlas Collectif" decoding="async" loading="lazy" src="assets/images/31de10a3ad4f.png" style="max-height:64px;"/></div>
-<div class="logo-item"><img alt="Orzel" decoding="async" loading="lazy" src="assets/images/orzel_logo.png" style="max-height:64px;"/></div>
-<div class="logo-item"><img alt="Client logo" decoding="async" loading="lazy" src="assets/images/white_text_logo.png"/></div>
+<div class="logo-item"><img alt="Mundial" decoding="async" loading="lazy" src="assets/images/c0d21cdf454a.png"/></div>
+<div class="logo-item"><img alt="Atlas Collectif" decoding="async" loading="lazy" src="assets/images/31de10a3ad4f.png"/></div>
+<div class="logo-item"><img alt="Orzel" decoding="async" loading="lazy" src="assets/images/orzel_logo.png"/></div>
+<div class="logo-item"><img alt="LAHOS" decoding="async" loading="lazy" src="assets/images/white_text_logo.png"/></div>
 <div class="logo-item"><img alt="Wadhal" decoding="async" loading="lazy" src="assets/images/4df9070fd7d0.png"/></div>
 <div class="logo-item"><img alt="Aadil Abedi" decoding="async" loading="lazy" src="assets/images/b192af836a8f.png"/></div>
 <div class="logo-item"><img alt="Runjeet Singh Gallery" decoding="async" loading="lazy" src="assets/images/e049087d6be3.png"/></div>
