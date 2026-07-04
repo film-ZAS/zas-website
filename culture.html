@@ -39,7 +39,7 @@
   .paper { padding:0 3rem 4rem; }
   .paper-row { display:grid; gap:0; border-bottom:1px solid var(--mint-rule); }
   .row-1 { grid-template-columns:1.2fr 1fr 1fr; align-items:stretch; }
-  .row-2 { grid-template-columns:1fr; }
+  .row-2 { grid-template-columns:1fr; max-width:720px; margin:0 auto; }
   .row-3 { grid-template-columns:3fr 4fr; max-width:680px; margin:0 auto; }
   .row-4 { grid-template-columns:repeat(4, 1fr); }
   .row-lahos { grid-template-columns:1fr 1fr; }
@@ -80,6 +80,10 @@
   .feature-film-title { font-family:var(--mono); font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--cream); }
   .feature-tag { font-family:var(--mono); font-size:.55rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; opacity:.7; }
   .feature-note { font-size:.7rem; line-height:1.65; color:var(--cream-dim); }
+  .feature-stack-2x2 { display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:1px solid var(--mint-rule); border-left:1px solid var(--mint-rule); max-width:640px; margin:0 auto; }
+  .feature-stack-2x2 .feature-film { border-right:1px solid var(--mint-rule); border-bottom:1px solid var(--mint-rule); }
+  .feature-stack-2x2 .feature-film:nth-child(2n) { border-right:none; }
+  .feature-stack-2x2 .feature-film:nth-child(n+3) { border-bottom:none; }
 
   footer { border-top:1px solid var(--mint-rule); padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
   footer span, footer a { font-family:var(--mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; }
@@ -104,6 +108,10 @@
     .feature-stack { grid-template-columns:1fr; border-left:none; }
     .feature-film { border-right:none; border-bottom:1px solid var(--mint-rule); }
     .feature-film:last-child { border-bottom:none; }
+    .feature-stack-2x2 { grid-template-columns:1fr; max-width:none; border-left:none; }
+    .feature-stack-2x2 .feature-film { border-right:none; border-bottom:1px solid var(--mint-rule); }
+    .feature-stack-2x2 .feature-film:last-child { border-bottom:none; }
+    .row-2 { max-width:none; }
   }
   @media (max-width:560px) {
     .row-1, .row-2, .row-3, .row-4 { grid-template-columns:1fr; }
@@ -189,6 +197,7 @@
 </div>
 </div>
 <div class="paper">
+<div class="feature-head"><span class="feature-index">Architecture · Studio Wadhal</span><div><h2 class="feature-title">Studio Wadhal — Wade House Project</h2><p class="feature-desc">Architectural documentary series for Wadhal's Wade House project, presented across the lead film and supporting verticals.</p></div></div>
 <div class="paper-row row-2">
 <div class="card"><span class="card-index">01 — YouTube / 5:4</span><div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/JoCbpGdQ5Cw" title="Wade House — Studio Wadhal"></iframe></div><div class="card-meta"><h2 class="card-title">Wade House — Studio Wadhal</h2><div class="card-rule"></div><p class="card-desc">Architectural documentary film for Wadhal's Wade House project.</p><span class="card-tag">Wade House · Studio Wadhal · YouTube / 5:4</span></div></div>
 </div>
@@ -199,23 +208,26 @@
 <div class="card"><span class="card-index">05 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/30---wadhal-pavilion-glass-maker.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title" style="color:var(--mint); font-style:italic; letter-spacing:.1em;">Pavilion Pavilion</h2><div class="card-rule"></div><p class="card-desc">Artisan glass maker.</p><span class="card-tag">Pavilion Pavilion · 4:3 Vertical</span></div></div>
 </div>
 <section class="feature-section fade-in">
-<div class="feature-head"><span class="feature-index">06 — Four 5:4 Films</span><div><h2 class="feature-title">Aadeil Abed</h2><p class="feature-desc">Four-film artist portrait series, presented horizontally as one complete body of work.</p></div></div>
+<div class="feature-head"><span class="feature-index">06 — Four 5:4 Films</span><div><h2 class="feature-title">Aadil Abedi</h2><p class="feature-desc">Four-film artist portrait series, presented horizontally as one complete body of work.</p></div></div>
 <div class="feature-stack">
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/17---aadil-abedi.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 01</span><span class="feature-tag">Aadeil Abed · 5:4</span><p class="feature-note">First chapter in the portrait series.</p></div></div>
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/17---aadil-abedi-2.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 02</span><span class="feature-tag">Aadeil Abed · 5:4</span><p class="feature-note">Second chapter in the portrait series.</p></div></div>
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/17---aadil-abedi-3.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 03</span><span class="feature-tag">Aadeil Abed · 5:4</span><p class="feature-note">Third chapter in the portrait series.</p></div></div>
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/17---aadil-abedi-4.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 04</span><span class="feature-tag">Aadeil Abed · 5:4</span><p class="feature-note">Fourth chapter in the portrait series.</p></div></div>
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/17---aadil-abedi.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 01</span><span class="feature-tag">Aadil Abedi · 5:4</span><p class="feature-note">First chapter in the portrait series.</p></div></div>
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/17---aadil-abedi-2.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 02</span><span class="feature-tag">Aadil Abedi · 5:4</span><p class="feature-note">Second chapter in the portrait series.</p></div></div>
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/17---aadil-abedi-3.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 03</span><span class="feature-tag">Aadil Abedi · 5:4</span><p class="feature-note">Third chapter in the portrait series.</p></div></div>
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/17---aadil-abedi-4.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 04</span><span class="feature-tag">Aadil Abedi · 5:4</span><p class="feature-note">Fourth chapter in the portrait series.</p></div></div>
 </div>
 </section>
-<div class="paper-row row-lahos">
-<div class="card"><span class="card-index">07 — 5:4</span><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Lahos</h2><div class="card-rule"></div><p class="card-desc">British Punjabi fashion brand — editing and colour grading.</p><span class="card-tag">Lahos · 5:4</span></div></div>
-<div class="card"><span class="card-index">08 — 5:4</span><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-3.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Lahos</h2><div class="card-rule"></div><p class="card-desc">British Punjabi fashion brand — editing and colour grading.</p><span class="card-tag">Lahos · 5:4</span></div></div>
-<div class="card"><span class="card-index">09 — 5:4</span><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-4.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Lahos</h2><div class="card-rule"></div><p class="card-desc">British Punjabi fashion brand — editing and colour grading.</p><span class="card-tag">Lahos · 5:4</span></div></div>
-<div class="card"><span class="card-index">10 — 5:4</span><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-6.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Lahos</h2><div class="card-rule"></div><p class="card-desc">British Punjabi fashion brand — editing and colour grading.</p><span class="card-tag">Lahos · 5:4</span></div></div>
+<section class="feature-section fade-in">
+<div class="feature-head"><span class="feature-index">07 — Four 5:4 Films</span><div><h2 class="feature-title">Lahos</h2><p class="feature-desc">British Punjabi fashion brand — editing and colour grading, presented as one complete body of work.</p></div></div>
+<div class="feature-stack-2x2">
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 01</span><span class="feature-tag">Lahos · 5:4</span><p class="feature-note">British Punjabi fashion brand — editing and colour grading.</p></div></div>
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-3.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 02</span><span class="feature-tag">Lahos · 5:4</span><p class="feature-note">British Punjabi fashion brand — editing and colour grading.</p></div></div>
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-4.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 03</span><span class="feature-tag">Lahos · 5:4</span><p class="feature-note">British Punjabi fashion brand — editing and colour grading.</p></div></div>
+<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-6.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 04</span><span class="feature-tag">Lahos · 5:4</span><p class="feature-note">British Punjabi fashion brand — editing and colour grading.</p></div></div>
 </div>
+</section>
 <div class="paper-row row-3">
-<div class="card"><span class="card-index">11 — Vertical 9:16</span><div class="card-frame ratio-916"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Ucon/11---ucon-bag-collab-barbican.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Ucon</h2><div class="card-rule"></div><p class="card-desc">Fast-turnaround fashion shoot around the Barbican, London — shot and edited within a single hour.</p><span class="card-tag">Ucon · Vertical</span></div></div>
-<div class="card"><span class="card-index">12 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/INCADOR/21---incador-jewellery-2.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Incador Jewellery</h2><div class="card-rule"></div><p class="card-desc">London-based jewellery company — editing and colour grading.</p><span class="card-tag">Incador Jewellery · 4:3 Vertical</span></div></div>
+<div class="card"><span class="card-index">08 — Vertical 9:16</span><div class="card-frame ratio-916"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Ucon/11---ucon-bag-collab-barbican.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Ucon</h2><div class="card-rule"></div><p class="card-desc">Fast-turnaround fashion shoot around the Barbican, London — shot and edited within a single hour.</p><span class="card-tag">Ucon · Vertical</span></div></div>
+<div class="card"><span class="card-index">09 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/INCADOR/21---incador-jewellery-2.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Incador Jewellery</h2><div class="card-rule"></div><p class="card-desc">London-based jewellery company — editing and colour grading.</p><span class="card-tag">Incador Jewellery · 4:3 Vertical</span></div></div>
 </div>
 </div>
 </div>
