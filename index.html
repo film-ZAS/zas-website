@@ -91,13 +91,23 @@
   .service-tags { display: flex; flex-wrap: wrap; gap: 1.4rem; }
   .service-tag { font-family: "Space Mono", monospace; font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mint); opacity: 0.55; }
 
-  /* CLIENTS — static logo grid */
+  /* CLIENTS — scrolling marquee on desktop, static grid on mobile */
   .clients-section { padding: 3.5rem 3rem; border-top: 1px solid var(--mint-dimmer); border-bottom: 1px solid var(--mint-dimmer); background: var(--bg); overflow: hidden; }
-  .clients-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.8rem 2.4rem; }
+  @keyframes logo-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .logo-track { display: flex; align-items: center; gap: 5rem; animation: logo-scroll 38s linear infinite; width: max-content; }
+  .clients-section:hover .logo-track { animation-play-state: paused; }
+  .marquee-item { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .marquee-item img { height: 44px; width: auto; display: block; opacity: 0.75; transition: opacity 0.3s; }
+  .marquee-item:hover img { opacity: 1; }
+  .clients-grid { display: none; }
   .logo-item { flex-shrink: 0; width: 128px; height: 46px; display: flex; align-items: center; justify-content: center; }
   .logo-item.logo-wide { width: 310px; }
   .logo-item img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; opacity: 0.75; transition: opacity 0.3s; }
   .logo-item:hover img { opacity: 1; }
+  @media (max-width: 900px) {
+    .logo-track { display: none; }
+    .clients-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1.8rem 2.4rem; }
+  }
 
   /* ABOUT */
   #about { padding: 0 0 7rem; border-top: 1px solid var(--mint-dimmer); background: var(--bg-mid); overflow: hidden; }
@@ -188,7 +198,7 @@
     .hero-bc { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .panel-img, .bts-track, .fade-in { transition: none !important; animation: none !important; }
+    .panel-img, .bts-track, .logo-track, .fade-in { transition: none !important; animation: none !important; }
   }
   ::view-transition-group(sport-expand) {
     animation-duration: 0.55s;
@@ -446,6 +456,30 @@
 <!-- CLIENTS -->
 <div class="clients-section fade-in">
 <span class="section-label" style="display: block; margin-bottom: 2rem;">Clients &amp; Collaborators</span>
+<div class="logo-track">
+<div class="marquee-item"><img alt="Pakistan Super Fight Series" decoding="async" loading="lazy" src="assets/images/3368ce5db2ca.png" style="height:70px;opacity:0.75;"/></div>
+<div class="marquee-item"><img alt="Scottish Downhill Association" decoding="async" loading="lazy" src="assets/images/b5ca6aa520d2.png"/></div>
+<div class="marquee-item"><img alt="Saracen" decoding="async" loading="lazy" src="assets/images/84bc1791a446.png"/></div>
+<div class="marquee-item"><img alt="Commonwealth Games" decoding="async" loading="lazy" src="assets/images/1149fe5ac189.png" style="height:60px;"/></div>
+<div class="marquee-item"><img alt="Mundial" decoding="async" loading="lazy" src="assets/images/c0d21cdf454a.png" style="height:64px;"/></div>
+<div class="marquee-item"><img alt="Atlas Collectif" decoding="async" loading="lazy" src="assets/images/31de10a3ad4f.png" style="height:64px;"/></div>
+<div class="marquee-item"><img alt="Orzel" decoding="async" loading="lazy" src="assets/images/orzel_logo.png" style="height:80px;"/></div>
+<div class="marquee-item"><img alt="LAHOS" decoding="async" loading="lazy" src="assets/images/white_text_logo.png" style="height:36px;"/></div>
+<div class="marquee-item"><img alt="Wadhal" decoding="async" loading="lazy" src="assets/images/4df9070fd7d0.png"/></div>
+<div class="marquee-item"><img alt="Aadil Abedi" decoding="async" loading="lazy" src="assets/images/b192af836a8f.png"/></div>
+<div class="marquee-item"><img alt="Runjeet Singh Gallery" decoding="async" loading="lazy" src="assets/images/e049087d6be3.png"/></div>
+<div class="marquee-item"><img alt="Pakistan Super Fight Series" decoding="async" loading="lazy" src="assets/images/3368ce5db2ca.png" style="height:70px;opacity:0.75;"/></div>
+<div class="marquee-item"><img alt="Scottish Downhill Association" decoding="async" loading="lazy" src="assets/images/b5ca6aa520d2.png"/></div>
+<div class="marquee-item"><img alt="Saracen" decoding="async" loading="lazy" src="assets/images/84bc1791a446.png"/></div>
+<div class="marquee-item"><img alt="Commonwealth Games" decoding="async" loading="lazy" src="assets/images/1149fe5ac189.png" style="height:60px;"/></div>
+<div class="marquee-item"><img alt="Mundial" decoding="async" loading="lazy" src="assets/images/c0d21cdf454a.png" style="height:64px;"/></div>
+<div class="marquee-item"><img alt="Atlas Collectif" decoding="async" loading="lazy" src="assets/images/31de10a3ad4f.png" style="height:64px;"/></div>
+<div class="marquee-item"><img alt="Orzel" decoding="async" loading="lazy" src="assets/images/orzel_logo.png" style="height:80px;"/></div>
+<div class="marquee-item"><img alt="LAHOS" decoding="async" loading="lazy" src="assets/images/white_text_logo.png" style="height:36px;"/></div>
+<div class="marquee-item"><img alt="Wadhal" decoding="async" loading="lazy" src="assets/images/4df9070fd7d0.png"/></div>
+<div class="marquee-item"><img alt="Aadil Abedi" decoding="async" loading="lazy" src="assets/images/b192af836a8f.png"/></div>
+<div class="marquee-item"><img alt="Runjeet Singh Gallery" decoding="async" loading="lazy" src="assets/images/e049087d6be3.png"/></div>
+</div>
 <div class="clients-grid">
 <div class="logo-item"><img alt="Pakistan Super Fight Series" decoding="async" loading="lazy" src="assets/images/3368ce5db2ca.png"/></div>
 <div class="logo-item"><img alt="Scottish Downhill Association" decoding="async" loading="lazy" src="assets/images/b5ca6aa520d2.png"/></div>
