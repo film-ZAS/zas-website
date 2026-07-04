@@ -82,6 +82,15 @@
   .feature-note { font-size:.7rem; line-height:1.65; color:var(--cream-dim); }
   .feature-stack.stack-lg .feature-film { padding:2rem; }
 
+  .project-section { border-bottom:1px solid var(--mint-rule); padding:2rem 1.5rem 2.4rem; }
+  .project-eyebrow { display:flex; flex-direction:column; font-family:var(--mono); font-size:.62rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; line-height:1.7; padding-bottom:1.4rem; border-bottom:1px solid var(--mint-rule); margin-bottom:1.6rem; }
+  .project-title { font-family:var(--mono); font-size:clamp(1.3rem,2.6vw,2.3rem); font-weight:700; color:var(--cream); line-height:1.2; text-transform:uppercase; letter-spacing:.01em; max-width:48rem; margin-bottom:1.8rem; }
+  .project-hero { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:3rem; align-items:start; }
+  .project-desc { font-size:.8rem; line-height:1.9; color:var(--cream-dim); text-align:left; }
+  .project-credit { margin-top:1.4rem; font-family:var(--mono); font-size:.58rem; letter-spacing:.14em; color:var(--mint); text-transform:uppercase; opacity:.85; line-height:1.7; }
+  .project-media .card-frame { margin-top:.8rem; }
+  .project-media .card-meta { margin-top:1rem; }
+
   footer { border-top:1px solid var(--mint-rule); padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
   footer span, footer a { font-family:var(--mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; }
   footer span { color:var(--cream-dim); }
@@ -106,6 +115,7 @@
     .feature-film { border-right:none; border-bottom:1px solid var(--mint-rule); }
     .feature-film:last-child { border-bottom:none; }
     .row-2 { max-width:none; }
+    .project-hero { grid-template-columns:1fr; gap:1.5rem; }
   }
   @media (max-width:560px) {
     .row-1, .row-2, .row-3, .row-4 { grid-template-columns:1fr; }
@@ -191,16 +201,27 @@
 </div>
 </div>
 <div class="paper">
-<div class="feature-head"><span class="feature-index">Architecture · Studio Wadhal</span><div><h2 class="feature-title">Studio Wadhal — Wade House Project</h2><p class="feature-desc">Architectural documentary series for Wadhal's Wade House project, presented across the lead film and supporting verticals.</p></div></div>
-<div class="paper-row row-2">
-<div class="card"><span class="card-index">01 — YouTube / 5:4</span><div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/JoCbpGdQ5Cw" title="Wade House — Studio Wadhal"></iframe></div><div class="card-meta"><h2 class="card-title">Wade House — Studio Wadhal</h2><div class="card-rule"></div><p class="card-desc">Architectural documentary film for Wadhal's Wade House project.</p><span class="card-tag">Wade House · Studio Wadhal · YouTube / 5:4</span></div></div>
+<section class="project-section fade-in">
+<div class="project-eyebrow"><span>Architecture</span><span>Studio Wadhal</span></div>
+<h1 class="project-title">Studio Wadhal — Wade House Project</h1>
+<div class="project-hero">
+<div class="project-text">
+<p class="project-desc">A contemporary home built into Ruislip's historic manor estate, designed to sit comfortably within its 1930s suburban surroundings while staying distinctly its own. Wade House works within strict planning limits, then finds its identity in the detail: extruded brickwork, exposed timber framing, and a semicircle motif carried through the stained glass, patio, and staircase. The film follows the project from early design decisions through to the finished building, told through the architect's own account of the process. It is paired here with a set of supporting verticals shot on site, capturing construction detail and the completed home.</p>
+<p class="project-credit">Wade House · Studio Wadhal · Direction &amp; Cinematography by Zain Saleem</p>
 </div>
-<div class="paper-row row-4">
-<div class="card"><span class="card-index">02 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-4.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Vertical reel from the Wade House project.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
-<div class="card"><span class="card-index">03 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-7.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Vertical reel from the Wade House project.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
-<div class="card"><span class="card-index">04 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-9.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Vertical reel from the Wade House project.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
+<div class="project-media">
+<span class="feature-index">01 — YouTube / 5:4</span>
+<div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/JoCbpGdQ5Cw" title="Wade House — Studio Wadhal"></iframe></div>
+<div class="card-meta"><h2 class="card-title">Wade House — Studio Wadhal</h2><div class="card-rule"></div><p class="card-desc">Architectural documentary film for Wadhal's Wade House project.</p></div>
+</div>
+</div>
+<div class="paper-row row-4" style="margin-top:2.4rem">
+<div class="card"><span class="card-index">02 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-4.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-4.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Exterior study of the finished elevation.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
+<div class="card"><span class="card-index">03 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-7.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-7.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Detail shot from inside the completed home.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
+<div class="card"><span class="card-index">04 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-9.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-9.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Timber framing detail beneath the roofline.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
 <div class="card"><span class="card-index">05 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/30---wadhal-pavilion-glass-maker.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title" style="color:var(--mint); font-style:italic; letter-spacing:.1em;">Pavilion Pavilion</h2><div class="card-rule"></div><p class="card-desc">Artisan glass maker.</p><span class="card-tag">Pavilion Pavilion · 4:3 Vertical</span></div></div>
 </div>
+</section>
 <section class="feature-section fade-in">
 <div class="feature-head"><span class="feature-index">06 — Four 5:4 Films</span><div><h2 class="feature-title">Aadil Abedi</h2><p class="feature-desc">Four-film artist portrait series, presented horizontally as one complete body of work.</p></div></div>
 <div class="feature-stack">
