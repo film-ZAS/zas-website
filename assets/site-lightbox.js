@@ -7,6 +7,24 @@
     volOff: '<path d="M3 10v4h4l5 5V5L7 10H3z"/><path d="M19 12l2.1-2.1-1.4-1.4L17.6 10.6l-2.1-2.1-1.4 1.4L16.2 12l-2.1 2.1 1.4 1.4L17.6 13.4l2.1 2.1 1.4-1.4L19 12z"/>'
   };
 
+  function unmuteYoutubeWhenReady(iframe){
+    function post(func){
+      iframe.contentWindow.postMessage(JSON.stringify({event:'command', func:func, args:''}), 'https://www.youtube.com');
+    }
+    var attempts = 0;
+    function tryUnmute(){
+      attempts++;
+      if(!iframe.isConnected || iframe.src.indexOf('youtube.com') === -1) return;
+      post('unMute');
+      post('playVideo');
+      if(attempts < 6) setTimeout(tryUnmute, 400);
+    }
+    iframe.addEventListener('load', function onLoad(){
+      iframe.removeEventListener('load', onLoad);
+      setTimeout(tryUnmute, 200);
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function(){
     var frames = Array.prototype.slice.call(document.querySelectorAll('.card-frame:has(video.ctrl-video), .card-frame[data-yt-id]'));
     if(!frames.length) return;
@@ -94,8 +112,9 @@
         lbVideo.style.display = 'none';
         lbCtrl.style.display = 'none';
         lbIframe.style.display = 'block';
-        lbIframe.src = 'https://www.youtube.com/embed/' + item.ytId + '?autoplay=1&rel=0';
+        lbIframe.src = 'https://www.youtube.com/embed/' + item.ytId + '?autoplay=1&rel=0&mute=1&enablejsapi=1';
         lbCaption.textContent = item.title + (item.desc ? ' — ' + item.desc : '');
+        unmuteYoutubeWhenReady(lbIframe);
       } else {
         lbIframe.style.display = 'none';
         lbIframe.src = '';
