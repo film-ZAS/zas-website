@@ -96,6 +96,15 @@
     background: var(--mint-rule);
   }
 
+  .masthead-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding-bottom: 1.5rem;
+  }
+
   .masthead-title {
     font-family: var(--sans);
     font-size: clamp(4rem, 11vw, 10rem);
@@ -104,12 +113,21 @@
     letter-spacing: -0.04em;
     color: var(--cream);
     text-transform: none;
-    padding-bottom: 1.5rem;
   }
 
   .masthead-title span {
     color: var(--cream);
   }
+
+  .masthead-tags {
+    font-family: var(--mono);
+    font-size: clamp(1rem, 2.2vw, 1.6rem);
+    letter-spacing: .1em;
+    color: var(--mint);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .masthead-tags .dot { opacity: .6; margin: 0 .3em; }
 
   .masthead-meta {
     display: flex;
@@ -185,7 +203,7 @@
   .card-frame iframe, .card-frame video {
     position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover; background: #000;
   }
-  .card-frame:has(iframe)::after, .card-frame:has(video)::after { content: ''; }
+  .card-frame:has(iframe)::after, .card-frame:has(video)::after { opacity: .85; }
 
   /* ── VIDEO CARD ── */
   .card {
@@ -231,6 +249,23 @@
     pointer-events: none;
   }
   .card-frame:hover::after { opacity: 1; }
+
+  .strip-section { border-bottom: 1px solid var(--mint-rule); padding: 3rem 1.5rem; }
+  .strip-row { display: flex; align-items: center; gap: 2.6rem; }
+  .strip-row + .strip-row { margin-top: 2.2rem; padding-top: 2.2rem; border-top: 1px solid var(--mint-rule); }
+  .strip-left { flex: 0 0 16rem; min-width: 0; }
+  .strip-title { font-family: var(--mono); font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 700; color: var(--cream); text-transform: uppercase; letter-spacing: .02em; line-height: 1.15; }
+  .strip-subtitle { font-family: var(--mono); font-size: .75rem; letter-spacing: .16em; color: var(--mint); text-transform: uppercase; margin-top: .6rem; }
+  .strip-media { flex: 1; display: flex; align-items: center; justify-content: center; gap: 1rem; min-width: 0; overflow-x: auto; }
+  .strip-media .strip-clip.card-frame { flex: 0 0 auto; width: auto; height: 14rem; }
+  .strip-media .strip-clip.card-frame::after { font-size: 1.6rem; }
+  .strip-clip.has-gif .ctrl-video { display: none; }
+  .strip-clip.has-gif .clip-gif { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .strip-clip.has-gif::after { content: '' !important; opacity: 0 !important; }
+  .strip-right { flex: 0 0 9rem; text-align: right; }
+  .strip-cat { font-family: var(--mono); font-size: .72rem; letter-spacing: .18em; color: var(--mint); text-transform: uppercase; }
+  .strip-date { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; color: var(--cream-dim); text-transform: uppercase; margin-top: .55rem; }
+  .vlb-iframe { width: 100%; aspect-ratio: 16/9; max-height: 76vh; border: 0; display: none; background: #000; }
 
   /* 9:16 vertical */
   .ratio-916 { padding-bottom: 177.78%; }
@@ -361,9 +396,11 @@
   /* Masthead elements */
   .masthead-eyebrow { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
   .masthead-title   { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s; }
+  .masthead-tags    { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s; }
   .masthead-meta    { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease 0.25s, transform 0.6s ease 0.25s; }
   .masthead-eyebrow.visible,
   .masthead-title.visible,
+  .masthead-tags.visible,
   .masthead-meta.visible {
     opacity: 1;
     transform: translateY(0);
@@ -437,7 +474,7 @@
 
   /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
-    .fade-in, .masthead-eyebrow, .masthead-title, .masthead-meta { transition: none; opacity: 1; transform: none; }
+    .fade-in, .masthead-eyebrow, .masthead-title, .masthead-tags, .masthead-meta { transition: none; opacity: 1; transform: none; }
   }
 
   /* ── RESPONSIVE ── */
@@ -446,10 +483,16 @@
     .row-1, .row-2 { grid-template-columns: 1fr 1fr; }
     .row-3 .card { flex-direction: column; }
     .row-3 .card-frame-wrap { flex: none; width: 100%; }
+    .strip-row { flex-wrap: wrap; gap: 1rem; }
+    .strip-left { flex: 1 1 100%; }
+    .strip-media { flex: 1 1 100%; order: 3; justify-content: flex-start; }
+    .strip-media .strip-clip.card-frame { height: 9rem; }
+    .strip-right { flex: 0 0 auto; text-align: left; order: 2; }
   }
   @media (max-width: 560px) {
     .row-1, .row-2 { grid-template-columns: 1fr; }
     .card { border-right: none; border-bottom: 1px solid var(--mint-rule); }
+    .strip-media .strip-clip.card-frame { height: 5.2rem; }
     .masthead-title { font-size: clamp(3rem, 16vw, 6rem); }
   }
   ::view-transition-group(sport-expand) {
@@ -518,7 +561,7 @@
 
   video:fullscreen, video:-webkit-full-screen { object-fit: contain !important; background: #000; }
 </style>
-<meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/></head>
+<meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/><link href="assets/site-lightbox.css" rel="stylesheet"/></head>
 <body>
 <!-- NAV -->
 <nav class="site-nav">
@@ -529,198 +572,121 @@
 <!-- MASTHEAD -->
 <div class="masthead">
 <div class="masthead-eyebrow">Portfolio — Sport</div>
+<div class="masthead-title-row">
 <h1 class="masthead-title">Sport</h1>
+<div class="masthead-tags">Athlete<span class="dot">.</span>Brand<span class="dot">.</span>Event<span class="dot">.</span>Story</div>
+</div>
 <div class="masthead-meta">
 <p class="masthead-desc">
       Documentary-led sport filmmaking — from grassroots boxing clubs in Pakistan to Commonwealth Games
       weightlifting, elite cycling, and fashion-sport crossover. Every frame built around the athlete's story, not the spectacle.
     </p>
-<span class="masthead-count">06 Projects / 12 Films</span>
+<span class="masthead-count">06 Projects / 13 Films</span>
 </div>
 </div>
 <!-- PAPER GRID -->
 <div class="paper">
-<!-- ROW 1: Commonwealth Games - 2 verticals -->
-<div class="paper-row row-cw">
-<div class="card">
-<span class="card-index">01 — Vertical 9:16</span>
-<div class="card-frame ratio-916">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-2.mp4" type="video/mp4"/>
-</video>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Commonwealth Games</div>
+<div class="strip-subtitle">Glasgow 2026</div>
 </div>
-<div class="card-meta">
-<h2 class="card-title">Commonwealth Games</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Athlete documentary series following Noorin Gulam through the lead-up to the 2026 Commonwealth Games — weightlifting, sacrifice, and identity on the world stage.</p>
-<span class="card-tag">Glasgow 2026 · Documentary</span>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw1-preview.gif" alt="Commonwealth Games" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-2.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw2-preview.gif" alt="Commonwealth Games" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-3.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw3-preview.gif" alt="Commonwealth Games" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin.mp4" type="video/mp4"/></video></div>
 </div>
-</div>
-<div class="card">
-<span class="card-index">02 — Vertical 9:16</span>
-<div class="card-frame ratio-916">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-3.mp4" type="video/mp4"/>
-</video>
-</div>
-<div class="card-meta">
-<h2 class="card-title">Commonwealth Games — Noorin Gulam Story</h2>
-<div class="card-rule"></div>
-<p class="card-desc">The Commonwealth Games commissioned a video series on Noorin Gulam's journey to the Games — an English weightlifter gunning for a medal at the Glasgow 2026 Commonwealth Games.</p>
-<span class="card-tag">Glasgow 2026 · Noorin Gulam Story</span>
+<div class="strip-right">
+<div class="strip-cat">Athletics</div>
+<div class="strip-date">July 2026</div>
 </div>
 </div>
-</div><!-- /row-cw -->
-<!-- ROW 2: Saracen Bike Launch (5:4) | Saracen Sponsor Video (V) -->
-<div class="paper-row row-saracen">
-<div class="card">
-<span class="card-index">03 — 5:4</span>
-<div class="card-frame ratio-54">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch.mp4" type="video/mp4"/>
-</video>
+</section>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Saracen Steam Punk</div>
+<div class="strip-subtitle">Team Bike Launch</div>
 </div>
-<div class="card-meta">
-<h2 class="card-title">Saracen Steam Punk — Team Bike Launch</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Brand film for the Saracen Steam Punk team bike launch — cinematic ride sequences, rider profiles, and product detail work.</p>
-<span class="card-tag">Saracen · Brand Film</span>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/SARACEN/sar1-preview.gif" alt="Saracen Steam Punk" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/SARACEN/sar2-preview.gif" alt="Saracen Steam Punk" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch-2.mp4" type="video/mp4"/></video></div>
 </div>
-</div>
-<div class="card">
-<span class="card-index">04 — Vertical 9:16</span>
-<div class="card-frame ratio-916">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch-2.mp4" type="video/mp4"/>
-</video>
-</div>
-<div class="card-meta">
-<h2 class="card-title">Saracen Steam Punk — Sponsor Video</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Vertical sponsor cut for the Saracen Steam Punk team bike launch.</p>
-<span class="card-tag">Saracen · Sponsor Video</span>
+<div class="strip-right">
+<div class="strip-cat">Cycling</div>
+<div class="strip-date">December 2025</div>
 </div>
 </div>
-</div><!-- /row-saracen -->
-<!-- ROW 3: SDA - 3 event videos -->
-<div class="paper-row row-sda">
-<div class="card">
-<span class="card-index">05 — Vertical 9:16</span>
-<div class="card-frame ratio-916">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-7.mp4" type="video/mp4"/>
-</video>
+</section>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Scottish Downhill Association</div>
+<div class="strip-subtitle">Mountain Biking</div>
 </div>
-<div class="card-meta">
-<h2 class="card-title">Scottish Downhill Association</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Event coverage from the Scottish Downhill Association — raw terrain, raw riders, shot entirely on location.</p>
-<span class="card-tag">SDA · Mountain Biking</span>
+<div class="strip-media">
+<div class="strip-clip card-frame" data-yt-id="bP0rnnB-iCY" data-yt-title="Scottish Downhill Round 4 - Glencoe - 2025" style="aspect-ratio:16/9;"><img src="https://img.youtube.com/vi/bP0rnnB-iCY/hqdefault.jpg" alt="Scottish Downhill Association" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/SDA/sda2-preview.gif" alt="Scottish Downhill Association" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-4.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/SDA/sda3-preview.gif" alt="Scottish Downhill Association" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-5.mp4" type="video/mp4"/></video></div>
 </div>
-</div>
-<div class="card">
-<span class="card-index">06 — Vertical 9:16</span>
-<div class="card-frame ratio-916">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-4.mp4" type="video/mp4"/>
-</video>
-</div>
-<div class="card-meta">
-<h2 class="card-title">Scottish Downhill Association</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Event coverage from the Scottish Downhill Association.</p>
-<span class="card-tag">SDA · Mountain Biking</span>
+<div class="strip-right">
+<div class="strip-cat">Mountain Biking</div>
+<div class="strip-date">August 2025</div>
 </div>
 </div>
-<div class="card">
-<span class="card-index">07 — Vertical 9:16</span>
-<div class="card-frame ratio-916">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-5.mp4" type="video/mp4"/>
-</video>
+</section>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Atlas</div>
+<div class="strip-subtitle">Running / Fashion</div>
 </div>
-<div class="card-meta">
-<h2 class="card-title">Scottish Downhill Association</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Event coverage from the Scottish Downhill Association.</p>
-<span class="card-tag">SDA · Mountain Biking</span>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/Atlas/atlas1-preview.gif" alt="Atlas" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/Atlas/atlas2-preview.gif" alt="Atlas" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-2.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/Atlas/atlas3-preview.gif" alt="Atlas" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-3.mp4" type="video/mp4"/></video></div>
 </div>
-</div>
-</div><!-- /row-sda -->
-<!-- ROW 4: Atlas - 3 landscape videos -->
-<div class="paper-row row-atlas">
-<div class="card">
-<span class="card-index">08 — 5:4</span>
-<div class="card-frame ratio-54">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif.mp4" type="video/mp4"/>
-</video>
-</div>
-<div class="card-meta">
-<h2 class="card-title">Atlas</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Global running clothing brand promoting inclusive running — representing all running communities, in all terrains.</p>
-<span class="card-tag">Atlas · Running / Fashion</span>
+<div class="strip-right">
+<div class="strip-cat">Running</div>
+<div class="strip-date">July 2025</div>
 </div>
 </div>
-<div class="card">
-<span class="card-index">09 — 5:4</span>
-<div class="card-frame ratio-54">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-2.mp4" type="video/mp4"/>
-</video>
+</section>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Misfits Boxing</div>
+<div class="strip-subtitle">Event Film</div>
 </div>
-<div class="card-meta">
-<h2 class="card-title">Atlas</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Global running clothing brand promoting inclusive running — representing all running communities, in all terrains.</p>
-<span class="card-tag">Atlas · Running / Fashion</span>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/MISFITS/misfits-mid-preview.gif" alt="Misfits Boxing" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/MISFITS/16---misfits-boxing-bts-4.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/MISFITS/misfits-preview.gif" alt="Misfits Boxing" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/MISFITS/16---misfits-boxing-bts-4.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Sport/MISFITS/misfits-end-preview.gif" alt="Misfits Boxing" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Sport/MISFITS/16---misfits-boxing-bts-4.mp4" type="video/mp4"/></video></div>
 </div>
-</div>
-<div class="card">
-<span class="card-index">10 — 5:4</span>
-<div class="card-frame ratio-54">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-3.mp4" type="video/mp4"/>
-</video>
-</div>
-<div class="card-meta">
-<h2 class="card-title">Atlas</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Global running clothing brand promoting inclusive running — representing all running communities, in all terrains.</p>
-<span class="card-tag">Atlas · Running / Fashion</span>
+<div class="strip-right">
+<div class="strip-cat">Boxing</div>
+<div class="strip-date">Sept 2025</div>
 </div>
 </div>
-</div><!-- /row-atlas -->
-<!-- ROW 5: Misfits (V) | Mundial - Zahmena footballer film (YouTube) -->
-<div class="paper-row row-final">
-<div class="card">
-<span class="card-index">11 — Vertical 9:16</span>
-<div class="card-frame ratio-916">
-<video controls loading="lazy" preload="metadata">
-<source src="https://media.zainaussaleem.com/assets/Sport/MISFITS/16---misfits-boxing-bts-4.mp4" type="video/mp4"/>
-</video>
+</section>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Mundial</div>
+<div class="strip-subtitle">Zahmena Footballer Film</div>
 </div>
-<div class="card-meta">
-<h2 class="card-title">Misfits Boxing<br/>Event Film</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Event coverage film for Misfits Boxing — capturing the spectacle, the fighters, and the crowd energy across a full event night.</p>
-<span class="card-tag">Misfits Boxing · Event Film</span>
+<div class="strip-media">
+<div class="strip-clip card-frame" data-yt-id="Px6nzVTMRDg" data-yt-title="Mundial - Zahmena Footballer Film" style="aspect-ratio:5/4;"><img src="https://media.zainaussaleem.com/assets/Sport/mundial-mid-preview.gif" alt="Mundial" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="strip-clip card-frame" data-yt-id="Px6nzVTMRDg" data-yt-title="Mundial - Zahmena Footballer Film" style="aspect-ratio:5/4;"><img src="https://img.youtube.com/vi/Px6nzVTMRDg/hqdefault.jpg" alt="Mundial" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="strip-clip card-frame" data-yt-id="Px6nzVTMRDg" data-yt-title="Mundial - Zahmena Footballer Film" style="aspect-ratio:5/4;"><img src="https://media.zainaussaleem.com/assets/Sport/mundial-end-preview.gif" alt="Mundial" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
 </div>
-</div>
-<div class="card">
-<span class="card-index">12 — YouTube / 5:4</span>
-<div class="card-frame ratio-54">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" src="https://www.youtube.com/embed/Px6nzVTMRDg" title="Mundial - Zahmena Footballer Film"></iframe>
-</div>
-<div class="card-meta">
-<h2 class="card-title">Mundial — Zahmena Footballer Film</h2>
-<div class="card-rule"></div>
-<p class="card-desc">Football culture meets fashion — a brand-led film for Mundial Magazine exploring the intersection of the beautiful game, style, and identity.</p>
-<span class="card-tag">Mundial · Football / Culture</span>
+<div class="strip-right">
+<div class="strip-cat">Football</div>
+<div class="strip-date">July 2026</div>
 </div>
 </div>
-</div><!-- /row-final -->
+</section>
 </div><!-- /paper -->
 <!-- FOOTER -->
 <footer><span>Glasgow, UK · Available internationally</span><div class="footer-social" aria-label="Social links">
@@ -749,7 +715,7 @@
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
   // Masthead elements
-  document.querySelectorAll('.masthead-eyebrow, .masthead-title, .masthead-meta').forEach(el => {
+  document.querySelectorAll('.masthead-eyebrow, .masthead-title, .masthead-tags, .masthead-meta').forEach(el => {
     observer.observe(el);
   });
 
@@ -757,6 +723,11 @@
   document.querySelectorAll('.card').forEach(card => {
     card.classList.add('fade-in');
     observer.observe(card);
+  });
+
+  // Strip sections
+  document.querySelectorAll('.strip-section').forEach(sec => {
+    observer.observe(sec);
   });
 
   // Nav fade in immediately
@@ -776,5 +747,6 @@
   footer.classList.add('fade-in');
   observer.observe(footer);
 </script>
+<script defer src="assets/site-lightbox.js"></script>
 </body>
 </html>

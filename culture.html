@@ -30,8 +30,11 @@
   .masthead { padding:2.5rem 3rem 0; border-bottom:1px solid var(--mint-rule); view-transition-name:culture-expand; }
   .masthead-eyebrow { font-family:var(--mono); font-size:.65rem; letter-spacing:.25em; text-transform:uppercase; color:var(--mint); margin-bottom:.6rem; display:flex; align-items:center; gap:1rem; }
   .masthead-eyebrow::after { content:''; flex:1; height:1px; background:var(--mint-rule); }
-  .masthead-title { font-family:var(--sans); font-size:clamp(4rem,11vw,10rem); font-weight:300; line-height:.9; letter-spacing:-.04em; color:var(--cream); text-transform:none; padding-bottom:1.5rem; }
+  .masthead-title-row { display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; padding-bottom:1.5rem; }
+  .masthead-title { font-family:var(--sans); font-size:clamp(4rem,11vw,10rem); font-weight:300; line-height:.9; letter-spacing:-.04em; color:var(--cream); text-transform:none; }
   .masthead-title span { color:var(--cream); }
+  .masthead-tags { font-family:var(--mono); font-size:clamp(1rem,2.2vw,1.6rem); letter-spacing:.1em; color:var(--mint); text-transform:uppercase; white-space:nowrap; }
+  .masthead-tags .dot { opacity:.6; margin:0 .3em; }
   .masthead-meta { display:flex; align-items:flex-end; justify-content:space-between; padding:.8rem 0 1rem; border-top:1px solid var(--mint-rule); gap:2rem; }
   .masthead-desc { font-size:.8rem; color:var(--cream-dim); line-height:1.7; max-width:38rem; }
   .masthead-count { font-family:var(--mono); font-size:.65rem; letter-spacing:.2em; color:var(--cream-dim); text-transform:uppercase; white-space:nowrap; }
@@ -59,7 +62,7 @@
   .ratio-54 { padding-bottom:80%; }
   .ratio-43v { padding-bottom:133.33%; }
   .card-frame video, .card-frame iframe, .feature-film .card-frame video { position:absolute; inset:0; width:100%; height:100%; border:0; object-fit:cover; background:#000; }
-  .card-frame:has(video)::after, .card-frame:has(iframe)::after { content:''; }
+  .card-frame:has(video)::after, .card-frame:has(iframe)::after, .card-frame:has(img)::after { opacity:.85; }
   .card-meta { display:flex; flex-direction:column; gap:.5rem; }
   .card-title { font-family:var(--mono); font-size:clamp(.85rem,1.3vw,1.15rem); font-weight:700; color:var(--cream); line-height:1.2; text-transform:uppercase; letter-spacing:.02em; transition:color .2s ease; }
   .card:hover .card-title { color:var(--mint); }
@@ -83,13 +86,43 @@
   .feature-stack.stack-lg .feature-film { padding:2rem; }
 
   .project-section { border-bottom:1px solid var(--mint-rule); padding:2rem 1.5rem 2.4rem; }
-  .project-eyebrow { display:flex; flex-direction:column; font-family:var(--mono); font-size:.62rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; line-height:1.7; padding-bottom:1.4rem; border-bottom:1px solid var(--mint-rule); margin-bottom:1.6rem; }
-  .project-title { font-family:var(--mono); font-size:clamp(1.3rem,2.6vw,2.3rem); font-weight:700; color:var(--cream); line-height:1.2; text-transform:uppercase; letter-spacing:.01em; max-width:48rem; margin-bottom:1.8rem; }
-  .project-hero { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:3rem; align-items:start; }
+  .project-grid { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); grid-template-rows:auto auto; column-gap:3.5rem; }
+  .project-eyebrow { grid-column:1; grid-row:1; display:flex; flex-direction:column; font-family:var(--mono); font-size:.62rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; line-height:1.7; padding-bottom:1.4rem; border-bottom:1px solid var(--mint-rule); margin-bottom:1.6rem; }
+  .project-eyebrow-cat { font-size:clamp(1.4rem,3vw,2rem); font-weight:700; letter-spacing:.08em; line-height:1.2; }
+  .project-eyebrow-sub { font-size:.62rem; letter-spacing:.2em; opacity:.85; margin-top:.3rem; }
+  .project-left-body { grid-column:1; grid-row:2; display:flex; flex-direction:column; min-width:0; }
+  .project-title { font-family:var(--mono); font-size:clamp(1.3rem,2.6vw,2.3rem); font-weight:700; color:var(--cream); line-height:1.2; text-transform:uppercase; letter-spacing:.01em; margin-bottom:1.8rem; }
   .project-desc { font-size:.8rem; line-height:1.9; color:var(--cream-dim); text-align:left; }
-  .project-credit { margin-top:1.4rem; font-family:var(--mono); font-size:.58rem; letter-spacing:.14em; color:var(--mint); text-transform:uppercase; opacity:.85; line-height:1.7; }
+  .project-credit { margin-top:1.4rem; margin-bottom:2.2rem; font-family:var(--mono); font-size:.58rem; letter-spacing:.14em; color:var(--mint); text-transform:uppercase; opacity:.85; line-height:1.7; }
+  .project-tiles { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:1rem; }
+  .project-tiles .card { border:none; padding:0; gap:.65rem; }
+  .project-tiles .card-title { font-size:.72rem; }
+  .project-tiles .card-desc { font-size:.66rem; line-height:1.6; }
+  .project-media { grid-column:2; grid-row:2; display:flex; flex-direction:column; min-width:0; }
   .project-media .card-frame { margin-top:.8rem; }
   .project-media .card-meta { margin-top:1rem; }
+  @media (min-width:901px) {
+    .project-media { align-self:stretch; }
+    .project-media .card-frame.ratio-54 { padding-bottom:0; flex:1; min-height:0; }
+  }
+
+  .strip-section { border-bottom:1px solid var(--mint-rule); padding:3rem 1.5rem; }
+  .strip-row { display:flex; align-items:center; gap:2.6rem; }
+  .strip-row + .strip-row { margin-top:2.2rem; padding-top:2.2rem; border-top:1px solid var(--mint-rule); }
+  .strip-left { flex:0 0 16rem; min-width:0; }
+  .strip-title { font-family:var(--mono); font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; color:var(--cream); text-transform:uppercase; letter-spacing:.02em; line-height:1.15; }
+  .strip-subtitle { font-family:var(--mono); font-size:.75rem; letter-spacing:.16em; color:var(--mint); text-transform:uppercase; margin-top:.6rem; }
+  .strip-media { flex:1; display:flex; align-items:center; justify-content:center; gap:1rem; min-width:0; overflow-x:auto; }
+  .strip-media .strip-clip.card-frame { flex:0 0 auto; width:auto; height:14rem; }
+  .strip-media .strip-clip.card-frame::after { font-size:1.6rem; }
+  .strip-section-solo .strip-media .strip-clip.card-frame { height:22rem; }
+  .strip-clip.has-gif .ctrl-video { display:none; }
+  .strip-clip.has-gif .clip-gif { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .strip-clip.has-gif::after { content:'' !important; opacity:0 !important; }
+  .strip-right { flex:0 0 9rem; text-align:right; }
+  .strip-cat { font-family:var(--mono); font-size:.72rem; letter-spacing:.18em; color:var(--mint); text-transform:uppercase; }
+  .strip-date { font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; color:var(--cream-dim); text-transform:uppercase; margin-top:.55rem; }
+  .vlb-iframe { width:100%; aspect-ratio:16/9; max-height:76vh; border:0; display:none; background:#000; }
 
   footer { border-top:1px solid var(--mint-rule); padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
   footer span, footer a { font-family:var(--mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; }
@@ -99,10 +132,10 @@
 
   .fade-in { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
   .fade-in.visible { opacity:1; transform:translateY(0); }
-  .masthead-eyebrow, .masthead-title, .masthead-meta { opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
-  .masthead-title { transition-delay:.1s; }
+  .masthead-eyebrow, .masthead-title, .masthead-tags, .masthead-meta { opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .masthead-title, .masthead-tags { transition-delay:.1s; }
   .masthead-meta { transition-delay:.22s; }
-  .masthead-eyebrow.visible, .masthead-title.visible, .masthead-meta.visible { opacity:1; transform:translateY(0); }
+  .masthead-eyebrow.visible, .masthead-title.visible, .masthead-tags.visible, .masthead-meta.visible { opacity:1; transform:translateY(0); }
   .masthead-title .char { display:inline-block; transition:color .15s ease, transform .15s ease; }
   .masthead-title .char:hover { color:var(--mint); transform:translateY(-4px); }
 
@@ -115,7 +148,19 @@
     .feature-film { border-right:none; border-bottom:1px solid var(--mint-rule); }
     .feature-film:last-child { border-bottom:none; }
     .row-2 { max-width:none; }
-    .project-hero { grid-template-columns:1fr; gap:1.5rem; }
+    .project-grid { grid-template-columns:1fr; grid-template-rows:auto; row-gap:1.5rem; }
+    .project-eyebrow, .project-left-body, .project-media { grid-column:1; grid-row:auto; }
+    .project-tiles { grid-template-columns:1fr 1fr; }
+    .strip-row { flex-wrap:wrap; gap:1rem; }
+    .strip-left { flex:1 1 100%; }
+    .strip-media { flex:1 1 100%; order:3; justify-content:flex-start; }
+    .strip-media .strip-clip.card-frame { height:9rem; }
+    .strip-right { flex:0 0 auto; text-align:left; order:2; }
+    .strip-section-solo .strip-row { display:grid; grid-template-columns:1fr auto; grid-template-rows:auto auto; align-items:start; column-gap:1rem; row-gap:.4rem; }
+    .strip-section-solo .strip-left { grid-column:1; grid-row:1; }
+    .strip-section-solo .strip-right { grid-column:1; grid-row:2; text-align:left; margin-top:.6rem; }
+    .strip-section-solo .strip-media { grid-column:2; grid-row:1 / 3; justify-content:flex-end; align-self:start; }
+    .strip-section-solo .strip-media .strip-clip.card-frame { height:14rem; }
   }
   @media (max-width:560px) {
     .row-1, .row-2, .row-3, .row-4 { grid-template-columns:1fr; }
@@ -123,9 +168,11 @@
     .card { border-right:none; border-bottom:1px solid var(--mint-rule); }
     .masthead-title { font-size:clamp(3rem,16vw,6rem); }
     .masthead-meta { flex-direction:column; align-items:flex-start; }
+    .strip-media .strip-clip.card-frame { height:5.2rem; }
+    .strip-section-solo .strip-media .strip-clip.card-frame { height:9rem; }
   }
   @media (prefers-reduced-motion:reduce) {
-    .fade-in, .masthead-eyebrow, .masthead-title, .masthead-meta { transition:none; opacity:1; transform:none; }
+    .fade-in, .masthead-eyebrow, .masthead-title, .masthead-tags, .masthead-meta { transition:none; opacity:1; transform:none; }
   }
 
 
@@ -185,7 +232,7 @@
 
   video:fullscreen, video:-webkit-full-screen { object-fit: contain !important; background: #000; }
 </style>
-<meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/></head>
+<meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/><link href="assets/site-lightbox.css" rel="stylesheet"/></head>
 <body>
 <nav class="site-nav">
 <div class="site-nav-left"><a href="index.html">Home</a></div>
@@ -194,57 +241,99 @@
 </nav>
 <div class="masthead">
 <div class="masthead-eyebrow">Portfolio — Culture</div>
+<div class="masthead-title-row">
 <h1 class="masthead-title">Culture</h1>
+<div class="masthead-tags">Art<span class="dot">.</span>Design<span class="dot">.</span>Fashion</div>
+</div>
 <div class="masthead-meta">
 <p class="masthead-desc">Culture-led filmmaking across artists, galleries, design, fashion, objects, and place. Editorial frames, intimate details, and films shaped around atmosphere, identity, and story.</p>
 <span class="masthead-count">06 Projects / 13 Films</span>
 </div>
 </div>
 <div class="paper">
-<section class="project-section fade-in">
-<div class="project-eyebrow"><span>Architecture</span><span>Studio Wadhal</span></div>
-<h1 class="project-title">Studio Wadhal — Wade House Project</h1>
-<div class="project-hero">
-<div class="project-text">
-<p class="project-desc">A contemporary home built into Ruislip's historic manor estate, designed to sit comfortably within its 1930s suburban surroundings while staying distinctly its own. Wade House works within strict planning limits, then finds its identity in the detail: extruded brickwork, exposed timber framing, and a semicircle motif carried through the stained glass, patio, and staircase. The film follows the project from early design decisions through to the finished building, told through the architect's own account of the process. It is paired here with a set of supporting verticals shot on site, capturing construction detail and the completed home.</p>
-<p class="project-credit">Wade House · Studio Wadhal · Direction &amp; Cinematography by Zain Saleem</p>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Wade House</div>
+<div class="strip-subtitle">Studio Wadhal</div>
 </div>
-<div class="project-media">
-<span class="feature-index">01 — YouTube / 5:4</span>
-<div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/JoCbpGdQ5Cw" title="Wade House — Studio Wadhal"></iframe></div>
-<div class="card-meta"><h2 class="card-title">Wade House — Studio Wadhal</h2><div class="card-rule"></div><p class="card-desc">Architectural documentary film for Wadhal's Wade House project.</p></div>
+<div class="strip-media">
+<div class="strip-clip card-frame" data-yt-id="JoCbpGdQ5Cw" data-yt-title="Wade House" style="aspect-ratio:5/4;"><img src="https://img.youtube.com/vi/JoCbpGdQ5Cw/hqdefault.jpg" alt="Wade House" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:3/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/wh4-preview.gif" alt="Wade House" loading="lazy"/><video class="ctrl-video" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-4-v2.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-4.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:3/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/wh7-preview.gif" alt="Wade House" loading="lazy"/><video class="ctrl-video" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-7-v2.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-7.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:3/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/wh9-preview.gif" alt="Wade House" loading="lazy"/><video class="ctrl-video" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-9-v2.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-9.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:3/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/pavilion-preview.gif" alt="Pavilion Pavilion" loading="lazy"/><video class="ctrl-video" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/poster-v2.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/30---wadhal-pavilion-glass-maker.mp4" type="video/mp4"/></video></div>
 </div>
+<div class="strip-right">
+<div class="strip-cat">Architecture</div>
+<div class="strip-date">Feb 2026</div>
 </div>
-<div class="paper-row row-4" style="margin-top:2.4rem">
-<div class="card"><span class="card-index">02 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-4.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-4.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Exterior study of the finished elevation.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
-<div class="card"><span class="card-index">03 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-7.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-7.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Detail shot from inside the completed home.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
-<div class="card"><span class="card-index">04 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata" poster="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-9.jpg"><source src="https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-9.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Wade House</h2><div class="card-rule"></div><p class="card-desc">Timber framing detail beneath the roofline.</p><span class="card-tag">Wade House · 4:3 Vertical</span></div></div>
-<div class="card"><span class="card-index">05 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/30---wadhal-pavilion-glass-maker.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title" style="color:var(--mint); font-style:italic; letter-spacing:.1em;">Pavilion Pavilion</h2><div class="card-rule"></div><p class="card-desc">Artisan glass maker.</p><span class="card-tag">Pavilion Pavilion · 4:3 Vertical</span></div></div>
 </div>
 </section>
-<section class="feature-section fade-in">
-<div class="feature-head"><span class="feature-index">06 — Four 5:4 Films</span><div><h2 class="feature-title">Aadil Abedi</h2><p class="feature-desc">Four-film artist portrait series, presented horizontally as one complete body of work.</p></div></div>
-<div class="feature-stack">
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-1.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 01</span><span class="feature-tag">Aadil Abedi · 5:4</span><p class="feature-note">First chapter in the portrait series.</p></div></div>
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-2.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 02</span><span class="feature-tag">Aadil Abedi · 5:4</span><p class="feature-note">Second chapter in the portrait series.</p></div></div>
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-3.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 03</span><span class="feature-tag">Aadil Abedi · 5:4</span><p class="feature-note">Third chapter in the portrait series.</p></div></div>
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-4.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 04</span><span class="feature-tag">Aadil Abedi · 5:4</span><p class="feature-note">Fourth chapter in the portrait series.</p></div></div>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Aadil Abedi</div>
+<div class="strip-subtitle">Portrait Series</div>
+</div>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil1-preview.gif" alt="Aadil Abedi" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-1.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil2-preview.gif" alt="Aadil Abedi" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-2.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil3-preview.gif" alt="Aadil Abedi" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-3.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil4-preview.gif" alt="Aadil Abedi" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-4.mp4" type="video/mp4"/></video></div>
+</div>
+<div class="strip-right">
+<div class="strip-cat">Artist</div>
+<div class="strip-date">Sept 2025</div>
+</div>
 </div>
 </section>
-<section class="feature-section fade-in">
-<div class="feature-head"><span class="feature-index">07 — Four 5:4 Films</span><div><h2 class="feature-title">Lahos</h2><p class="feature-desc">British Punjabi fashion brand — editing and colour grading, presented as one complete body of work.</p></div></div>
-<div class="feature-stack stack-lg">
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 01</span><span class="feature-tag">Lahos · 5:4</span><p class="feature-note">British Punjabi fashion brand — editing and colour grading.</p></div></div>
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-3.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 02</span><span class="feature-tag">Lahos · 5:4</span><p class="feature-note">British Punjabi fashion brand — editing and colour grading.</p></div></div>
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-4.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 03</span><span class="feature-tag">Lahos · 5:4</span><p class="feature-note">British Punjabi fashion brand — editing and colour grading.</p></div></div>
-<div class="feature-film"><div class="card-frame ratio-54"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-6.mp4" type="video/mp4"/></video></div><div class="feature-meta"><span class="feature-film-title">Film 04</span><span class="feature-tag">Lahos · 5:4</span><p class="feature-note">British Punjabi fashion brand — editing and colour grading.</p></div></div>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Lahos</div>
+<div class="strip-subtitle">Punjabi Fashion</div>
+</div>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos1-preview.gif" alt="Lahos" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos2-preview.gif" alt="Lahos" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-3.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos3-preview.gif" alt="Lahos" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-4.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos4-preview.gif" alt="Lahos" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-6.mp4" type="video/mp4"/></video></div>
+</div>
+<div class="strip-right">
+<div class="strip-cat">Fashion</div>
+<div class="strip-date">April 2026</div>
+</div>
 </div>
 </section>
-<div class="paper-row row-3">
-<div class="card"><span class="card-index">08 — Vertical 9:16</span><div class="card-frame ratio-916"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Ucon/11---ucon-bag-collab-barbican.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Ucon</h2><div class="card-rule"></div><p class="card-desc">Fast-turnaround fashion shoot around the Barbican, London — shot and edited within a single hour.</p><span class="card-tag">Ucon · Vertical</span></div></div>
-<div class="card"><span class="card-index">09 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/INCADOR/21---incador-jewellery-2.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Incador Jewellery</h2><div class="card-rule"></div><p class="card-desc">London-based jewellery company — editing and colour grading.</p><span class="card-tag">Incador Jewellery · 4:3 Vertical</span></div></div>
+<section class="strip-section strip-section-solo fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Ucon</div>
+<div class="strip-subtitle">Barbican Shoot</div>
+</div>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:9/16;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/Ucon/ucon-preview.gif" alt="Ucon" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/Ucon/11---ucon-bag-collab-barbican.mp4" type="video/mp4"/></video></div>
+</div>
+<div class="strip-right">
+<div class="strip-cat">Fashion</div>
+<div class="strip-date">August 2025</div>
 </div>
 </div>
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Incador</div>
+<div class="strip-subtitle">Jewellery Co.</div>
+</div>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:3/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Culture/INCADOR/incador-preview.gif" alt="Incador Jewellery" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Culture/INCADOR/21---incador-jewellery-2.mp4" type="video/mp4"/></video></div>
+</div>
+<div class="strip-right">
+<div class="strip-cat">Jewellery</div>
+<div class="strip-date">November 2025</div>
+</div>
+</div>
+</section>
 </div>
 <footer><span>Glasgow, UK · Available internationally</span><div class="footer-social" aria-label="Social links">
 <a aria-label="YouTube" href="https://www.youtube.com/@Zainaussaleem" rel="noopener noreferrer" target="_blank"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31.6 31.6 0 0 0 0 12a31.6 31.6 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.6 31.6 0 0 0 24 12a31.6 31.6 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"></path></svg></a>
@@ -260,10 +349,11 @@
       if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     });
   }, { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
-  document.querySelectorAll('.masthead-eyebrow, .masthead-title, .masthead-meta, .card, .feature-section').forEach(el => {
+  document.querySelectorAll('.masthead-eyebrow, .masthead-title, .masthead-tags, .masthead-meta, .card, .feature-section, .project-section, .strip-section').forEach(el => {
     if (el.classList.contains('card')) el.classList.add('fade-in');
     observer.observe(el);
   });
 </script>
+<script defer src="assets/site-lightbox.js"></script>
 </body>
 </html>

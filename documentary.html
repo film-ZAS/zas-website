@@ -28,7 +28,10 @@
   .masthead { padding:2.5rem 3rem 0; border-bottom:1px solid var(--mint-rule); view-transition-name:documentary-expand; }
   .masthead-eyebrow { font-family:var(--mono); font-size:.65rem; letter-spacing:.25em; text-transform:uppercase; color:var(--mint); margin-bottom:.6rem; display:flex; align-items:center; gap:1rem; }
   .masthead-eyebrow::after { content:''; flex:1; height:1px; background:var(--mint-rule); }
-  .masthead-title { font-family:var(--sans); font-size:clamp(4rem,11vw,10rem); font-weight:300; line-height:.9; letter-spacing:-.04em; color:var(--cream); text-transform:none; padding-bottom:1.5rem; }
+  .masthead-title-row { display:flex; align-items:center; justify-content:space-between; gap:2rem; flex-wrap:wrap; padding-bottom:1.5rem; }
+  .masthead-title { font-family:var(--sans); font-size:clamp(4rem,11vw,10rem); font-weight:300; line-height:.9; letter-spacing:-.04em; color:var(--cream); text-transform:none; }
+  .masthead-tags { font-family:var(--mono); font-size:clamp(1rem,2.2vw,1.6rem); letter-spacing:.1em; color:var(--mint); text-transform:uppercase; white-space:nowrap; }
+  .masthead-tags .dot { opacity:.6; margin:0 .3em; }
   .masthead-meta { display:flex; align-items:flex-end; justify-content:space-between; padding:.8rem 0 1rem; border-top:1px solid var(--mint-rule); gap:2rem; }
   .masthead-desc { font-size:.8rem; color:var(--cream-dim); line-height:1.7; max-width:40rem; }
   .masthead-count { font-family:var(--mono); font-size:.65rem; letter-spacing:.2em; color:var(--cream-dim); text-transform:uppercase; white-space:nowrap; }
@@ -58,7 +61,7 @@
   .ratio-43 { padding-bottom:75%; }
   .ratio-wide { padding-bottom:48%; }
   .card-frame iframe, .card-frame video { position:absolute; inset:0; width:100%; height:100%; border:0; object-fit:cover; background:#000; }
-  .card-frame:has(iframe)::after, .card-frame:has(video)::after { content:''; }
+  .card-frame:has(iframe)::after, .card-frame:has(video)::after { opacity:.85; }
   .frame-inner { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.5rem; }
   .frame-ratio { font-family:var(--mono); font-size:.6rem; letter-spacing:.2em; color:var(--mint); opacity:.55; text-transform:uppercase; }
   .frame-label { font-family:var(--mono); font-size:.55rem; color:var(--cream-dim); opacity:.45; letter-spacing:.15em; text-transform:uppercase; }
@@ -72,6 +75,23 @@
   .card-tag { font-family:var(--mono); font-size:.55rem; letter-spacing:.2em; color:var(--mint); text-transform:uppercase; opacity:.7; margin-top:.3rem; }
   .coming-soon-text { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:clamp(1rem,3vw,2rem); letter-spacing:.35em; color:var(--cream); opacity:.75; text-transform:uppercase; }
 
+  .strip-section { border-bottom:1px solid var(--mint-rule); padding:3rem 1.5rem; }
+  .strip-row { display:flex; align-items:center; gap:2.6rem; }
+  .strip-row + .strip-row { margin-top:2.2rem; padding-top:2.2rem; border-top:1px solid var(--mint-rule); }
+  .strip-left { flex:0 0 16rem; min-width:0; }
+  .strip-title { font-family:var(--mono); font-size:clamp(1.8rem,3vw,2.6rem); font-weight:700; color:var(--cream); text-transform:uppercase; letter-spacing:.02em; line-height:1.15; }
+  .strip-subtitle { font-family:var(--mono); font-size:.75rem; letter-spacing:.16em; color:var(--mint); text-transform:uppercase; margin-top:.6rem; }
+  .strip-media { flex:1; display:flex; align-items:center; justify-content:center; gap:1rem; min-width:0; overflow-x:auto; }
+  .strip-media .strip-clip.card-frame { flex:0 0 auto; width:auto; height:14rem; }
+  .strip-media .strip-clip.card-frame::after { font-size:1.6rem; }
+  .strip-clip.has-gif .ctrl-video { display:none; }
+  .strip-clip.has-gif .clip-gif { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; }
+  .strip-clip.has-gif::after { content:'' !important; opacity:0 !important; }
+  .strip-right { flex:0 0 9rem; text-align:right; }
+  .strip-cat { font-family:var(--mono); font-size:.72rem; letter-spacing:.18em; color:var(--mint); text-transform:uppercase; }
+  .strip-date { font-family:var(--mono); font-size:.68rem; letter-spacing:.1em; color:var(--cream-dim); text-transform:uppercase; margin-top:.55rem; }
+  .vlb-iframe { width:100%; aspect-ratio:16/9; max-height:76vh; border:0; display:none; background:#000; }
+
   footer { border-top:1px solid var(--mint-rule); padding:1.2rem 3rem; display:flex; justify-content:space-between; align-items:center; }
   footer span, footer a { font-family:var(--mono); font-size:.6rem; letter-spacing:.15em; text-transform:uppercase; }
   footer span { color:var(--cream-dim); }
@@ -80,10 +100,10 @@
 
   .fade-in { opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
   .fade-in.visible { opacity:1; transform:translateY(0); }
-  .masthead-eyebrow, .masthead-title, .masthead-meta { opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
-  .masthead-title { transition-delay:.1s; }
+  .masthead-eyebrow, .masthead-title, .masthead-tags, .masthead-meta { opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+  .masthead-title, .masthead-tags { transition-delay:.1s; }
   .masthead-meta { transition-delay:.22s; }
-  .masthead-eyebrow.visible, .masthead-title.visible, .masthead-meta.visible { opacity:1; transform:translateY(0); }
+  .masthead-eyebrow.visible, .masthead-title.visible, .masthead-tags.visible, .masthead-meta.visible { opacity:1; transform:translateY(0); }
   .masthead-title .char { display:inline-block; transition:color .15s ease, transform .15s ease; }
   .masthead-title .char:hover { color:var(--mint); transform:translateY(-4px); }
 
@@ -94,9 +114,14 @@
     .paper-row .card:last-child { border-bottom:none; }
     .masthead-meta { flex-direction:column; align-items:flex-start; }
     footer { flex-direction:column; gap:1rem; align-items:flex-start; }
+    .strip-row { flex-wrap:wrap; gap:1rem; }
+    .strip-left { flex:1 1 100%; }
+    .strip-media { flex:1 1 100%; order:3; justify-content:flex-start; }
+    .strip-media .strip-clip.card-frame { height:9rem; }
+    .strip-right { flex:0 0 auto; text-align:left; order:2; }
   }
-  @media (max-width:560px) { .masthead-title { font-size:clamp(3rem,15vw,6rem); } .paper { padding-bottom:2rem; } }
-  @media (prefers-reduced-motion:reduce) { .fade-in, .masthead-eyebrow, .masthead-title, .masthead-meta { transition:none; opacity:1; transform:none; } }
+  @media (max-width:560px) { .masthead-title { font-size:clamp(3rem,15vw,6rem); } .paper { padding-bottom:2rem; } .strip-media .strip-clip.card-frame { height:5.2rem; } }
+  @media (prefers-reduced-motion:reduce) { .fade-in, .masthead-eyebrow, .masthead-title, .masthead-tags, .masthead-meta { transition:none; opacity:1; transform:none; } }
 
 
   /* Unified site navigation */
@@ -155,7 +180,7 @@
 
   video:fullscreen, video:-webkit-full-screen { object-fit: contain !important; background: #000; }
 </style>
-<meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/></head>
+<meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/><link href="assets/site-lightbox.css" rel="stylesheet"/></head>
 <body>
 <nav class="site-nav">
 <div class="site-nav-left"><a href="index.html">Home</a></div>
@@ -164,29 +189,94 @@
 </nav>
 <div class="masthead">
 <div class="masthead-eyebrow">Portfolio — Documentary</div>
+<div class="masthead-title-row">
 <h1 class="masthead-title">Documentary</h1>
+<div class="masthead-tags">People<span class="dot">.</span>Place<span class="dot">.</span>Memory</div>
+</div>
 <div class="masthead-meta">
 <p class="masthead-desc">Documentary-led films shaped around people, place, memory, and cultural identity. Built for YouTube, portrait-led stories, and cinematic editorial presentation.</p>
-<span class="masthead-count">05 Projects / 09 Films</span>
+<span class="masthead-count">05 Projects / 08 Films</span>
 </div>
 </div>
 <div class="paper">
-<div class="paper-row row-main-trailer">
-<div class="card hero-card"><span class="card-index">01 — YouTube / 5:4</span><div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/f6rgLM28SgQ" title="Noorin Gulam"></iframe></div><div class="card-meta"><h2 class="card-title">Noorin Gulam</h2><div class="card-rule"></div><p class="card-desc">A lead documentary feature for the page, giving the project the largest opening position.</p><span class="card-tag">Noorin Gulam · YouTube / 5:4</span></div></div>
-<div class="card"><span class="card-index">02 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls="" loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/Zahmena/13---zahman-malik-pakistan-footballer-2.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Zahmena</h2><div class="card-rule"></div><p class="card-desc">Vertical documentary piece from the Zahmena series.</p><span class="card-tag">Zahmena · Vertical / 4:3</span></div></div>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Noorin Gulam</div>
+<div class="strip-subtitle">Portrait Film</div>
 </div>
-<div class="paper-row row-main-trailer">
-<div class="card full-card"><span class="card-index">03 — YouTube / 5:4</span><div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/E8swK-8hksw" title="Obsolescence"></iframe></div><div class="card-meta"><h2 class="card-title">Obsolescence</h2><div class="card-rule"></div><p class="card-desc">A larger standalone documentary row to create a cinematic pause in the middle of the page.</p><span class="card-tag">Obsolescence · YouTube / 5:4</span></div></div>
-<div class="card"><span class="card-index">04 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls="" loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/OBSELENCES/20---obsolescence-doc-mr-singh.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Obsolescence — Trailer</h2><div class="card-rule"></div><p class="card-desc">Vertical trailer cut accompanying the main Obsolescence documentary.</p><span class="card-tag">Obsolescence · Trailer / 4:3</span></div></div>
+<div class="strip-media">
+<div class="strip-clip card-frame" data-yt-id="f6rgLM28SgQ" data-yt-title="Noorin Gulam" style="aspect-ratio:5/4;"><img src="https://img.youtube.com/vi/f6rgLM28SgQ/hqdefault.jpg" alt="Noorin Gulam" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
 </div>
-<div class="paper-row row-trailer-main">
-<div class="card"><span class="card-index">05 — Vertical 4:3</span><div class="card-frame ratio-43v"><video controls="" loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/Suminder/40---suminder-virk-runjeet-singh-gallery-3.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Suminder Virk — Trailer</h2><div class="card-rule"></div><p class="card-desc">Vertical trailer cut accompanying the main Suminder Virk profile film.</p><span class="card-tag">Suminder Virk · Trailer / 4:3</span></div></div>
-<div class="card"><span class="card-index">06 — YouTube / 5:4</span><div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/5CUN58EYzzo" title="Suminder Virk"></iframe></div><div class="card-meta"><h2 class="card-title">Suminder Virk</h2><div class="card-rule"></div><p class="card-desc">Profile film positioned beside its trailer to create a strong documentary pair.</p><span class="card-tag">Suminder Virk · YouTube / 5:4</span></div></div>
+<div class="strip-right">
+<div class="strip-cat">Documentary</div>
+<div class="strip-date">May 2026</div>
 </div>
-<div class="paper-row row-main-trailer">
-<div class="card"><span class="card-index">07 — YouTube / 5:4</span><div class="card-frame ratio-54"><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" loading="lazy" src="https://www.youtube.com/embed/iRc2n23f-ho" title="Ranj Singh"></iframe></div><div class="card-meta"><h2 class="card-title">Ranj Singh</h2><div class="card-rule"></div><p class="card-desc">Wolverhampton Wrestling Club — portrait-led documentary story paired with its trailer.</p><span class="card-tag">Ranj Singh · YouTube / 5:4</span></div></div>
-<div class="card"><span class="card-index">08 — Trailer / 5:4</span><div class="card-frame ratio-54"><video controls="" loading="lazy" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/53---ranj-wrestling-autism-doc-3.mp4" type="video/mp4"/></video></div><div class="card-meta"><h2 class="card-title">Ranj Singh — Trailer</h2><div class="card-rule"></div><p class="card-desc">Smaller trailer square accompanying the main Ranj Singh feature.</p><span class="card-tag">Ranj Singh · Trailer / 5:4</span></div></div>
 </div>
+</section>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Zahmena</div>
+<div class="strip-subtitle">Pakistan Footballer</div>
+</div>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:3/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Documentary/Zahmena/zahmena-preview.gif" alt="Zahmena" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/Zahmena/13---zahman-malik-pakistan-footballer-2.mp4" type="video/mp4"/></video></div>
+</div>
+<div class="strip-right">
+<div class="strip-cat">Footballer</div>
+<div class="strip-date">August 2025</div>
+</div>
+</div>
+</section>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Obsolescence</div>
+<div class="strip-subtitle">Documentary Feature</div>
+</div>
+<div class="strip-media">
+<div class="strip-clip card-frame" data-yt-id="E8swK-8hksw" data-yt-title="Obsolescence" style="aspect-ratio:5/4;"><img src="https://img.youtube.com/vi/E8swK-8hksw/hqdefault.jpg" alt="Obsolescence" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:3/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Documentary/OBSELENCES/obsolescence-preview.gif" alt="Obsolescence" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/OBSELENCES/20---obsolescence-doc-mr-singh.mp4" type="video/mp4"/></video></div>
+</div>
+<div class="strip-right">
+<div class="strip-cat">Documentary</div>
+<div class="strip-date">November 2025</div>
+</div>
+</div>
+</section>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Suminder Virk</div>
+<div class="strip-subtitle">Runjeet Singh Gallery</div>
+</div>
+<div class="strip-media">
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:3/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Documentary/Suminder/suminder-preview.gif" alt="Suminder Virk" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/Suminder/40---suminder-virk-runjeet-singh-gallery-3.mp4" type="video/mp4"/></video></div>
+<div class="strip-clip card-frame" data-yt-id="5CUN58EYzzo" data-yt-title="Suminder Virk" style="aspect-ratio:5/4;"><img src="https://img.youtube.com/vi/5CUN58EYzzo/hqdefault.jpg" alt="Suminder Virk" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+</div>
+<div class="strip-right">
+<div class="strip-cat">Gallery</div>
+<div class="strip-date">March 2026</div>
+</div>
+</div>
+</section>
+<section class="strip-section fade-in">
+<div class="strip-row">
+<div class="strip-left">
+<div class="strip-title">Ranj Singh</div>
+<div class="strip-subtitle">Wolverhampton Wrestling</div>
+</div>
+<div class="strip-media">
+<div class="strip-clip card-frame" data-yt-id="iRc2n23f-ho" data-yt-title="Ranj Singh" style="aspect-ratio:5/4;"><img src="https://img.youtube.com/vi/iRc2n23f-ho/hqdefault.jpg" alt="Ranj Singh" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"/></div>
+<div class="strip-clip card-frame has-gif" style="aspect-ratio:5/4;"><img class="clip-gif" src="https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/ranj-preview.gif" alt="Ranj Singh" loading="lazy"/><video class="ctrl-video" preload="metadata"><source src="https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/53---ranj-wrestling-autism-doc-3.mp4" type="video/mp4"/></video></div>
+</div>
+<div class="strip-right">
+<div class="strip-cat">Wrestling</div>
+<div class="strip-date">June 2026</div>
+</div>
+</div>
+</section>
 
 </div>
 <footer><span>Glasgow, UK · Available internationally</span><div class="footer-social" aria-label="Social links">
@@ -203,10 +293,11 @@
       if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
     });
   }, { threshold:0.08, rootMargin:'0px 0px -40px 0px' });
-  document.querySelectorAll('.masthead-eyebrow, .masthead-title, .masthead-meta, .card').forEach(el => {
+  document.querySelectorAll('.masthead-eyebrow, .masthead-title, .masthead-tags, .masthead-meta, .card, .strip-section').forEach(el => {
     if (el.classList.contains('card')) el.classList.add('fade-in');
     observer.observe(el);
   });
 </script>
+<script defer src="assets/site-lightbox.js"></script>
 </body>
 </html>
