@@ -105,14 +105,16 @@
   .faq-item h3{font-family:var(--mono);font-size:.82rem;text-transform:uppercase;letter-spacing:.04em;color:var(--cream);margin-bottom:.6rem}
   .faq-item p{font-size:.8rem;line-height:1.75;color:var(--cream-dim);max-width:48rem}
 
-  .cta{padding:5rem 3rem}
-  .cta-box{border:1px solid var(--mint-rule);background:rgba(126,200,164,.05);padding:3.5rem;display:grid;grid-template-columns:1.3fr .7fr;gap:3rem;align-items:center}
-  .cta h2{font-weight:300;font-size:clamp(2.6rem,5.5vw,5.2rem);line-height:.96;letter-spacing:-.045em}
-  .cta p{font-size:.92rem;line-height:1.8;color:var(--cream-dim);margin-top:1.4rem}
-  .cta-side{text-align:right}
-  .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;background:var(--mint);color:var(--bg);padding:1.3rem 2.2rem;text-decoration:none;font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;transition:transform .25s ease,box-shadow .25s ease}
+  .cta{padding:5rem 3rem;position:relative;overflow:hidden}
+  .cta-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;filter:brightness(.48) saturate(.92);z-index:0}
+  .cta-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(26,15,10,.5) 0%,rgba(26,15,10,.88) 100%)}
+  .cta-box{position:relative;z-index:2;border:1px solid rgba(126,200,164,.32);background:rgba(10,6,4,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:5rem 3.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:0}
+  .cta h2{font-weight:300;font-size:clamp(3rem,6.5vw,6.5rem);line-height:.96;letter-spacing:-.045em}
+  .cta p{font-size:.95rem;line-height:1.8;color:var(--cream-dim);margin-top:1.4rem;max-width:48ch;margin-left:auto;margin-right:auto;text-align:center}
+  .cta-side{text-align:center;margin-top:2.6rem;display:flex;flex-direction:column;align-items:center}
+  .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;background:var(--mint);color:var(--bg);padding:1.3rem 2.2rem;text-decoration:none;font-family:var(--mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;border-radius:999px;transition:transform .25s ease,box-shadow .25s ease}
   .cta-btn:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(126,200,164,.32)}
-  .cta-side .note{margin-top:1rem;text-align:right}
+  .cta-side .note{margin-top:1rem;text-align:center}
   footer{border-top:1px solid var(--mint-rule);padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:var(--bg)}
   footer span,footer a{font-family:var(--mono);font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none}
   footer a{color:var(--mint)}
@@ -121,8 +123,7 @@
   @media(max-width:980px){
     nav,.masthead,.offer,.split-feature,.video-section,.topics,.process,.cta,footer{padding-left:1.4rem;padding-right:1.4rem}
     .offer,.masthead-meta,.section-title,.process{grid-template-columns:1fr}
-    .cta-box{grid-template-columns:1fr;padding:2.2rem;gap:1.8rem;text-align:left}
-    .cta-side,.cta-side .note{text-align:left}
+    .cta-box{padding:2.2rem}
     .offer-left{border-right:none;border-bottom:1px solid var(--mint-rule);padding-right:0}.booking-wrap{padding-left:0}
     .split-row,.split-row.reverse,.split-row.sfx-row{grid-template-columns:1fr;gap:1.5rem}.split-row.reverse .feature-media{order:0}.split-row.sfx-row .feature-media{max-width:16rem}
     .video-row.verticals{grid-template-columns:1fr 1fr}
@@ -347,6 +348,8 @@
 </div>
 </section>
 <section class="cta">
+<img class="cta-bg" alt="" src="assets/cta-background.jpg"/>
+<div class="cta-overlay"></div>
 <div class="cta-box">
 <div class="fade">
 <h2>Bring your footage.<br/>Leave with direction.</h2>
