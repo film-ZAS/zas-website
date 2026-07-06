@@ -177,14 +177,38 @@
   .footer-social svg{width:22px;height:22px;display:block;fill:currentColor;}
 
   video:fullscreen, video:-webkit-full-screen { object-fit: contain !important; background: #000; }
+
+  /* Mint logo hover navigation — shared with homepage/portfolio */
+  .logo-menu{position:fixed;top:22px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;font-family:var(--mono)}
+  .logo-menu::after{content:"";position:absolute;top:100%;right:0;width:100%;height:16px;}
+  .logo-menu-trigger{width:54px;height:54px;border:1px solid rgba(126,200,164,.34);border-radius:999px;background:rgba(16,10,7,.34);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .28s ease,border-color .28s ease,background .28s ease,box-shadow .28s ease}
+  .logo-menu-trigger:hover,.logo-menu:focus-within .logo-menu-trigger{transform:rotate(8deg) scale(1.03);border-color:rgba(126,200,164,.72);background:rgba(126,200,164,.09);box-shadow:0 0 28px rgba(126,200,164,.14)}
+  .logo-dropdown{position:absolute;top:62px;right:0;min-width:214px;padding:14px;background:rgba(12,7,5,.74);border:1px solid rgba(126,200,164,.24);border-radius:18px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 26px 70px rgba(0,0,0,.42);opacity:0;transform:translateY(-10px);pointer-events:none;transition:opacity .24s ease,transform .24s ease}
+  .logo-menu:hover .logo-dropdown,.logo-menu:focus-within .logo-dropdown{opacity:1;transform:translateY(0);pointer-events:auto}
+  .logo-dropdown a{display:block;padding:12px 13px;border-radius:12px;font-size:11px;line-height:1;letter-spacing:.18em;text-transform:uppercase;color:var(--cream-dim);text-decoration:none;text-align:right;transition:color .2s ease,background .2s ease,transform .2s ease}
+  .logo-dropdown a:hover,.logo-dropdown a.active{color:var(--mint);background:rgba(126,200,164,.08);transform:translateX(-3px)}
+  .logo-dropdown .menu-rule{height:1px;background:var(--mint-rule);margin:8px 4px}
+  .logo-dropdown .menu-cta{margin-top:8px;background:var(--mint);color:var(--bg);text-align:center;font-weight:700;border-radius:999px}
+  .logo-dropdown .menu-cta:hover{color:var(--bg);background:#96ddbd;transform:translateY(-1px)}
+  @media(max-width:700px){.logo-menu{top:14px;right:14px}.logo-menu-trigger{width:46px;height:46px}.logo-dropdown{top:54px;min-width:190px}}
 </style>
 <meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/><link href="assets/site-lightbox.css" rel="stylesheet"/></head>
 <body>
-<nav class="site-nav">
-<div class="site-nav-left"><a href="index.html">Home</a></div>
-<a aria-label="Zain Saleem home" class="site-nav-logo" href="index.html" title="Zain Saleem"><img alt="Zain Saleem logo" decoding="async" loading="lazy" src="assets/images/f623402d7b66.png"/></a>
-<div class="site-nav-right"><div class="work-nav-item"><a href="index.html#work">Work</a><div class="work-nav-dropdown"><a href="documentary.html">Documentary</a><a href="culture.html">Culture</a><a href="sport.html">Sport</a></div></div><a href="index.html#about">About</a><a class="active" href="mentoring.html">Mentoring</a><a href="index.html#contact">Contact</a></div>
-</nav>
+<div class="logo-menu" aria-label="Site menu">
+<button class="logo-menu-trigger" aria-label="Open navigation menu">
+<img alt="Zain Saleem logo" src="assets/images/f623402d7b66.png" style="width:34px;height:34px;display:block;filter:drop-shadow(0 0 8px rgba(126,200,164,.22))"/>
+</button>
+<div class="logo-dropdown">
+<a href="index.html">Home</a>
+<a href="zain-portfolio-redesign.html#documentary">Documentary</a>
+<a href="zain-portfolio-redesign.html#sport">Sport</a>
+<a href="zain-portfolio-redesign.html#culture">Culture</a>
+<div class="menu-rule"></div>
+<a class="active" href="mentoring.html">Mentoring</a>
+<a href="index.html#contact">Contact</a>
+<a class="menu-cta" href="https://calendar.app.google/ZSKW9txWhiyM8vBAA" rel="noopener" target="_blank">Book a call</a>
+</div>
+</div>
 <header class="masthead">
 <div class="eyebrow fade">1:1 Creative Mentoring</div>
 <h1 class="fade">Mentoring</h1>

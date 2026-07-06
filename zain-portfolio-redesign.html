@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zain Saleem — Director Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#060302;
+      --panel:#0d0805;
+      --cream:#E8DDD0;
+      --muted:rgba(232,221,208,.58);
+      --faint:rgba(232,221,208,.22);
+      --mint:#7EC8A4;
+      --mint-soft:rgba(126,200,164,.18);
+      --line:rgba(232,221,208,.12);
+      --shadow:rgba(0,0,0,.65);
+      --mono:'Space Mono',monospace;
+      --sans:'Inter',system-ui,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--cream);font-family:var(--sans);overflow:hidden}
+    button{font:inherit;color:inherit}
+    ::selection{background:rgba(126,200,164,.28)}
+    .grain,.light{position:fixed;inset:0;pointer-events:none;z-index:0}
+    .grain{opacity:.16;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.78' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");mix-blend-mode:screen;animation:grain 8s steps(10) infinite}
+    .light{background:radial-gradient(circle at var(--mx,55%) var(--my,40%),rgba(126,200,164,.13),transparent 28%),radial-gradient(circle at 72% 40%,rgba(232,221,208,.08),transparent 42%),linear-gradient(120deg,#060302 0%,#130c08 55%,#060302 100%)}
+    @keyframes grain{0%,100%{transform:translate(0,0)}10%{transform:translate(-2%,1%)}20%{transform:translate(1%,-1%)}30%{transform:translate(3%,2%)}40%{transform:translate(-1%,3%)}50%{transform:translate(2%,-3%)}60%{transform:translate(-3%,1%)}70%{transform:translate(1%,2%)}80%{transform:translate(3%,-2%)}90%{transform:translate(-1%,-1%)}}
+    .app{position:relative;z-index:1;height:100vh;display:grid;grid-template-rows:auto 1fr;padding:28px clamp(20px,4vw,64px) 30px;gap:14px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:20px;z-index:5}
+    .brand{font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--cream)}
+    .nav{display:none;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .nav button,.ghost{border:1px solid transparent;background:transparent;border-radius:999px;padding:9px 13px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);cursor:pointer;transition:.25s ease}
+    .nav button:hover,.ghost:hover{color:var(--cream);border-color:var(--line);background:rgba(232,221,208,.04)}
+    .nav button.active{color:var(--mint);border-color:rgba(126,200,164,.32);background:var(--mint-soft)}
+    main{min-height:0;display:grid;grid-template-columns:minmax(300px,35vw) 1fr;align-items:stretch;gap:clamp(18px,4vw,70px)}
+    .copy{align-self:start;max-width:520px;padding-top:clamp(86px,16vh,150px);transform:none;position:relative;z-index:4}
+    .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--mint);margin-bottom:18px}
+    h1{margin:0;font-size:clamp(46px,7vw,98px);font-weight:300;letter-spacing:-.07em;line-height:.88;text-transform:uppercase;max-width:700px}
+    .subtitle{margin:24px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.8}
+    .meta{display:grid;grid-template-columns:repeat(2,minmax(110px,1fr));gap:18px;margin-top:42px;border-top:1px solid var(--line);padding-top:22px;max-width:420px}
+    .meta div span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--faint);margin-bottom:6px}.meta div strong{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--cream);font-weight:400}
+    .right-col{min-width:0;display:grid;grid-template-rows:minmax(0,1fr) auto;align-items:center;gap:18px;padding-top:34px}.stage{position:relative;height:min(62vh,650px);min-height:390px;perspective:1600px;display:flex;align-items:center;justify-content:center;touch-action:pan-y;isolation:isolate}
+    .cover{position:absolute;width:min(49vw,680px);height:min(56vh,620px);max-height:620px;border-radius:3px;overflow:hidden;background:#100905;border:1px solid rgba(232,221,208,.12);box-shadow:0 46px 120px var(--shadow);cursor:pointer;transition:transform .68s cubic-bezier(.19,.75,.24,1),opacity .5s ease,filter .5s ease;transform-style:preserve-3d}
+    .cover video,.cover img,.cover iframe{width:100%;height:100%;object-fit:cover;display:block;border:0;background:#000}.cover iframe{pointer-events:none}
+    .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,.05),transparent 32%,rgba(0,0,0,.38));pointer-events:none}.cover.focus{box-shadow:0 54px 140px rgba(0,0,0,.78),0 0 0 1px rgba(126,200,164,.28)}
+    .open-label{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--mint);background:rgba(6,3,2,.62);border:1px solid rgba(126,200,164,.35);padding:9px 12px;border-radius:999px;opacity:0;transition:.25s ease;white-space:nowrap}.cover.focus:hover .open-label{opacity:1}
+    footer{display:grid;grid-template-columns:auto minmax(240px,1fr);grid-template-areas:'controls thumbs' 'hint thumbs';align-items:center;gap:8px 20px;justify-self:stretch;max-width:min(52vw,760px);margin:0 auto;z-index:6}.controls{grid-area:controls;display:flex;align-items:center;gap:10px}.circle{width:44px;height:44px;border-radius:50%;border:1px solid rgba(232,221,208,.16);background:rgba(232,221,208,.04);cursor:pointer;color:var(--cream);font-size:24px;line-height:1;transition:.25s ease}.circle:hover{border-color:rgba(126,200,164,.55);color:var(--mint);background:rgba(126,200,164,.1)}
+    .counter{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);min-width:92px;text-align:center}.hint{grid-area:hint;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);white-space:nowrap}
+    .filmstrip{grid-area:thumbs;display:flex;gap:10px;align-items:center;overflow:auto;max-width:100%;padding:3px}.thumb{width:70px;height:44px;border-radius:2px;border:1px solid transparent;opacity:.45;overflow:hidden;flex:0 0 auto;background:#111;cursor:pointer;transition:.25s ease}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.thumb.active{opacity:1;border-color:rgba(126,200,164,.65);transform:translateY(-2px)}
+    .overlay{position:fixed;inset:0;background:rgba(4,2,1,.96);z-index:20;display:none;align-items:center;justify-content:center;flex-direction:column;gap:16px;padding:28px}.overlay.show{display:flex}.viewer{max-width:92vw;max-height:82vh;background:#000;box-shadow:0 40px 130px rgba(0,0,0,.8);transition:opacity .22s ease}.viewer video,.viewer img,.viewer iframe{display:block;max-width:92vw;max-height:82vh;width:auto;height:auto;border:0;background:#000}.viewer iframe{width:78vw;height:44vw;max-height:82vh}.close{position:absolute;top:24px;right:28px}.viewer-caption{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    .viewer-arrow{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid rgba(126,200,164,.45);background:rgba(126,200,164,.09);color:var(--mint);font-size:26px;line-height:1;cursor:pointer;transition:.2s ease;z-index:21}.viewer-arrow:hover{background:rgba(126,200,164,.2);border-color:rgba(126,200,164,.8)}.viewer-arrow.left{left:26px}.viewer-arrow.right{right:26px}
+    .back-row{display:flex;justify-content:center;margin-bottom:14px}.back-pill{visibility:hidden;border:1px solid rgba(126,200,164,.5);background:rgba(126,200,164,.08);color:var(--mint);border-radius:999px;padding:8px 16px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background .2s ease,border-color .2s ease}.back-pill:hover{background:rgba(126,200,164,.2);border-color:rgba(126,200,164,.85)}
+        @media(max-width:860px){html,body{overflow:auto}.app{height:auto;min-height:100vh;overflow:hidden;padding:20px 16px 24px}main{grid-template-columns:1fr;gap:20px}.copy{order:2;padding-top:0}.right-col{order:1;padding-top:0;gap:12px}.stage{height:50vh;min-height:310px}.cover{width:72vw;height:46vh}footer{max-width:100%;width:100%;grid-template-columns:1fr;grid-template-areas:'controls' 'thumbs';justify-items:start}.meta{grid-template-columns:1fr 1fr;margin-top:24px}.filmstrip{max-width:100%;width:100%}.hint{display:none}h1{font-size:clamp(44px,14vw,78px)}.subtitle{margin-top:16px}.nav{gap:4px}.nav button{padding:8px 10px;font-size:10px}.viewer iframe{width:92vw;height:52vw}.viewer-arrow{width:42px;height:42px;font-size:20px}.viewer-arrow.left{left:10px}.viewer-arrow.right{right:10px}}
+  
+
+/* Mint logo hover navigation */
+.logo-menu{position:fixed;top:22px;right:28px;z-index:999;display:flex;flex-direction:column;align-items:flex-end;font-family:var(--mono,'Space Mono',monospace)}
+.logo-menu::after{content:"";position:absolute;top:100%;right:0;width:100%;height:16px;}
+.logo-menu-trigger{width:54px;height:54px;border:1px solid rgba(126,200,164,.34);border-radius:999px;background:rgba(16,10,7,.34);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .28s ease,border-color .28s ease,background .28s ease,box-shadow .28s ease}
+.logo-menu-trigger:hover,.logo-menu:focus-within .logo-menu-trigger{transform:rotate(8deg) scale(1.03);border-color:rgba(126,200,164,.72);background:rgba(126,200,164,.09);box-shadow:0 0 28px rgba(126,200,164,.14)}
+.logo-menu svg{width:34px;height:34px;color:#7EC8A4;display:block;filter:drop-shadow(0 0 8px rgba(126,200,164,.22))}
+.logo-dropdown{position:absolute;top:62px;right:0;min-width:214px;padding:14px;background:rgba(12,7,5,.74);border:1px solid rgba(126,200,164,.24);border-radius:18px;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 26px 70px rgba(0,0,0,.42);opacity:0;transform:translateY(-10px);pointer-events:none;transition:opacity .24s ease,transform .24s ease}
+.logo-menu:hover .logo-dropdown,.logo-menu:focus-within .logo-dropdown{opacity:1;transform:translateY(0);pointer-events:auto}
+.logo-dropdown a{display:block;padding:12px 13px;border-radius:12px;font-size:11px;line-height:1;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,221,208,.64);text-decoration:none;text-align:right;transition:color .2s ease,background .2s ease,transform .2s ease}
+.logo-dropdown a:hover{color:#7EC8A4;background:rgba(126,200,164,.08);transform:translateX(-3px)}
+.logo-dropdown .menu-rule{height:1px;background:rgba(126,200,164,.18);margin:8px 4px}
+.logo-dropdown .menu-cta{margin-top:8px;background:#7EC8A4;color:#100805;text-align:center;font-weight:700;border-radius:999px}
+.logo-dropdown .menu-cta:hover{color:#100805;background:#96ddbd;transform:translateY(-1px)}
+@media(max-width:700px){.logo-menu{top:14px;right:14px}.logo-menu-trigger{width:46px;height:46px}.logo-menu svg{width:29px;height:29px}.logo-dropdown{top:54px;min-width:190px}}
+
+</style>
+</head>
+<body>
+
+<div class="logo-menu" aria-label="Site menu">
+  <button class="logo-menu-trigger" aria-label="Open navigation menu">
+    <img src="assets/images/f623402d7b66.png" alt="Zain Saleem logo" style="width:34px;height:34px;display:block;filter:drop-shadow(0 0 8px rgba(126,200,164,.22))">
+  </button>
+  <div class="logo-dropdown">
+    <a href="index.html">Home</a>
+    <a href="zain-portfolio-redesign.html#documentary">Documentary</a>
+    <a href="zain-portfolio-redesign.html#sport">Sport</a>
+    <a href="zain-portfolio-redesign.html#culture">Culture</a>
+    <div class="menu-rule"></div>
+    <a href="mentoring.html">Mentoring</a>
+    <a href="index.html#contact">Contact</a>
+    <a class="menu-cta" href="https://calendar.app.google/ZSKW9txWhiyM8vBAA" target="_blank" rel="noopener">Book a call</a>
+  </div>
+</div>
+
+  <div class="light"></div><div class="grain"></div>
+  <div class="app">
+    <header><div class="brand">Zain Aus Saleem</div><nav class="nav" id="nav"></nav></header>
+    <main>
+      <section class="copy"><div class="kicker" id="kicker"></div><h1 id="title"></h1><p class="subtitle" id="subtitle"></p><div class="meta" id="meta"></div></section>
+      <div class="right-col"><div class="back-row"><button class="back-pill" id="backTop">‹ Back</button></div><section class="stage" id="stage" aria-label="Portfolio carousel"></section>
+      <footer><div class="controls"><button class="circle" id="prev" aria-label="Previous">‹</button><div class="counter" id="counter"></div><button class="circle" id="next" aria-label="Next">›</button></div><div class="filmstrip" id="filmstrip"></div><div class="hint">Drag · Scroll · Arrow Keys · Enter</div></footer></div>
+    </main>
+  </div>
+  <div class="overlay" id="overlay"><button class="ghost close" id="close">Close</button><button class="viewer-arrow left" id="viewerPrev" aria-label="Previous clip">‹</button><button class="viewer-arrow right" id="viewerNext" aria-label="Next clip">›</button><div class="viewer" id="viewer"></div><div class="viewer-caption" id="viewerCaption"></div></div>
+<script>
+const CATEGORIES=[
+{id:'documentary',title:'Documentary',tagline:'People · Place · Memory',projects:[
+{id:'noorin-gulam',title:'Noorin Gulam',subtitle:'Portrait Film',category:'Documentary',date:'May 2026',role:'Director · DP · Editor',clips:[{poster:'https://img.youtube.com/vi/f6rgLM28SgQ/hqdefault.jpg',youtube:'f6rgLM28SgQ',ratio:'5/4'}]},
+{id:'zahmena',title:'Zahmena',subtitle:'Pakistan Footballer',category:'Footballer',date:'August 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/Zahmena/zahmena-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/Zahmena/13---zahman-malik-pakistan-footballer-2.mp4',ratio:'3/4'}]},
+{id:'obsolescence',title:'Obsolescence',subtitle:'Documentary Feature',category:'Documentary',date:'November 2025',role:'Director · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/OBSELENCES/obsolescence-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/OBSELENCES/20---obsolescence-doc-mr-singh.mp4',ratio:'3/4'},{poster:'https://img.youtube.com/vi/E8swK-8hksw/hqdefault.jpg',youtube:'E8swK-8hksw',ratio:'5/4'}]},
+{id:'suminder-virk',title:'Suminder Virk',subtitle:'Runjeet Singh Gallery',category:'Gallery',date:'March 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/Suminder/suminder-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/Suminder/40---suminder-virk-runjeet-singh-gallery-3.mp4',ratio:'3/4'},{poster:'https://img.youtube.com/vi/5CUN58EYzzo/hqdefault.jpg',youtube:'5CUN58EYzzo',ratio:'5/4'}]},
+{id:'ranj-singh',title:'Ranj Singh',subtitle:'Wolverhampton Wrestling',category:'Wrestling',date:'June 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/ranj-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/53---ranj-wrestling-autism-doc-3.mp4',ratio:'5/4'},{poster:'https://img.youtube.com/vi/iRc2n23f-ho/hqdefault.jpg',youtube:'iRc2n23f-ho',ratio:'5/4'}]}]},
+{id:'sport',title:'Sport',tagline:'Athlete · Brand · Event · Story',projects:[
+{id:'commonwealth-games',title:'Commonwealth Games',subtitle:'Glasgow 2026',category:'Athletics',date:'July 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw1-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-2.mp4',ratio:'9/16'},{poster:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-3.mp4',ratio:'9/16'},{poster:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw3-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin.mp4',ratio:'9/16'}]},
+{id:'saracen',title:'Saracen Steam Punk',subtitle:'Team Bike Launch',category:'Cycling',date:'December 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/SARACEN/sar1-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Sport/SARACEN/sar2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch-2.mp4',ratio:'9/16'}]},
+{id:'sda',title:'Scottish Downhill Association',subtitle:'Mountain Biking',category:'Mountain Biking',date:'August 2025',role:'Director · DP · Editor',clips:[{poster:'https://img.youtube.com/vi/bP0rnnB-iCY/hqdefault.jpg',youtube:'bP0rnnB-iCY',ratio:'16/9'},{poster:'https://media.zainaussaleem.com/assets/Sport/SDA/sda2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-4.mp4',ratio:'9/16'},{poster:'https://media.zainaussaleem.com/assets/Sport/SDA/sda3-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-5.mp4',ratio:'9/16'}]},
+{id:'atlas',title:'Atlas',subtitle:'Running / Fashion',category:'Running',date:'July 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/Atlas/atlas1-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Sport/Atlas/atlas2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-2.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Sport/Atlas/atlas3-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-3.mp4',ratio:'5/4'}]},
+{id:'misfits',title:'Misfits Boxing',subtitle:'Event Film',category:'Boxing',date:'Sept 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/MISFITS/misfits-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/MISFITS/16---misfits-boxing-bts-4.mp4',ratio:'9/16'}]},
+{id:'mundial',title:'Mundial',subtitle:'Zahmena Footballer Film',category:'Football',date:'July 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/mundial-mid-preview.gif',youtube:'Px6nzVTMRDg',ratio:'5/4'}]}]},
+{id:'culture',title:'Culture',tagline:'Art · Design · Fashion',projects:[
+{id:'wade-house',title:'Wade House',subtitle:'Studio Wadhal',category:'Architecture',date:'Feb 2026',role:'Director · DP · Editor',clips:[{poster:'https://img.youtube.com/vi/JoCbpGdQ5Cw/hqdefault.jpg',youtube:'JoCbpGdQ5Cw',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-4-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-4.mp4',ratio:'3/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-7-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-7.mp4',ratio:'3/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-9-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-9.mp4',ratio:'3/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/poster-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/30---wadhal-pavilion-glass-maker.mp4',ratio:'3/4'}]},
+{id:'aadil-abedi',title:'Aadil Abedi',subtitle:'Portrait Series',category:'Artist',date:'Sept 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil1-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-1.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil2-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-2.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil3-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-3.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil4-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-4.mp4',ratio:'5/4'}]},
+{id:'lahos',title:'Lahos',subtitle:'Punjabi Fashion',category:'Fashion',date:'April 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos1-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos2-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-3.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos3-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-4.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos4-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-6.mp4',ratio:'5/4'}]},
+{id:'ucon',title:'Ucon',subtitle:'Barbican Shoot',category:'Fashion',date:'August 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/Ucon/ucon-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/Ucon/11---ucon-bag-collab-barbican.mp4',ratio:'9/16'}]},
+{id:'incador',title:'Incador',subtitle:'Jewellery Co.',category:'Jewellery',date:'November 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/INCADOR/incador-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/INCADOR/21---incador-jewellery-2.mp4',ratio:'3/4'}]}]}
+];
+const requestedArchive=(location.hash||'').replace('#','').toLowerCase();
+const archiveIndex=Math.max(0,CATEGORIES.findIndex(c=>c.id===requestedArchive));
+const state={level:requestedArchive?1:0,cat:archiveIndex>=0?archiveIndex:1,project:0,clip:0,drag:false,startX:0,moved:false};
+const $=id=>document.getElementById(id);
+function currentList(){return state.level===0?CATEGORIES:state.level===1?CATEGORIES[state.cat].projects:CATEGORIES[state.cat].projects[state.project].clips}
+function currentProject(){return state.level===0?CATEGORIES[state.cat].projects[0]:state.level===1?CATEGORIES[state.cat].projects[state.project]:CATEGORIES[state.cat].projects[state.project]}
+function heroClipIndex(project){return project && project.id==='atlas'?2:0}
+const CATEGORY_COVER_OVERRIDES={documentary:{proj:'suminder-virk',clip:0},sport:{proj:'atlas',clip:1},culture:{proj:'aadil-abedi',clip:0}};
+function hero(item){ if(item.clips) return item.clips[0]; if(item.projects){ const o=CATEGORY_COVER_OVERRIDES[item.id]; if(o){ const p=item.projects.find(pr=>pr.id===o.proj); if(p && p.clips[o.clip]) return p.clips[o.clip]; } return item.projects[0].clips[0]; } return item }
+function embed(id,muted=true){return `https://www.youtube.com/embed/${id}?autoplay=1&mute=${muted?1:0}&controls=1&modestbranding=1&rel=0&playsinline=1`}
+const stageCardMap=new Map();
+const filmThumbMap=new Map();
+function keyFor(item,level){ if(level===0) return 'cat:'+item.id; if(level===1) return 'proj:'+item.id; return 'clip:'+(item.poster||item.video||item.youtube); }
+function renderStage(){
+ const stage=$('stage'); const list=currentList(); const focus=state.level===0?state.cat:state.level===1?state.project:state.clip; const project=currentProject(); const level=state.level;
+ const activeKeys=new Set();
+ list.forEach((item,i)=>{
+  const clip=hero(item); const offset=i-focus; if(Math.abs(offset)>3)return;
+  const key=keyFor(item,level); activeKeys.add(key);
+  let card=stageCardMap.get(key); let isNew=false;
+  if(!card){ card=document.createElement('article'); card.className='cover'; stageCardMap.set(key,card); stage.appendChild(card); isNew=true; }
+  const x=offset*58, z=-Math.abs(offset)*150, r=offset*-18, s=Math.max(.55,1-Math.abs(offset)*.16);
+  const finalTransform=`translateX(${x}%) translateZ(${z}px) rotateY(${r}deg) scale(${s})`;
+  const finalOpacity=Math.max(.16,1-Math.abs(offset)*.28);
+  if(isNew){ card.style.transition='none'; const enterX=(offset+(offset>=0?0.5:-0.5))*58; card.style.transform=`translateX(${enterX}%) translateZ(${z-60}px) rotateY(${r}deg) scale(${s*0.92})`; card.style.opacity='0'; void card.offsetWidth; card.style.transition=''; }
+  card.classList.toggle('focus',offset===0);
+  card.style.transform=finalTransform; card.style.opacity=finalOpacity; card.style.filter=`brightness(${Math.max(.35,1-Math.abs(offset)*.18)})`; card.style.zIndex=100-Math.abs(offset);
+  const wantVideo=offset===0 && !!clip.video, wantYoutube=offset===0 && !clip.video && !!clip.youtube;
+  const desiredKind=wantVideo?'video':wantYoutube?'youtube':'img'; const srcId=clip.video||clip.youtube||clip.poster;
+  if(card.dataset.kind!==desiredKind || card.dataset.src!==srcId){
+   card.dataset.kind=desiredKind; card.dataset.src=srcId;
+   if(desiredKind==='video') card.innerHTML=`<video src="${clip.video}" poster="${clip.poster}" muted autoplay loop playsinline></video>`;
+   else if(desiredKind==='youtube') card.innerHTML=`<iframe src="${embed(clip.youtube,true)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+   else card.innerHTML=`<img src="${clip.poster}" alt="${item.title||project.title}">`;
+   const label=document.createElement('div'); label.className='open-label'; label.textContent=level===2?'Open Film':'Open'; card.appendChild(label);
+  }
+  card.onclick=()=>{ if(state.moved)return; if(i!==focus){ if(state.level===0)state.cat=i; else if(state.level===1)state.project=i; else state.clip=i; render(); } else if(state.level<2){state.level++; if(state.level===1)state.project=Math.floor(CATEGORIES[state.cat].projects.length/2); if(state.level===2)state.clip=heroClipIndex(CATEGORIES[state.cat].projects[state.project]); render()} else openViewer(clip,project) };
+ });
+ for(const [key,card] of Array.from(stageCardMap.entries())){ if(!activeKeys.has(key)){ card.style.opacity='0'; const cur=card.style.transform; card.style.transform=cur+' scale(0.7)'; stageCardMap.delete(key); setTimeout(()=>card.remove(),700); } }
+}
+function renderFilmstrip(){
+ const fs=$('filmstrip'); const list=currentList(); const focus=state.level===0?state.cat:state.level===1?state.project:state.clip; const level=state.level;
+ const activeKeys=new Set();
+ list.forEach((item,i)=>{
+  const clip=hero(item); const key=keyFor(item,level); activeKeys.add(key);
+  let t=filmThumbMap.get(key);
+  if(!t){ t=document.createElement('button'); t.className='thumb'; fs.appendChild(t); filmThumbMap.set(key,t); }
+  if(t.dataset.src!==clip.poster){ t.dataset.src=clip.poster; t.innerHTML=`<img src="${clip.poster}" alt="">`; }
+  t.className='thumb'+(i===focus?' active':'');
+  t.onclick=()=>{if(state.level===0)state.cat=i;else if(state.level===1)state.project=i;else state.clip=i;render()};
+ });
+ for(const [key,t] of Array.from(filmThumbMap.entries())){ if(!activeKeys.has(key)){ t.remove(); filmThumbMap.delete(key); } }
+ // keep DOM order in sync with list order
+ list.forEach(item=>{ const t=filmThumbMap.get(keyFor(item,level)); if(t) fs.appendChild(t); });
+}
+function render(){
+ const nav=$('nav');nav.innerHTML='';CATEGORIES.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c.title;b.className=i===state.cat?'active':'';b.onclick=()=>{state.cat=i;state.level=0;state.project=0;state.clip=0;render()};nav.appendChild(b)});
+ const cat=CATEGORIES[state.cat], project=currentProject();
+ const title=state.level===0?cat.title:project.title; const subtitle=state.level===0?'Portfolio':project.subtitle;
+ $('kicker').textContent=state.level===0?'Select Archive':state.level===1?cat.title+' / Projects':cat.title+' / Film';
+ $('title').textContent=title; $('subtitle').textContent=state.level===0?cat.tagline:subtitle;
+ $('meta').innerHTML= state.level===0 ? `<div><span>Archive</span><strong>${cat.projects.length} Projects</strong></div><div><span>Focus</span><strong>${cat.tagline}</strong></div><div><span>Mode</span><strong>Gallery View</strong></div><div><span>Action</span><strong>Click to Open</strong></div>` : `<div><span>Category</span><strong>${project.category}</strong></div><div><span>Year</span><strong>${project.date}</strong></div><div><span>Role</span><strong>${project.role}</strong></div><div><span>Clips</span><strong>${project.clips.length}</strong></div>`;
+ const list=currentList(), focus=state.level===0?state.cat:state.level===1?state.project:state.clip;
+ $('counter').textContent=String(focus+1).padStart(2,'0')+' / '+String(list.length).padStart(2,'0'); $('backTop').style.visibility=state.level?'visible':'hidden';
+ renderStage(); renderFilmstrip();
+}
+function viewerHTML(clip){return clip.video?`<video src="${clip.video}" poster="${clip.poster}" controls autoplay playsinline></video>`:clip.youtube?`<iframe src="${embed(clip.youtube,false)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`:`<img src="${clip.poster}" alt="">`}
+function refreshViewer(){if(!$('overlay').classList.contains('show'))return; const project=currentProject(); const clip=project.clips[state.clip]; const v=$('viewer'); v.style.opacity='0'; setTimeout(()=>{ v.innerHTML=viewerHTML(clip); $('viewerCaption').textContent=project.title+' — '+project.subtitle; v.style.opacity='1'; },160)}
+function move(d){const list=currentList(); if(state.level===0)state.cat=Math.max(0,Math.min(list.length-1,state.cat+d)); else if(state.level===1)state.project=Math.max(0,Math.min(list.length-1,state.project+d)); else state.clip=Math.max(0,Math.min(list.length-1,state.clip+d)); render(); refreshViewer()}
+function openViewer(clip,project){const v=$('viewer');v.style.opacity='1';v.innerHTML=viewerHTML(clip); $('viewerCaption').textContent=project.title+' — '+project.subtitle; $('overlay').classList.add('show')}
+function closeViewer(){$('overlay').classList.remove('show');$('viewer').innerHTML=''}
+$('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('backTop').onclick=()=>{state.level=Math.max(0,state.level-1);render()};$('close').onclick=closeViewer;$('viewerPrev').onclick=e=>{e.stopPropagation();move(-1)};$('viewerNext').onclick=e=>{e.stopPropagation();move(1)};$('overlay').onclick=e=>{if(e.target.id==='overlay')closeViewer()};document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('overlay').classList.contains('show'))closeViewer();else if(state.level){state.level--;render()}} if(e.key==='ArrowLeft')move(-1); if(e.key==='ArrowRight')move(1); if(e.key==='Enter'){if(state.level===0){state.level=1;state.project=Math.floor(CATEGORIES[state.cat].projects.length/2);render()} else if(state.level===1){const proj=CATEGORIES[state.cat].projects[state.project];state.level=2;state.clip=heroClipIndex(proj);render()} else openViewer(CATEGORIES[state.cat].projects[state.project].clips[state.clip],currentProject())}});
+$('stage').addEventListener('pointerdown',e=>{state.drag=true;state.startX=e.clientX;state.moved=false});$('stage').addEventListener('pointermove',e=>{if(!state.drag)return;if(Math.abs(e.clientX-state.startX)>8)state.moved=true});$('stage').addEventListener('pointerup',e=>{if(!state.drag)return;const dx=e.clientX-state.startX;state.drag=false;if(dx<-55)move(1);if(dx>55)move(-1);setTimeout(()=>state.moved=false,0)});
+let wheelAccum=0,wheelIdleTimer=null;
+window.addEventListener('wheel',e=>{ if($('overlay').classList.contains('show'))return; const delta=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX; wheelAccum+=delta; clearTimeout(wheelIdleTimer); wheelIdleTimer=setTimeout(()=>{wheelAccum=0},200); const STEP=48; while(Math.abs(wheelAccum)>=STEP){ move(wheelAccum>0?1:-1); wheelAccum+= wheelAccum>0?-STEP:STEP; } },{passive:true});
+document.addEventListener('mousemove',e=>{document.documentElement.style.setProperty('--mx',e.clientX/window.innerWidth*100+'%');document.documentElement.style.setProperty('--my',e.clientY/window.innerHeight*100+'%')});
+render();
+</script>
+</body>
+</html>
