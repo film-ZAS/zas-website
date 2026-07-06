@@ -22,7 +22,7 @@
       --sans:'Inter',system-ui,sans-serif;
     }
     *{box-sizing:border-box}
-    html,body{margin:0;height:100%;background:var(--bg);color:var(--cream);font-family:var(--sans);overflow:hidden}
+    html,body{margin:0;height:100%;background:var(--bg);color:var(--cream);font-family:var(--sans);overflow:hidden;overscroll-behavior-x:none}
     button{font:inherit;color:inherit}
     ::selection{background:rgba(126,200,164,.28)}
     .grain,.light{position:fixed;inset:0;pointer-events:none;z-index:0}
@@ -202,7 +202,7 @@ function closeViewer(){$('overlay').classList.remove('show');$('viewer').innerHT
 $('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('backTop').onclick=()=>{state.level=Math.max(0,state.level-1);render()};$('close').onclick=closeViewer;$('viewerPrev').onclick=e=>{e.stopPropagation();move(-1)};$('viewerNext').onclick=e=>{e.stopPropagation();move(1)};$('overlay').onclick=e=>{if(e.target.id==='overlay')closeViewer()};document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('overlay').classList.contains('show'))closeViewer();else if(state.level){state.level--;render()}} if(e.key==='ArrowLeft')move(-1); if(e.key==='ArrowRight')move(1); if(e.key==='Enter'){if(state.level===0){state.level=1;state.project=Math.floor(CATEGORIES[state.cat].projects.length/2);render()} else if(state.level===1){const proj=CATEGORIES[state.cat].projects[state.project];state.level=2;state.clip=heroClipIndex(proj);render()} else openViewer(CATEGORIES[state.cat].projects[state.project].clips[state.clip],currentProject())}});
 $('stage').addEventListener('pointerdown',e=>{state.drag=true;state.startX=e.clientX;state.moved=false});$('stage').addEventListener('pointermove',e=>{if(!state.drag)return;if(Math.abs(e.clientX-state.startX)>8)state.moved=true});$('stage').addEventListener('pointerup',e=>{if(!state.drag)return;const dx=e.clientX-state.startX;state.drag=false;if(dx<-55)move(1);if(dx>55)move(-1);setTimeout(()=>state.moved=false,0)});
 let wheelAccum=0,wheelIdleTimer=null;
-window.addEventListener('wheel',e=>{ if($('overlay').classList.contains('show'))return; const delta=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX; wheelAccum+=delta; clearTimeout(wheelIdleTimer); wheelIdleTimer=setTimeout(()=>{wheelAccum=0},200); const STEP=100; while(Math.abs(wheelAccum)>=STEP){ move(wheelAccum>0?1:-1); wheelAccum+= wheelAccum>0?-STEP:STEP; } },{passive:true});
+window.addEventListener('wheel',e=>{ if($('overlay').classList.contains('show'))return; if(Math.abs(e.deltaX)>Math.abs(e.deltaY))e.preventDefault(); const delta=Math.abs(e.deltaY)>Math.abs(e.deltaX)?e.deltaY:e.deltaX; wheelAccum+=delta; clearTimeout(wheelIdleTimer); wheelIdleTimer=setTimeout(()=>{wheelAccum=0},200); const STEP=100; while(Math.abs(wheelAccum)>=STEP){ move(wheelAccum>0?1:-1); wheelAccum+= wheelAccum>0?-STEP:STEP; } },{passive:false});
 document.addEventListener('mousemove',e=>{document.documentElement.style.setProperty('--mx',e.clientX/window.innerWidth*100+'%');document.documentElement.style.setProperty('--my',e.clientY/window.innerHeight*100+'%')});
 render();
 </script>
