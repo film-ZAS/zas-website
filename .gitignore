@@ -4,7 +4,8 @@
 *.MP4
 *.mov
 *.MOV
-Mentoring/
+mentoring/compressed/
+mentoring/*.webp
 assets/Documentary/
 assets/Sport/
 assets/Culture/

@@ -2,7 +2,8 @@
   "name": "zas-website",
   "compatibility_date": "2026-07-03",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "html_handling": "drop-trailing-slash"
   },
   "routes": [
     { "pattern": "zainaussaleem.com", "custom_domain": true },
