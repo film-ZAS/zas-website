@@ -134,14 +134,7 @@ function currentProject(){return state.level===0?CATEGORIES[state.cat].projects[
 function heroClipIndex(project){return project && project.id==='atlas'?2:0}
 const CATEGORY_COVER_OVERRIDES={documentary:{proj:'suminder-virk',clip:0},sport:{proj:'atlas',clip:1},culture:{proj:'aadil-abedi',clip:0}};
 function hero(item){ if(item.clips) return item.clips[0]; if(item.projects){ const o=CATEGORY_COVER_OVERRIDES[item.id]; if(o){ const p=item.projects.find(pr=>pr.id===o.proj); if(p && p.clips[o.clip]) return p.clips[o.clip]; } return item.projects[0].clips[0]; } return item }
-function embed(id,muted=true){return `https://www.youtube.com/embed/${id}?autoplay=1&mute=${muted?1:0}&controls=1&modestbranding=1&rel=0&playsinline=1&enablejsapi=1`}
-function unmuteYTIn(container){
- const iframe=container.querySelector('iframe'); if(!iframe)return;
- function post(func){ iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:func,args:''}),'https://www.youtube.com') }
- let attempts=0;
- function tryUnmute(){ attempts++; if(!iframe.isConnected)return; post('unMute'); post('playVideo'); if(attempts<6)setTimeout(tryUnmute,400) }
- iframe.addEventListener('load',function onLoad(){ iframe.removeEventListener('load',onLoad); setTimeout(tryUnmute,200) });
-}
+function embed(id,muted=true){return `https://www.youtube.com/embed/${id}?autoplay=1&mute=${muted?1:0}&controls=1&modestbranding=1&rel=0&playsinline=1`}
 const stageCardMap=new Map();
 const filmThumbMap=new Map();
 function keyFor(item,level){ if(level===0) return 'cat:'+item.id; if(level===1) return 'proj:'+item.id; return 'clip:'+(item.poster||item.video||item.youtube); }
@@ -198,11 +191,12 @@ function render(){
  $('counter').textContent=String(focus+1).padStart(2,'0')+' / '+String(list.length).padStart(2,'0'); $('backTop').style.visibility=state.level?'visible':'hidden';
  renderStage(); renderFilmstrip();
 }
-function viewerHTML(clip){return clip.video?`<video src="${clip.video}" poster="${clip.poster}" controls autoplay playsinline></video>`:clip.youtube?`<iframe src="${embed(clip.youtube,true)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`:`<img src="${clip.poster}" alt="">`}
+function viewerHTML(clip){return clip.video?`<video src="${clip.video}" poster="${clip.poster}" autoplay playsinline></video>`:clip.youtube?`<iframe src="${embed(clip.youtube,false)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`:`<img src="${clip.poster}" alt="">`}
+function enableControlsAfterStart(container){const vid=container.querySelector('video'); if(!vid)return; vid.addEventListener('playing',function onPlaying(){ vid.removeEventListener('playing',onPlaying); vid.controls=true; })}
 function updateViewerArrows(){const clips=currentProject().clips; $('viewerPrev').style.display=state.clip<=0?'none':''; $('viewerNext').style.display=state.clip>=clips.length-1?'none':''}
-function refreshViewer(){if(!$('overlay').classList.contains('show'))return; const project=currentProject(); const clip=project.clips[state.clip]; const v=$('viewer'); v.style.opacity='0'; setTimeout(()=>{ v.innerHTML=viewerHTML(clip); $('viewerCaption').textContent=project.title+' — '+project.subtitle; v.style.opacity='1'; unmuteYTIn(v); updateViewerArrows(); },160)}
+function refreshViewer(){if(!$('overlay').classList.contains('show'))return; const project=currentProject(); const clip=project.clips[state.clip]; const v=$('viewer'); v.style.opacity='0'; setTimeout(()=>{ v.innerHTML=viewerHTML(clip); $('viewerCaption').textContent=project.title+' — '+project.subtitle; v.style.opacity='1'; updateViewerArrows(); enableControlsAfterStart(v); },160)}
 function move(d){const list=currentList(); if(state.level===0)state.cat=Math.max(0,Math.min(list.length-1,state.cat+d)); else if(state.level===1)state.project=Math.max(0,Math.min(list.length-1,state.project+d)); else state.clip=Math.max(0,Math.min(list.length-1,state.clip+d)); render(); refreshViewer()}
-function openViewer(clip,project){const v=$('viewer');v.style.opacity='1';v.innerHTML=viewerHTML(clip); $('viewerCaption').textContent=project.title+' — '+project.subtitle; $('overlay').classList.add('show'); unmuteYTIn(v); updateViewerArrows()}
+function openViewer(clip,project){const v=$('viewer');v.style.opacity='1';v.innerHTML=viewerHTML(clip); $('viewerCaption').textContent=project.title+' — '+project.subtitle; $('overlay').classList.add('show'); updateViewerArrows(); enableControlsAfterStart(v)}
 function closeViewer(){$('overlay').classList.remove('show');$('viewer').innerHTML=''}
 $('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('backTop').onclick=()=>{state.level=Math.max(0,state.level-1);render()};$('close').onclick=closeViewer;$('viewerPrev').onclick=e=>{e.stopPropagation();move(-1)};$('viewerNext').onclick=e=>{e.stopPropagation();move(1)};$('overlay').onclick=e=>{if(e.target.id==='overlay')closeViewer()};document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('overlay').classList.contains('show'))closeViewer();else if(state.level){state.level--;render()}} if(e.key==='ArrowLeft')move(-1); if(e.key==='ArrowRight')move(1); if(e.key==='Enter'){if(state.level===0){state.level=1;state.project=Math.floor(CATEGORIES[state.cat].projects.length/2);render()} else if(state.level===1){const proj=CATEGORIES[state.cat].projects[state.project];state.level=2;state.clip=heroClipIndex(proj);render()} else openViewer(CATEGORIES[state.cat].projects[state.project].clips[state.clip],currentProject())}});
 $('stage').addEventListener('pointerdown',e=>{state.drag=true;state.startX=e.clientX;state.moved=false});$('stage').addEventListener('pointermove',e=>{if(!state.drag)return;if(Math.abs(e.clientX-state.startX)>8)state.moved=true});$('stage').addEventListener('pointerup',e=>{if(!state.drag)return;const dx=e.clientX-state.startX;state.drag=false;if(dx<-55)move(1);if(dx>55)move(-1);setTimeout(()=>state.moved=false,0)});

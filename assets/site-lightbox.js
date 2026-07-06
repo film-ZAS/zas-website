@@ -7,24 +7,6 @@
     volOff: '<path d="M3 10v4h4l5 5V5L7 10H3z"/><path d="M19 12l2.1-2.1-1.4-1.4L17.6 10.6l-2.1-2.1-1.4 1.4L16.2 12l-2.1 2.1 1.4 1.4L17.6 13.4l2.1 2.1 1.4-1.4L19 12z"/>'
   };
 
-  function unmuteYoutubeWhenReady(iframe){
-    function post(func){
-      iframe.contentWindow.postMessage(JSON.stringify({event:'command', func:func, args:''}), 'https://www.youtube.com');
-    }
-    var attempts = 0;
-    function tryUnmute(){
-      attempts++;
-      if(!iframe.isConnected || iframe.src.indexOf('youtube.com') === -1) return;
-      post('unMute');
-      post('playVideo');
-      if(attempts < 6) setTimeout(tryUnmute, 400);
-    }
-    iframe.addEventListener('load', function onLoad(){
-      iframe.removeEventListener('load', onLoad);
-      setTimeout(tryUnmute, 200);
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', function(){
     var frames = Array.prototype.slice.call(document.querySelectorAll('.card-frame:has(video.ctrl-video), .card-frame[data-yt-id]'));
     if(!frames.length) return;
@@ -78,7 +60,10 @@
       '<button type="button" class="vlb-close" aria-label="Close">&times;</button>' +
       '<button type="button" class="vlb-arrow vlb-prev" aria-label="Previous">&lsaquo;</button>' +
       '<div class="vlb-stage">' +
-        '<video class="vlb-video" playsinline></video>' +
+        '<div class="vlb-videowrap">' +
+          '<video class="vlb-video" playsinline></video>' +
+          '<div class="vlb-tapcatch"></div>' +
+        '</div>' +
         '<iframe class="vlb-iframe" allow="accelerometer; autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>' +
         '<div class="vlb-ctrl">' +
           '<div class="vid-ctrl-group"><button type="button" class="vlb-play" aria-label="Play">' + svg(ICONS.pause) + '</button></div>' +
@@ -90,6 +75,7 @@
     document.body.appendChild(overlay);
 
     var lbVideo = overlay.querySelector('.vlb-video');
+    var lbTapcatch = overlay.querySelector('.vlb-tapcatch');
     var lbIframe = overlay.querySelector('.vlb-iframe');
     var lbPlay = overlay.querySelector('.vlb-play');
     var lbMute = overlay.querySelector('.vlb-mute');
@@ -112,9 +98,8 @@
         lbVideo.style.display = 'none';
         lbCtrl.style.display = 'none';
         lbIframe.style.display = 'block';
-        lbIframe.src = 'https://www.youtube.com/embed/' + item.ytId + '?autoplay=1&rel=0&mute=1&enablejsapi=1';
+        lbIframe.src = 'https://www.youtube.com/embed/' + item.ytId + '?autoplay=1&rel=0';
         lbCaption.textContent = item.title + (item.desc ? ' — ' + item.desc : '');
-        unmuteYoutubeWhenReady(lbIframe);
       } else {
         lbIframe.style.display = 'none';
         lbIframe.src = '';
@@ -201,7 +186,7 @@
     });
     lbVideo.addEventListener('play', function(){ lbPlay.innerHTML = svg(ICONS.pause); });
     lbVideo.addEventListener('pause', function(){ lbPlay.innerHTML = svg(ICONS.play); });
-    lbVideo.addEventListener('click', function(){
+    lbTapcatch.addEventListener('click', function(){
       if(lbVideo.paused){ lbVideo.play(); } else { lbVideo.pause(); }
     });
     lbMute.addEventListener('click', function(e){
