@@ -36,27 +36,16 @@
   .hero-bc { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 3; font-family: "Space Mono", monospace; font-size: 0.6rem; letter-spacing: 0.22em; color: rgba(232,220,205,0.6); text-shadow: 0 1px 8px rgba(0,0,0,1); }
   .hero-mint-line { position: absolute; bottom: 0; left: 0; right: 0; height: 2px; background: var(--mint-dim); z-index: 3; }
 
-  /* TRIPTYCH */
-  #work { height: 100vh; display: flex; flex-direction: column; position: relative; }
-  .work-section-label { position: absolute; top: 2rem; left: 3rem; z-index: 10; margin: 0; }
-  .panel { position: relative; flex: 1; overflow: hidden; display: block; text-decoration: none; }
-  .panel-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 7s cubic-bezier(0.25,0.46,0.45,0.94); filter: brightness(0.5); }
-  .panel:hover .panel-img { transform: scale(1.04); filter: brightness(0.68); }
-  .panel-fade { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 0%, rgba(26,15,10,0.5) 50%, rgba(26,15,10,0.95) 100%); }
-  .panel-sep { height: 1px; background: var(--mint-dimmer); flex-shrink: 0; }
-  .panel-text { position: absolute; bottom: 0; left: 0; right: 0; padding: 0 2.5rem 1.2rem; z-index: 2; display: flex; justify-content: space-between; align-items: flex-end; }
-  .panel-num { font-family: "Space Mono", monospace; font-size: 0.72rem; letter-spacing: 0.22em; color: var(--mint); display: block; margin-bottom: 0.2rem; }
-  .panel-title { font-family: "Inter", sans-serif; font-weight: 300; font-size: clamp(3rem, 9vw, 8.5rem); color: var(--cream); line-height: 0.9; letter-spacing: -0.03em; transition: color 0.3s; white-space: nowrap; }
-  .panel:hover .panel-title { color: white; }
-  .panel-meta { text-align: right; padding-bottom: 0.5rem; padding-left: 2rem; }
-  .panel-sub { font-family: "Space Mono", monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream-dim); display: block; margin-bottom: 0.6rem; }
-  .panel-arrow { font-family: "Space Mono", monospace; font-size: 0.6rem; color: var(--mint); letter-spacing: 0.1em; text-transform: uppercase; opacity: 0; transform: translateX(6px); transition: opacity 0.3s, transform 0.3s; display: block; white-space: nowrap; }
-  .panel:hover .panel-arrow { opacity: 1; transform: translateX(0); }
-  .panel-doc .panel-img { object-position: center 35%; }
-  .panel-sport .panel-img { object-position: center 30%; }
-  .panel-culture .panel-img { object-position: center 40%; }
-  .panel-sport { view-transition-name: sport-expand; }
-  @media (prefers-reduced-motion: reduce) { .panel-sport { view-transition-name: none; } }
+  /* CATALOGUE */
+  #work { padding: 7rem 3rem; position: relative; }
+  .catalogue-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.6rem; }
+  .catalogue-head .section-label { margin-bottom: 0; }
+  .catalogue-enter { font-family: "Space Mono", monospace; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mint); text-decoration: none; opacity: 0.85; transition: opacity 0.3s, transform 0.3s; white-space: nowrap; }
+  .catalogue-enter:hover { opacity: 1; transform: translateX(4px); }
+  .catalogue-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--mint-dimmer); border: 1px solid var(--mint-dimmer); }
+  .catalogue-tile { position: relative; display: block; aspect-ratio: 1 / 1; overflow: hidden; text-decoration: none; background: var(--bg); }
+  .catalogue-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: transform 7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.6s ease; }
+  .catalogue-tile:hover .catalogue-img { transform: scale(1.04); filter: brightness(0.68); }
 
   /* APPROACH — two col with Ranj right */
   .statement { padding: 9rem 0 9rem 3rem; border-top: 1px solid var(--mint-dimmer); background: var(--bg); display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: stretch; overflow: hidden; }
@@ -167,11 +156,9 @@
   .fade-in.hidden { opacity: 0; transform: translateY(28px); }
 
   @media (max-width: 900px) {
-    #work { height: auto; }
-    .work-section-label { position: relative; top: auto; left: auto; padding: 2rem 1.5rem 1rem; background: var(--bg); }
+    #work { padding: 4rem 1.5rem; }
+    .catalogue-grid { grid-template-columns: repeat(3, 1fr); }
     .book-btn { min-height: 76px; min-width: min(340px, 100%); }
-    .panel { height: 40vw; min-height: 180px; }
-    .panel-title { font-size: clamp(2rem, 8vw, 3.5rem); }
     .statement { grid-template-columns: 1fr; padding: 4rem 1.5rem 3rem; gap: 2.5rem; }
     #about { padding: 0 0 3rem; }
     .statement-right { min-height: 55vw; }
@@ -199,7 +186,7 @@
     .hero-bc { display: none; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .panel-img, .bts-track, .logo-track, .fade-in { transition: none !important; animation: none !important; }
+    .catalogue-img, .bts-track, .logo-track, .fade-in { transition: none !important; animation: none !important; }
   }
   ::view-transition-group(sport-expand) {
     animation-duration: 0.55s;
@@ -988,51 +975,21 @@
   <div class="hero-mint-line"></div>
 </div>
 <div id="work">
-<span class="section-label work-section-label">Featured work</span>
-<a class="panel panel-doc" href="/work#documentary">
-<img alt="Documentary" class="panel-img" decoding="async" loading="lazy" src="assets/images/d5f335586ae8.jpg"/>
-<div class="panel-fade"></div>
-<div class="panel-text">
-<div>
-<span class="panel-num">01</span>
-<h2 class="panel-title">Documentary</h2>
+<div class="catalogue-head">
+<span class="section-label">Catalogue</span>
+<a class="catalogue-enter" href="/work">Enter archive →</a>
 </div>
-<div class="panel-meta">
-<span class="panel-sub">People · Identity · Storytelling</span>
-<span class="panel-arrow">View work →</span>
-</div>
-</div>
+<div class="catalogue-grid">
+<a class="catalogue-tile" href="/work">
+<img alt="" class="catalogue-img" decoding="async" loading="lazy" src="assets/images/catalogue-1.jpg"/>
 </a>
-<div class="panel-sep"></div>
-<a class="panel panel-sport" href="/work#sport">
-<img alt="Sport" class="panel-img" decoding="async" loading="lazy" src="assets/images/4a39d085b6f6.jpg"/>
-<div class="panel-fade"></div>
-<div class="panel-text">
-<div>
-<span class="panel-num">02</span>
-<h2 class="panel-title">Sport</h2>
-</div>
-<div class="panel-meta">
-<span class="panel-sub">Athletes · Action · Endurance</span>
-<span class="panel-arrow">View work →</span>
-</div>
-</div>
+<a class="catalogue-tile" href="/work">
+<img alt="" class="catalogue-img" decoding="async" loading="lazy" src="assets/images/catalogue-2.jpg"/>
 </a>
-<div class="panel-sep"></div>
-<a class="panel panel-culture" href="/work#culture">
-<img alt="Culture" class="panel-img" decoding="async" loading="lazy" src="assets/images/7baccede3e0d.jpg"/>
-<div class="panel-fade"></div>
-<div class="panel-text">
-<div>
-<span class="panel-num">03</span>
-<h2 class="panel-title">Culture</h2>
-</div>
-<div class="panel-meta">
-<span class="panel-sub">Arts · Fashion · Architecture · Brands</span>
-<span class="panel-arrow">View work →</span>
-</div>
-</div>
+<a class="catalogue-tile" href="/work">
+<img alt="" class="catalogue-img" decoding="async" loading="lazy" src="assets/images/catalogue-3.jpg"/>
 </a>
+</div>
 </div>
 <!-- APPROACH -->
 <section class="statement reveal" id="approach">
