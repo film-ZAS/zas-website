@@ -107,42 +107,51 @@
   </div>
   <div class="overlay" id="overlay"><button class="ghost close" id="close">Close</button><button class="viewer-arrow left" id="viewerPrev" aria-label="Previous clip">‹</button><button class="viewer-arrow right" id="viewerNext" aria-label="Next clip">›</button><div class="viewer" id="viewer"></div><div class="viewer-caption" id="viewerCaption"></div></div>
 <script>
-const CATEGORIES=[
-{id:'documentary',title:'Documentary',tagline:'People · Place · Memory',projects:[
-{id:'noorin-gulam',title:'Noorin Gulam',subtitle:'Portrait Film',category:'Documentary',date:'May 2026',role:'Director · DP · Editor',clips:[{poster:'https://img.youtube.com/vi/f6rgLM28SgQ/hqdefault.jpg',youtube:'f6rgLM28SgQ',ratio:'5/4'}]},
+// Unused inventory — not part of the active coverflow, kept for future use
+const UNUSED_PROJECTS=[
 {id:'zahmena',title:'Zahmena',subtitle:'Pakistan Footballer',category:'Footballer',date:'August 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/Zahmena/zahmena-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/Zahmena/13---zahman-malik-pakistan-footballer-2.mp4',ratio:'3/4'}]},
-{id:'obsolescence',title:'Obsolescence',subtitle:'Documentary Feature',category:'Documentary',date:'November 2025',role:'Director · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/OBSELENCES/obsolescence-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/OBSELENCES/20---obsolescence-doc-mr-singh.mp4',ratio:'3/4'},{poster:'https://img.youtube.com/vi/E8swK-8hksw/hqdefault.jpg',youtube:'E8swK-8hksw',ratio:'5/4'}]},
 {id:'suminder-virk',title:'Suminder Virk',subtitle:'Runjeet Singh Gallery',category:'Gallery',date:'March 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/Suminder/suminder-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/Suminder/40---suminder-virk-runjeet-singh-gallery-3.mp4',ratio:'3/4'},{poster:'https://img.youtube.com/vi/5CUN58EYzzo/hqdefault.jpg',youtube:'5CUN58EYzzo',ratio:'5/4'}]},
-{id:'ranj-singh',title:'Ranj Singh',subtitle:'Wolverhampton Wrestling',category:'Wrestling',date:'June 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/ranj-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/53---ranj-wrestling-autism-doc-3.mp4',ratio:'5/4'},{poster:'https://img.youtube.com/vi/iRc2n23f-ho/hqdefault.jpg',youtube:'iRc2n23f-ho',ratio:'5/4'}]}]},
-{id:'sport',title:'Sport',tagline:'Athlete · Brand · Event · Story',projects:[
-{id:'commonwealth-games',title:'Commonwealth Games',subtitle:'Glasgow 2026',category:'Athletics',date:'July 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw1-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-2.mp4',ratio:'9/16'},{poster:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-3.mp4',ratio:'9/16'},{poster:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw3-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin.mp4',ratio:'9/16'}]},
-{id:'saracen',title:'Saracen Steam Punk',subtitle:'Team Bike Launch',category:'Cycling',date:'December 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/SARACEN/sar1-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Sport/SARACEN/sar2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch-2.mp4',ratio:'9/16'}]},
-{id:'sda',title:'Scottish Downhill Association',subtitle:'Mountain Biking',category:'Mountain Biking',date:'August 2025',role:'Director · DP · Editor',clips:[{poster:'https://img.youtube.com/vi/bP0rnnB-iCY/hqdefault.jpg',youtube:'bP0rnnB-iCY',ratio:'16/9'},{poster:'https://media.zainaussaleem.com/assets/Sport/SDA/sda2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-4.mp4',ratio:'9/16'},{poster:'https://media.zainaussaleem.com/assets/Sport/SDA/sda3-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-5.mp4',ratio:'9/16'}]},
-{id:'atlas',title:'Atlas',subtitle:'Running / Fashion',category:'Running',date:'July 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/Atlas/atlas1-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Sport/Atlas/atlas2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-2.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Sport/Atlas/atlas3-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-3.mp4',ratio:'5/4'}]},
+{id:'ranj-singh',title:'Ranj Singh',subtitle:'Wolverhampton Wrestling',category:'Wrestling',date:'June 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/ranj-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/RANJ%20WRESTLER/53---ranj-wrestling-autism-doc-3.mp4',ratio:'5/4'},{poster:'https://img.youtube.com/vi/iRc2n23f-ho/hqdefault.jpg',youtube:'iRc2n23f-ho',ratio:'5/4'}]},
 {id:'misfits',title:'Misfits Boxing',subtitle:'Event Film',category:'Boxing',date:'Sept 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/MISFITS/misfits-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/MISFITS/16---misfits-boxing-bts-4.mp4',ratio:'9/16'}]},
-{id:'mundial',title:'Mundial',subtitle:'Zahmena Footballer Film',category:'Football',date:'July 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/mundial-mid-preview.gif',youtube:'Px6nzVTMRDg',ratio:'5/4'}]}]},
-{id:'culture',title:'Culture',tagline:'Art · Design · Fashion',projects:[
-{id:'wade-house',title:'Wade House',subtitle:'Studio Wadhal',category:'Architecture',date:'Feb 2026',role:'Director · DP · Editor',clips:[{poster:'https://img.youtube.com/vi/JoCbpGdQ5Cw/hqdefault.jpg',youtube:'JoCbpGdQ5Cw',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-4-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-4.mp4',ratio:'3/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-7-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-7.mp4',ratio:'3/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-9-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-9.mp4',ratio:'3/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/poster-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/30---wadhal-pavilion-glass-maker.mp4',ratio:'3/4'}]},
-{id:'aadil-abedi',title:'Aadil Abedi',subtitle:'Portrait Series',category:'Artist',date:'Sept 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil1-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-1.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil2-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-2.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil3-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-3.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil4-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-4.mp4',ratio:'5/4'}]},
-{id:'lahos',title:'Lahos',subtitle:'Punjabi Fashion',category:'Fashion',date:'April 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos1-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos2-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-3.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos3-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-4.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos4-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-6.mp4',ratio:'5/4'}]},
+{id:'mundial',title:'Mundial',subtitle:'Zahmena Footballer Film',category:'Football',date:'July 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/mundial-mid-preview.gif',youtube:'Px6nzVTMRDg',ratio:'5/4'}]},
 {id:'ucon',title:'Ucon',subtitle:'Barbican Shoot',category:'Fashion',date:'August 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/Ucon/ucon-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/Ucon/11---ucon-bag-collab-barbican.mp4',ratio:'9/16'}]},
-{id:'incador',title:'Incador',subtitle:'Jewellery Co.',category:'Jewellery',date:'November 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/INCADOR/incador-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/INCADOR/21---incador-jewellery-2.mp4',ratio:'3/4'}]}]}
+{id:'incador',title:'Incador',subtitle:'Jewellery Co.',category:'Jewellery',date:'November 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/INCADOR/incador-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/INCADOR/21---incador-jewellery-2.mp4',ratio:'3/4'}]}
 ];
-const requestedArchive=(location.hash||'').replace('#','').toLowerCase();
-const archiveIndex=Math.max(0,CATEGORIES.findIndex(c=>c.id===requestedArchive));
-const state={level:requestedArchive?1:0,cat:archiveIndex>=0?archiveIndex:1,project:0,clip:0,drag:false,startX:0,moved:false};
+
+const PROJECTS=[
+{id:'noorin-gulam-commonwealth',title:'Noorin Gulam × Commonwealth Games',subtitle:'Portrait Film · Glasgow 2026',category:'Documentary · Athletics',date:'May – Jul 2026',role:'Director · DP · Editor',clips:[
+ {poster:'https://img.youtube.com/vi/f6rgLM28SgQ/hqdefault.jpg',youtube:'f6rgLM28SgQ',ratio:'5/4'},
+ {poster:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw1-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-2.mp4',ratio:'9/16'},
+ {poster:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin-3.mp4',ratio:'9/16'},
+ {poster:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/cw3-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Commonwealth%20Noorin/59---glasgow-2026-noorin.mp4',ratio:'9/16'}
+]},
+{id:'saracen-sda',title:'Saracen × SDA',subtitle:'Team Bike Launch · Mountain Biking',category:'Cycling · Mountain Biking',date:'Aug – Dec 2025',role:'Director · DP · Editor',clips:[
+ {poster:'https://media.zainaussaleem.com/assets/Sport/SARACEN/sar1-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch.mp4',ratio:'5/4'},
+ {poster:'https://media.zainaussaleem.com/assets/Sport/SARACEN/sar2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SARACEN/28---saracen-steampunk-biker-launch-2.mp4',ratio:'9/16'},
+ {poster:'https://img.youtube.com/vi/bP0rnnB-iCY/hqdefault.jpg',youtube:'bP0rnnB-iCY',ratio:'16/9'},
+ {poster:'https://media.zainaussaleem.com/assets/Sport/SDA/sda2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-4.mp4',ratio:'9/16'},
+ {poster:'https://media.zainaussaleem.com/assets/Sport/SDA/sda3-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/SDA/12---scottish-downhill-association-5.mp4',ratio:'9/16'}
+]},
+{id:'wade-house',title:'Wade House Series',subtitle:'Studio Wadhal',category:'Architecture',date:'Feb 2026',role:'Director · DP · Editor',clips:[{poster:'https://img.youtube.com/vi/JoCbpGdQ5Cw/hqdefault.jpg',youtube:'JoCbpGdQ5Cw',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-4-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-4.mp4',ratio:'3/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-7-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-7.mp4',ratio:'3/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/poster-9-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Wade%20House-%20Studio%20Wadhal/46---wadhal-wade-house---architects-first-building-9.mp4',ratio:'3/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/poster-v2.jpg',video:'https://media.zainaussaleem.com/assets/Culture/Pavilion%20Pavilion/30---wadhal-pavilion-glass-maker.mp4',ratio:'3/4'}]},
+{id:'lahos',title:'Lahos',subtitle:'Punjabi Fashion',category:'Fashion',date:'April 2026',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos1-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos2-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-3.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos3-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-4.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/LAHOS/lahos4-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/LAHOS/52---lahos-ltd-punjabi-clothing-brand-6.mp4',ratio:'5/4'}]},
+{id:'aadil-abedi',title:'Aadil Abedi Series',subtitle:'Portrait Series',category:'Artist',date:'Sept 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil1-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-1.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil2-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-2.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil3-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-3.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil4-preview.gif',video:'https://media.zainaussaleem.com/assets/Culture/AADIL%20ABEDI/aadil-abedi-4.mp4',ratio:'5/4'}]},
+{id:'obsolescence',title:'Obsolescence',subtitle:'Documentary Feature',category:'Documentary',date:'November 2025',role:'Director · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Documentary/OBSELENCES/obsolescence-preview.gif',video:'https://media.zainaussaleem.com/assets/Documentary/OBSELENCES/20---obsolescence-doc-mr-singh.mp4',ratio:'3/4'},{poster:'https://img.youtube.com/vi/E8swK-8hksw/hqdefault.jpg',youtube:'E8swK-8hksw',ratio:'5/4'}]},
+{id:'atlas',title:'Atlas Series',subtitle:'Running / Fashion',category:'Running',date:'July 2025',role:'Director · DP · Editor',clips:[{poster:'https://media.zainaussaleem.com/assets/Sport/Atlas/atlas1-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Sport/Atlas/atlas2-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-2.mp4',ratio:'5/4'},{poster:'https://media.zainaussaleem.com/assets/Sport/Atlas/atlas3-preview.gif',video:'https://media.zainaussaleem.com/assets/Sport/Atlas/03---atlas-collectif-3.mp4',ratio:'5/4'}]}
+];
+const requestedProject=(location.hash||'').replace('#','').toLowerCase();
+const projectIndex=PROJECTS.findIndex(p=>p.id===requestedProject);
+const state={level:projectIndex>=0?1:0,project:projectIndex>=0?projectIndex:0,clip:0,drag:false,startX:0,moved:false};
 const $=id=>document.getElementById(id);
-function currentList(){return state.level===0?CATEGORIES:state.level===1?CATEGORIES[state.cat].projects:CATEGORIES[state.cat].projects[state.project].clips}
-function currentProject(){return state.level===0?CATEGORIES[state.cat].projects[0]:state.level===1?CATEGORIES[state.cat].projects[state.project]:CATEGORIES[state.cat].projects[state.project]}
+function currentList(){return state.level===0?PROJECTS:PROJECTS[state.project].clips}
+function currentProject(){return PROJECTS[state.project]}
 function heroClipIndex(project){return project && project.id==='atlas'?2:0}
-const CATEGORY_COVER_OVERRIDES={documentary:{proj:'suminder-virk',clip:0},sport:{proj:'atlas',clip:1},culture:{proj:'aadil-abedi',clip:0}};
-function hero(item){ if(item.clips) return item.clips[0]; if(item.projects){ const o=CATEGORY_COVER_OVERRIDES[item.id]; if(o){ const p=item.projects.find(pr=>pr.id===o.proj); if(p && p.clips[o.clip]) return p.clips[o.clip]; } return item.projects[0].clips[0]; } return item }
+function hero(item){ return item.clips ? item.clips[0] : item; }
 function embed(id,muted=true){return `https://www.youtube.com/embed/${id}?autoplay=1&mute=${muted?1:0}&controls=1&modestbranding=1&rel=0&playsinline=1`}
 const stageCardMap=new Map();
 const filmThumbMap=new Map();
-function keyFor(item,level){ if(level===0) return 'cat:'+item.id; if(level===1) return 'proj:'+item.id; return 'clip:'+(item.poster||item.video||item.youtube); }
+function keyFor(item,level){ if(level===0) return 'proj:'+item.id; return 'clip:'+(item.poster||item.video||item.youtube); }
 
-let pos=state.level===0?state.cat:state.level===1?state.project:state.clip;
+let pos=state.level===0?state.project:state.clip;
 let lastFocusInt=Math.round(pos);
 let velocity=0;
 let isUserScrolling=false;
@@ -172,7 +181,7 @@ function buildStageCards(){
   if(!card){ card=document.createElement('article'); card.className='cover'; stageCardMap.set(key,card); stage.appendChild(card); }
   const clip=hero(item);
   setCardContent(card,item,clip,i===lastFocusInt,level,project);
-  card.onclick=()=>{ if(state.moved)return; if(i!==lastFocusInt){ if(state.level===0)state.cat=i; else if(state.level===1)state.project=i; else state.clip=i; render(); } else if(state.level<2){state.level++; if(state.level===1)state.project=Math.floor(CATEGORIES[state.cat].projects.length/2); if(state.level===2)state.clip=heroClipIndex(CATEGORIES[state.cat].projects[state.project]); render()} else openViewer(clip,project) };
+  card.onclick=()=>{ if(state.moved)return; if(i!==lastFocusInt){ if(state.level===0)state.project=i; else state.clip=i; render(); } else if(state.level<1){state.level++; state.clip=heroClipIndex(PROJECTS[state.project]); render()} else openViewer(clip,project) };
  });
  for(const [key,card] of Array.from(stageCardMap.entries())){ if(!activeKeys.has(key)){ card.remove(); stageCardMap.delete(key); } }
 }
@@ -207,7 +216,7 @@ function renderFilmstrip(){
   if(!t){ t=document.createElement('button'); t.className='thumb'; fs.appendChild(t); filmThumbMap.set(key,t); }
   if(t.dataset.src!==clip.poster){ t.dataset.src=clip.poster; t.innerHTML=`<img src="${clip.poster}" alt="">`; }
   t.className='thumb'+(i===lastFocusInt?' active':'');
-  t.onclick=()=>{if(state.level===0)state.cat=i;else if(state.level===1)state.project=i;else state.clip=i;render()};
+  t.onclick=()=>{if(state.level===0)state.project=i;else state.clip=i;render()};
  });
  for(const [key,t] of Array.from(filmThumbMap.entries())){ if(!activeKeys.has(key)){ t.remove(); filmThumbMap.delete(key); } }
  // keep DOM order in sync with list order
@@ -219,18 +228,16 @@ function updateFilmstripActive(){
 }
 
 function updateTextPanel(){
- const cat=CATEGORIES[state.cat], project=currentProject();
- const title=state.level===0?cat.title:project.title; const subtitle=state.level===0?'Portfolio':project.subtitle;
- $('kicker').textContent=state.level===0?'Select Archive':state.level===1?cat.title+' / Projects':cat.title+' / Film';
- $('title').textContent=title; $('subtitle').textContent=state.level===0?cat.tagline:subtitle;
- $('meta').innerHTML= state.level===0 ? `<div><span>Archive</span><strong>${cat.projects.length} Projects</strong></div><div><span>Focus</span><strong>${cat.tagline}</strong></div><div><span>Mode</span><strong>Gallery View</strong></div><div><span>Action</span><strong>Click to Open</strong></div>` : `<div><span>Category</span><strong>${project.category}</strong></div><div><span>Year</span><strong>${project.date}</strong></div><div><span>Role</span><strong>${project.role}</strong></div><div><span>Clips</span><strong>${project.clips.length}</strong></div>`;
+ const project=currentProject();
+ $('kicker').textContent=state.level===0?'Select Project':project.title+' / Film';
+ $('title').textContent=project.title; $('subtitle').textContent=state.level===0?project.category:project.subtitle;
+ $('meta').innerHTML= state.level===0 ? `<div><span>Archive</span><strong>${PROJECTS.length} Projects</strong></div><div><span>Mode</span><strong>Gallery View</strong></div><div><span>Action</span><strong>Click to Open</strong></div>` : `<div><span>Category</span><strong>${project.category}</strong></div><div><span>Year</span><strong>${project.date}</strong></div><div><span>Role</span><strong>${project.role}</strong></div><div><span>Clips</span><strong>${project.clips.length}</strong></div>`;
  const list=currentList();
  $('counter').textContent=String(lastFocusInt+1).padStart(2,'0')+' / '+String(list.length).padStart(2,'0'); $('backTop').style.visibility=state.level?'visible':'hidden';
- Array.from($('nav').children).forEach((b,i)=>b.classList.toggle('active', i===state.cat));
 }
 
 function commitFocus(){
- if(state.level===0)state.cat=lastFocusInt; else if(state.level===1)state.project=lastFocusInt; else state.clip=lastFocusInt;
+ if(state.level===0)state.project=lastFocusInt; else state.clip=lastFocusInt;
  updateTextPanel();
  updateFilmstripActive();
  buildStageCards();
@@ -257,8 +264,7 @@ function tick(){
 }
 
 function render(){
- const nav=$('nav');nav.innerHTML='';CATEGORIES.forEach((c,i)=>{const b=document.createElement('button');b.textContent=c.title;b.className=i===state.cat?'active':'';b.onclick=()=>{state.cat=i;state.level=0;state.project=0;state.clip=0;render()};nav.appendChild(b)});
- pos=state.level===0?state.cat:state.level===1?state.project:state.clip;
+ pos=state.level===0?state.project:state.clip;
  velocity=0; isUserScrolling=false; lastFocusInt=Math.round(pos);
  if(rafId!==null){ cancelAnimationFrame(rafId); rafId=null; }
  updateTextPanel();
@@ -268,24 +274,24 @@ function render(){
  syncHashAndTitle();
 }
 function syncHashAndTitle(){
- const newHash=state.level>=1?'#'+CATEGORIES[state.cat].id:'';
+ const newHash=state.level>=1?'#'+PROJECTS[state.project].id:'';
  if(location.hash!==newHash){ history.replaceState(null,'',location.pathname+newHash); }
- document.title=state.level>=1?CATEGORIES[state.cat].title+' — Zain Aus Saleem':'Work — Zain Aus Saleem';
+ document.title=state.level>=1?PROJECTS[state.project].title+' — Zain Aus Saleem':'Work — Zain Aus Saleem';
 }
 window.addEventListener('popstate',()=>{
  const h=(location.hash||'').replace('#','').toLowerCase();
- const idx=CATEGORIES.findIndex(c=>c.id===h);
- state.level=idx>=0?1:0; state.cat=idx>=0?idx:state.cat; state.project=0; state.clip=0;
+ const idx=PROJECTS.findIndex(p=>p.id===h);
+ state.level=idx>=0?1:0; state.project=idx>=0?idx:state.project; state.clip=0;
  render();
 });
 function viewerHTML(clip){return clip.video?`<video src="${clip.video}" poster="${clip.poster}" autoplay playsinline></video>`:clip.youtube?`<iframe src="${embed(clip.youtube,false)}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`:`<img src="${clip.poster}" alt="">`}
 function enableControlsAfterStart(container){const vid=container.querySelector('video'); if(!vid)return; vid.addEventListener('playing',function onPlaying(){ vid.removeEventListener('playing',onPlaying); vid.controls=true; })}
 function updateViewerArrows(){const clips=currentProject().clips; $('viewerPrev').style.display=state.clip<=0?'none':''; $('viewerNext').style.display=state.clip>=clips.length-1?'none':''}
 function refreshViewer(){if(!$('overlay').classList.contains('show'))return; const project=currentProject(); const clip=project.clips[state.clip]; const v=$('viewer'); v.style.opacity='0'; setTimeout(()=>{ v.innerHTML=viewerHTML(clip); $('viewerCaption').textContent=project.title+' — '+project.subtitle; v.style.opacity='1'; updateViewerArrows(); enableControlsAfterStart(v); },160)}
-function move(d){const list=currentList(); if(state.level===0)state.cat=Math.max(0,Math.min(list.length-1,state.cat+d)); else if(state.level===1)state.project=Math.max(0,Math.min(list.length-1,state.project+d)); else state.clip=Math.max(0,Math.min(list.length-1,state.clip+d)); render(); refreshViewer()}
+function move(d){const list=currentList(); if(state.level===0)state.project=Math.max(0,Math.min(list.length-1,state.project+d)); else state.clip=Math.max(0,Math.min(list.length-1,state.clip+d)); render(); refreshViewer()}
 function openViewer(clip,project){const v=$('viewer');v.style.opacity='1';v.innerHTML=viewerHTML(clip); $('viewerCaption').textContent=project.title+' — '+project.subtitle; $('overlay').classList.add('show'); updateViewerArrows(); enableControlsAfterStart(v)}
 function closeViewer(){$('overlay').classList.remove('show');$('viewer').innerHTML=''}
-$('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('backTop').onclick=()=>{state.level=Math.max(0,state.level-1);render()};$('close').onclick=closeViewer;$('viewerPrev').onclick=e=>{e.stopPropagation();move(-1)};$('viewerNext').onclick=e=>{e.stopPropagation();move(1)};$('overlay').onclick=e=>{if(e.target.id==='overlay')closeViewer()};document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('overlay').classList.contains('show'))closeViewer();else if(state.level){state.level--;render()}} if(e.key==='ArrowLeft')move(-1); if(e.key==='ArrowRight')move(1); if(e.key==='Enter'){if(state.level===0){state.level=1;state.project=Math.floor(CATEGORIES[state.cat].projects.length/2);render()} else if(state.level===1){const proj=CATEGORIES[state.cat].projects[state.project];state.level=2;state.clip=heroClipIndex(proj);render()} else openViewer(CATEGORIES[state.cat].projects[state.project].clips[state.clip],currentProject())}});
+$('prev').onclick=()=>move(-1);$('next').onclick=()=>move(1);$('backTop').onclick=()=>{state.level=Math.max(0,state.level-1);render()};$('close').onclick=closeViewer;$('viewerPrev').onclick=e=>{e.stopPropagation();move(-1)};$('viewerNext').onclick=e=>{e.stopPropagation();move(1)};$('overlay').onclick=e=>{if(e.target.id==='overlay')closeViewer()};document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('overlay').classList.contains('show'))closeViewer();else if(state.level){state.level--;render()}} if(e.key==='ArrowLeft')move(-1); if(e.key==='ArrowRight')move(1); if(e.key==='Enter'){if(state.level===0){state.level=1;state.clip=heroClipIndex(PROJECTS[state.project]);render()} else openViewer(PROJECTS[state.project].clips[state.clip],currentProject())}});
 
 let dragLastX=0,dragLastT=0,dragVelSamples=[];
 $('stage').addEventListener('pointerdown',e=>{state.drag=true;state.startX=e.clientX;state.moved=false;dragLastX=e.clientX;dragLastT=performance.now();dragVelSamples=[];velocity=0;ensureRaf();});
