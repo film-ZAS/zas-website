@@ -939,10 +939,12 @@
 .logo-dropdown .menu-cta{margin-top:8px;background:#7EC8A4;color:#100805;text-align:center;font-weight:700;border-radius:999px}
 .logo-dropdown .menu-cta:hover{color:#100805;background:#96ddbd;transform:translateY(-1px)}
 @media(max-width:700px){.logo-menu{top:14px;right:14px}.logo-menu-trigger{width:46px;height:46px}.logo-dropdown{top:54px;min-width:190px}}
+.light{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(circle at var(--mx,55%) var(--my,40%),rgba(126,200,164,.13),transparent 28%)}
 
 </style>
 <meta content="Zain Saleem — filmmaker and director for documentary, sport, culture and mentoring." name="description"/></head>
 <body>
+<div class="light"></div>
 <div class="logo-menu" aria-label="Site menu">
   <button class="logo-menu-trigger" aria-label="Open navigation menu">
     <img src="assets/images/f623402d7b66.png" alt="Zain Saleem logo" style="width:34px;height:34px;display:block;filter:drop-shadow(0 0 8px rgba(126,200,164,.22))">
@@ -1241,6 +1243,11 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
   faders.forEach(el => observer.observe(el));
+
+  document.addEventListener('mousemove', e => {
+    document.documentElement.style.setProperty('--mx', e.clientX/window.innerWidth*100+'%');
+    document.documentElement.style.setProperty('--my', e.clientY/window.innerHeight*100+'%');
+  });
 </script>
 
 </body>
