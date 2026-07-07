@@ -832,7 +832,9 @@
   background:rgba(0,0,0,.04) !important;
   position:relative !important;
   overflow:hidden !important;
-  transition:background .35s ease, border-color .35s ease !important;
+  text-decoration:none !important;
+  cursor:pointer;
+  transition:background .4s ease, border-color .4s ease !important;
 }
 
 .service-cell::before{
@@ -844,7 +846,7 @@
   transition:width .4s cubic-bezier(.22,.61,.36,1);
 }
 .service-cell:hover::before{width:100%;}
-.service-cell:hover{background:rgba(126,200,164,.05) !important;}
+.service-cell:hover{background:rgba(126,200,164,.04) !important;}
 
 .service-num{
   display:block !important;
@@ -855,13 +857,15 @@
   color:var(--mint) !important;
   opacity:.9 !important;
   margin:0 0 1.3rem !important;
+  transition:opacity .4s ease;
 }
+.service-cell:hover .service-num{opacity:1 !important;}
 
 .service-name{
   font-size:clamp(2.45rem,2.95vw,3.8rem) !important;
   line-height:.98 !important;
   letter-spacing:-.055em !important;
-  margin:0 0 1.4rem !important;
+  margin:0 0 1.1rem !important;
   font-weight:300 !important;
   color:var(--cream) !important;
   max-width:11ch;
@@ -873,11 +877,11 @@
 .service-desc{
   font-size:clamp(.92rem,.95vw,1rem) !important;
   line-height:1.65 !important;
-  opacity:.74 !important;
-  color:var(--cream) !important;
+  opacity:1 !important;
+  color:rgba(232,220,205,.75) !important;
   max-width:34ch !important;
   margin:0 !important;
-  margin-top:auto !important;
+  margin-top:0 !important;
   padding-top:1rem !important;
   padding-left:1rem !important;
   border-left:2px solid rgba(126,200,164,.4) !important;
@@ -1048,29 +1052,29 @@
   </div>
 
   <div class="services-grid2">
-    <div class="service-cell">
+    <a class="service-cell" href="#contact">
       <span class="service-num">01</span>
       <h3 class="service-name">Story-led<br/>brand film</h3>
       <p class="service-desc">Founder, product, place or campaign films built around a strong human centre.</p>
-    </div>
+    </a>
 
-    <div class="service-cell">
+    <a class="service-cell" href="#contact">
       <span class="service-num">02</span>
       <h3 class="service-name">Documentary<br/>storytelling</h3>
       <p class="service-desc">Longer form portraits and cultural films with emotional weight and structure.</p>
-    </div>
+    </a>
 
-    <div class="service-cell">
+    <a class="service-cell" href="#contact">
       <span class="service-num">03</span>
       <h3 class="service-name">Monthly<br/>content package</h3>
       <p class="service-desc">Consistent cinematic content for brands that need quality output every month.</p>
-    </div>
+    </a>
 
-    <div class="service-cell">
+    <a class="service-cell" href="#contact">
       <span class="service-num">04</span>
       <h3 class="service-name">Editing and<br/>post</h3>
       <p class="service-desc">Editing, colour, sound design and delivery for footage that needs shaping.</p>
-    </div>
+    </a>
   </div>
 </div>
 <!-- ABOUT -->
