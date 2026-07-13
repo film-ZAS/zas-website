@@ -329,6 +329,15 @@
 .hero-video{
   filter:brightness(.54) saturate(.9) contrast(1.02);
 }
+.hero-poster-overlay{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  z-index:1;
+  filter:brightness(.54) saturate(.9) contrast(1.02);
+  transition:opacity .6s ease;
+  pointer-events:none;
+}
+.hero-poster-overlay.is-hidden{ opacity:0; }
 .hero-fade{
   background:
     radial-gradient(circle at 56% 50%,rgba(126,200,164,.08),transparent 34%),
@@ -883,6 +892,7 @@
 </div>
 <div class="hero">
   <video autoplay="" class="hero-video" loop="" muted="" playsinline="" preload="metadata" poster="assets/images/hero-poster.jpg"></video>
+  <img class="hero-poster-overlay" src="assets/images/hero-poster.jpg" alt="">
   <div class="hero-fade"></div>
 
   <div class="hero-name">ZAIN AUS SALEEM</div>
@@ -1146,6 +1156,13 @@
     source.type = 'video/mp4';
     heroVideo.appendChild(source);
     heroVideo.load();
+
+    const posterOverlay = document.querySelector('.hero-poster-overlay');
+    if (posterOverlay) {
+      heroVideo.addEventListener('playing', () => {
+        posterOverlay.classList.add('is-hidden');
+      }, { once: true });
+    }
   })();
 
   const faders = document.querySelectorAll('.fade-in');
